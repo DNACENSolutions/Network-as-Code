@@ -1,0 +1,44 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+# Network Settings an IP Pools design.
+network_settings_details: 
+  - global_pool_details:
+      settings:
+        ip_pool:
+        - name:  underlay
+          gateway: 204.1.1.1
+          ip_address_space: IPv4
+          cidr: 204.1.1.0/24
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  underlay1
+          gateway: 204.1.2.1
+          ip_address_space: IPv4
+          cidr: 204.1.2.0/24
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  SENSORPool
+          gateway: 204.1.48.1
+          ip_address_space: IPv4
+          cidr: 204.1.48.0/20
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  SENSORPool_V6
+          gateway: 2004:1:48::1
+          ip_address_space: IPv6
+          cidr: 2004:1:48::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1

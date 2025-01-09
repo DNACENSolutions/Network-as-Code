@@ -1,0 +1,157 @@
+catalyst_center_version: 2.3.7.6
+discovery_details:
+  cdp:
+    - ip_address_list:
+      - 204.101.16.1
+      devices_list: []
+      discovery_type: CDP
+      protocol_order: ssh
+      discovery_name: CDP Based Discovery1
+      enable_password_list: 
+        - Cisco#123
+      retry: 2
+  single:
+    - ip_address_list:
+      - 204.101.16.1
+      devices_list: []
+      discovery_type: SINGLE
+      protocol_order: ssh
+      discovery_name: Single IP Discovery11
+      discovery_specific_credentials:
+        cli_credentials_list:
+            - username: wlcaccess
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_1') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_1') }}"
+            - username: cisco
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_2') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_2') }}"
+        http_read_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_3') }}"
+            port: 443
+            secure: true
+        http_write_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_4') }}"
+            port: 443
+            secure: true
+        snmp_v2_read_credential:
+            description: snmpV2 Sample 1
+            community: public
+        snmp_v2_write_credential:
+            description: snmpV2 Sample 1
+            community: public
+      net_conf_port: 430
+      enable_password_list: 
+        - Cisco#123
+      retry: 2
+    - ip_address_list:
+      - 204.101.16.2
+      devices_list: []
+      discovery_type: SINGLE
+      protocol_order: ssh
+      discovery_name: Single IP Discovery11
+      discovery_specific_credentials:
+        cli_credentials_list:
+            - username: wlcaccess
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_5') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_3') }}"
+            - username: cisco
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_6') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_4') }}"
+        http_read_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_7') }}"
+            port: 443
+            secure: true
+        http_write_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_8') }}"
+            port: 443
+            secure: true
+        snmp_v3_credential:
+            description: snmpv3Credentials
+            username: wlcaccess
+            snmp_mode: AUTHPRIV
+            auth_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_AUTH_PASSWORD_1') }}"
+            auth_type: SHA
+            privacy_type: AES128
+            privacy_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PRIVACY_PASSWORD_1') }}"
+      net_conf_port: 430
+      enable_password_list: 
+        - Cisco#123
+      retry: 2
+  range:
+    - ip_address_list:
+      - 204.101.16.2-204.101.16.2
+      discovery_type: RANGE
+      protocol_order: ssh
+      discovery_name: Range IP Discovery11
+      discovery_specific_credentials:
+        cli_credentials_list:
+            - username: wlcaccess
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_9') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_5') }}"
+            - username: cisco
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_10') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_6') }}"
+        http_read_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_11') }}"
+            port: 443
+            secure: true
+        http_write_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_12') }}"
+            port: 443
+            secure: true
+        snmp_v3_credential:
+            description: snmpV3 Sample 1
+            username: wlcaccess
+            snmp_mode: AUTHPRIV
+            auth_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_AUTH_PASSWORD_2') }}"
+            auth_type: SHA
+            privacy_type: AES128
+            privacy_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PRIVACY_PASSWORD_2') }}"
+      net_conf_port: 430
+      enable_password_list: 
+        - Cisco#123
+      retry: 2
+  multi_range:
+    - ip_address_list:
+      - 204.101.16.2-204.101.16.3
+      - 204.101.16.4-204.101.16.4
+      discovery_type: MULTI RANGE
+      protocol_order: ssh
+      discovery_name: Multi Range Discovery 11
+      discovery_specific_credentials:
+        cli_credentials_list:
+            - username: wlcaccess
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_13') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_7') }}"
+            - username: cisco
+              password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_14') }}"
+              enable_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_ENABLE_PASSWORD_8') }}"
+        http_read_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_15') }}"
+            port: 443
+            secure: true
+        http_write_credential:
+            username: wlcaccess
+            password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PASSWORD_16') }}"
+            port: 443
+            secure: true
+        snmp_v3_credential:
+            description: snmpV3 Sample 1
+            username: wlcaccess
+            snmp_mode: AUTHPRIV
+            auth_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_AUTH_PASSWORD_3') }}"
+            auth_type: SHA
+            privacy_type: AES128
+            privacy_password: "{{ lookup('env', 'NAC_CATC_CONFIGS_SITES_SAN_JOSE_DEVICE_DISCOVERY_VARS_YML_PRIVACY_PASSWORD_3') }}"
+      net_conf_port: 430
+      timeout: 30
+      enable_password_list: 
+        - Cisco#123
+      retry: 2

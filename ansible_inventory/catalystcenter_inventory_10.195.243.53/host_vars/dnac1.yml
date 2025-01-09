@@ -1,0 +1,211 @@
+network_devices:
+-   collectionInterval: Global Default
+    family: Switches and Hubs
+    hostname: TB1-DM-eCA-BORDER.solutionsanity.com
+    macAddress: 78:02:B1:EB:B0:80
+    managementIpAddress: 204.1.2.1
+    nwDeviceId: 8e7263e2-1ab3-40d0-9d6b-1b3a65e7fa7a
+    platformId: C9300-48UXM
+    role: ACCESS
+    serialNumber: FJC2319T05U
+    series: Cisco Catalyst 9300 Series Switches
+    site: Global/USA/SAN JOSE/BLD23
+    stackType: NA
+    tagIdList: []
+    type: Cisco Catalyst 9300 Switch
+-   collectionInterval: Global Default
+    family: Switches and Hubs
+    hostname: TB1-DM-NF-Switch.solutionsanity.com
+    macAddress: 78:02:B1:C2:D6:00
+    managementIpAddress: 204.1.2.2
+    nwDeviceId: 103eec08-de79-4243-964e-e4a00154ff4b
+    platformId: C9300-48U
+    role: ACCESS
+    serialNumber: FJC2317T02L
+    series: Cisco Catalyst 9300 Series Switches
+    site: Global/USA/New York/BLDNYC
+    stackType: NA
+    tagIdList: []
+    type: Cisco Catalyst 9300 Switch
+-   collectionInterval: Global Default
+    family: Switches and Hubs
+    hostname: TB1-DM-SF-FIAB.solutionsanity.com
+    macAddress: F8:A7:3A:19:86:80
+    managementIpAddress: 204.1.2.3
+    nwDeviceId: 199e6f08-ff7c-4567-b6c6-6382cc9140c7
+    platformId: C9300-48UXM
+    role: ACCESS
+    serialNumber: FOC2506LMSU
+    series: Cisco Catalyst 9300 Series Switches
+    site: Global/USA/SAN-FRANCISCO/BLD_SF
+    stackType: NA
+    tagIdList: []
+    type: Cisco Catalyst 9300 Switch
+-   collectionInterval: Global Default
+    family: Switches and Hubs
+    hostname: TB1-DM-Transit.solutionsanity.com
+    macAddress: 78:02:B1:C2:21:00
+    managementIpAddress: 204.1.2.4
+    nwDeviceId: 2a2dc3f5-4356-40cf-b2e1-f54aa1e38545
+    platformId: C9300-48U
+    role: ACCESS
+    serialNumber: FJC2316E0MV
+    series: Cisco Catalyst 9300 Series Switches
+    site: Global/USA/SAN JOSE/BLD23
+    stackType: NA
+    tagIdList: []
+    type: Cisco Catalyst 9300 Switch
+-   collectionInterval: Global Default
+    family: Wireless Controller
+    hostname: TB1-DM-WLC2
+    macAddress: 6C:AB:05:87:DA:37
+    managementIpAddress: 204.192.5.2
+    nwDeviceId: dcde4341-d163-4bc8-9dae-732fcc63e682
+    platformId: AIR-CT8540-K9
+    role: ACCESS
+    serialNumber: FCH2319V0QB
+    series: Cisco 8500 Series Wireless LAN Controller
+    site: Global/USA/New York/BLDNYC
+    stackType: NA
+    tagIdList: []
+    type: Cisco 8540 Series Wireless Controllers
+-   collectionInterval: Global Default
+    family: Wireless Controller
+    hostname: TB1-DM-WLC.solutionsanity.com
+    macAddress: D4:78:9B:C1:95:D5
+    managementIpAddress: 204.192.4.2
+    nwDeviceId: 0de8a5f9-a495-480d-9d48-8dc05c65bdbd
+    platformId: AIR-CT8540-K9
+    role: ACCESS
+    serialNumber: FCH2317V0BZ
+    series: Cisco 8500 Series Wireless LAN Controller
+    site: Global/USA/SAN-FRANCISCO/BLD_SF
+    stackType: NA
+    tagIdList: []
+    type: Cisco 8540 Series Wireless Controllers
+-   collectionInterval: Global Default
+    family: Wireless Controller
+    hostname: TB1-VEWLC.solutionsanity.com
+    macAddress: 00:50:56:A0:92:FA
+    managementIpAddress: 85.1.1.9
+    nwDeviceId: fad8ec45-da85-427c-9361-296c93eb7b0c
+    platformId: C9800-CL-K9
+    role: ACCESS
+    serialNumber: 9HJ2QSHVS3L
+    series: Cisco Catalyst 9800 Wireless Controllers for Cloud
+    site: Global/USA/SAN-FRANCISCO/BLD_SF
+    stackType: NA
+    tagIdList: []
+    type: Cisco Catalyst 9800-CL Wireless Controller for Cloud
+unified_access_points:
+-   family: Unified AP
+    hostname: AP1416.9D52.0668_new
+    id: f6213541-5b48-4714-8b9b-b1e7389849ba
+    macAddress: 54:8a:ba:81:1a:c0
+    managementIpAddress: 204.1.212.150
+    platformId: C9130AXE-B
+    role: ACCESS
+    serialNumber: FJC24481AC0
+    series: Cisco Catalyst 9130AXE Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9130AXE Unified Access Point
+-   family: Unified AP
+    hostname: AP502f.a857.cb08
+    id: 856feef0-938a-4a04-b69a-48d280394612
+    macAddress: 50:2f:a8:77:22:e0
+    managementIpAddress: 204.1.208.10
+    platformId: AIR-CAP3702E-B-K9
+    role: ACCESS
+    serialNumber: FJC2323M5VN
+    series: Cisco 3700E Series Unified Access Points
+    site: null
+    type: Cisco 3700E Unified Access Point
+-   family: Unified AP
+    hostname: AP5C71.0DEC.FEA8
+    id: 5bee103b-bd55-4026-95a2-5f1cc44f64e6
+    macAddress: 3c:41:0e:3b:25:40
+    managementIpAddress: 204.1.213.150
+    platformId: C9105AXW-B
+    role: ACCESS
+    serialNumber: PSZ24211PGZ
+    series: Cisco Catalyst 9105AXW Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9105AXW Unified Access Point
+-   family: Unified AP
+    hostname: AP687D.B45C.1024
+    id: 5b839cce-979c-447a-9d19-d91be023081d
+    macAddress: 68:7d:b4:5e:c0:90
+    managementIpAddress: 204.1.209.136
+    platformId: C9136I
+    role: ACCESS
+    serialNumber: FOC25213G28
+    series: Cisco Catalyst 9136I Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9136I Unified Access Point
+-   family: Unified AP
+    hostname: AP687D.B45C.1948
+    id: dbc2d41d-bbb2-46a0-9a0f-e798cdcaea09
+    macAddress: 68:7d:b4:5f:2e:40
+    managementIpAddress: 204.1.209.132
+    platformId: C9136I-B
+    role: ACCESS
+    serialNumber: FOC25322JK4
+    series: Cisco Catalyst 9136I Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9136I Unified Access Point
+-   family: Unified AP
+    hostname: AP78bc.1a00.4aee
+    id: a25c050e-6c1f-4bb8-907c-d4de16fcedfa
+    macAddress: 78:bc:1a:88:cd:e0
+    managementIpAddress: 204.1.211.208
+    platformId: AIR-AP2802I-B-K9
+    role: ACCESS
+    serialNumber: FCW2317N348
+    series: Cisco 2800I Series Unified Access Points
+    site: null
+    type: Cisco 2800I Unified Access Point
+-   family: Unified AP
+    hostname: APA488.73CF.0988
+    id: 0ced6a1a-de0e-4fdb-802e-3af9485f816e
+    macAddress: a4:88:73:f8:4c:40
+    managementIpAddress: 204.1.208.153
+    platformId: C9120AXE-B
+    role: ACCESS
+    serialNumber: FJC24391936
+    series: Cisco Catalyst 9120AXE Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9120AXE Unified Access Point
+-   family: Unified AP
+    hostname: APA488.73CF.0D5C
+    id: f00dcdc7-c92e-4dc5-b1d1-a22195a53ef9
+    macAddress: a4:88:73:f8:6a:e0
+    managementIpAddress: 204.1.208.156
+    platformId: C9120AXE-B
+    role: ACCESS
+    serialNumber: FJC24391932
+    series: Cisco Catalyst 9120AXE Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9120AXE Unified Access Point
+-   family: Unified AP
+    hostname: APC884.A164.8AD4
+    id: f9e9651e-ab76-4f26-8d5a-af6ce3950cdc
+    macAddress: c8:84:a1:68:58:20
+    managementIpAddress: 204.1.209.138
+    platformId: C9120AXE-B
+    role: ACCESS
+    serialNumber: FJC245017G1
+    series: Cisco Catalyst 9120AXE Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9120AXE Unified Access Point
+-   family: Unified AP
+    hostname: APC884.A165.4034
+    id: 688605f1-2ef4-4a8d-8617-3f8f2eded6c8
+    macAddress: c8:84:a1:70:03:20
+    managementIpAddress: 204.1.213.163
+    platformId: C9120AXE-B
+    role: ACCESS
+    serialNumber: FJC245017FT
+    series: Cisco Catalyst 9120AXE Series Unified Access Points
+    site: null
+    type: Cisco Catalyst 9120AXE Unified Access Point
+wireless_sensors: []
