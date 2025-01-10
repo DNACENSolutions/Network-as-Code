@@ -15,7 +15,7 @@ network_settings_details:
           - "2004:192:3::40"
       network_aaa:
         server_type: ISE
-        shared_secret: "{{ lookup('env', 'NAC_CATC_CONFIGS_GLOBAL_GLOBAL_NW_SETTINGS_YML_SHARED_SECRET_1') }}"
+        shared_secret: "{{ lookup('env', 'NAC_CATC_CONFIGS_GLOBAL_NETWORK_SETTINGS_SERVERS_YML_SHARED_SECRET_1') }}"
         # Wrong to be fixed with bug fix: CSCwm65781
         #pan_address: "10.195.243.31"
         pan_address: "82.2.2.3"
@@ -25,7 +25,7 @@ network_settings_details:
         protocol: RADIUS
       client_and_endpoint_aaa:
         server_type: ISE
-        shared_secret: "{{ lookup('env', 'NAC_CATC_CONFIGS_GLOBAL_GLOBAL_NW_SETTINGS_YML_SHARED_SECRET_2') }}"
+        shared_secret: "{{ lookup('env', 'NAC_CATC_CONFIGS_GLOBAL_NETWORK_SETTINGS_SERVERS_YML_SHARED_SECRET_2') }}"
         # Wrong to be fixed with bug fix: CSCwm65781
         #pan_address: "10.195.243.31"
         pan_address: "82.2.2.3"
