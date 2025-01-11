@@ -25,12 +25,11 @@ def validate_schema(usecase_name, usecase_data):
     """Validates the data file against the schema for the given use case."""
     config_file = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["schema_file"])
     data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
-    
     try:
         subprocess.run(["yamale", "-s", config_file, data_file], check=True)
-        print(f"Schema validation successful for {usecase_name}")
+        print(f"Schema validation successful for {usecase_name} \U0001F44D ")
     except subprocess.CalledProcessError as e:
-        print(f"Schema validation failed for {usecase_name}: {e}")
+        print(f"Schema validation failed for {usecase_name}: {e} \U0001F44E ")
 
 def execute_playbook(usecase_name, usecase_data):
     """Executes the Ansible playbook for the given use case."""
@@ -48,9 +47,9 @@ def execute_playbook(usecase_name, usecase_data):
         ]
         with open(ansible_log_path, 'w') as log_file:
             subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
-        print(f"Playbook execution successful for {usecase_name}")
+        print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
     except subprocess.CalledProcessError as e:
-        print(f"Playbook execution failed for {usecase_name}: {e}")
+        print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
 
 def main():
     """Main function to handle user input and execute actions."""
