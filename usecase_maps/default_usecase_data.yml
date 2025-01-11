@@ -11,8 +11,18 @@ RolesAndUsers:
   data_file: "global/roles_and_users.yml"
 
 CatalystCenterAndISEIntegration:
-  schema_file: "catalyst_center_and_ise_integration/schema/catalyst_center_and_ise_integration_schema.yml"
-  playbook: "catalyst_center_and_ise_integration/playbook/catalyst_center_and_ise_integration_playbook.yml"
+  schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
+  playbook: "ise_radius_integration/playbook/ise_radius_integration_workflow_playbook.yml"
   data_file: "global/catalyst_center_and_ise_integration.yml"
 
-# Add more use cases as needed, following the same structure
+# Add Global Network Settings servers
+GlobalNetworkSettingsServers:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "global/network_settings_servers.yml"
+
+# Add Global Network Settings Global IP Pools
+GlobalNetworkSettingsGlobalIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "global/network_settings_global_ip_pools.yml"
