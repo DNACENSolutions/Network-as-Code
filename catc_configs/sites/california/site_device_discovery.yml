@@ -1,0 +1,50 @@
+catalyst_center_version: 2.3.7.6
+discovery_details:
+  multi_range:
+    - ip_address_list:
+      - 204.192.12.1-204.192.12.1
+      - 204.192.13.1-204.192.13.1
+      discovery_type: MULTI RANGE
+      protocol_order: ssh
+      discovery_name: Range IP WLCs
+      global_credentials:
+        cli_credentials_list:
+          - description: switchandwlc credentials
+            username: "wlcaccess"
+        snmp_v3_credential_list: #Assign SNMPv3 credentials to sites
+          - description: snmpV3 Sample 1 
+            username: admin
+        http_read_credential_list: #Assign HTTPS Read credentials to sites
+          - username: admin
+            description: httpsRead Sample 1
+        http_write_credential_list: #Assign HTTPS Write credentials to sites
+          - username: admin
+            description: httpsWrite Sample 1
+      discovery_specific_credentials:
+        net_conf_port: "830"
+      timeout: 30
+      retry: 2
+    - ip_address_list:
+      - 204.101.16.1-204.101.16.2
+      - 204.101.16.4-204.101.16.14
+      discovery_type: MULTI RANGE
+      protocol_order: ssh
+      discovery_name: Multi Range Discoveryfor switches
+      global_credentials:
+        cli_credentials_list:
+          - description: switchandwlc credentials
+            username: "wlcaccess"
+        snmp_v3_credential_list: #Assign SNMPv3 credentials to sites
+          - description: snmpV3 Sample 1 
+            username: admin
+        http_read_credential_list: #Assign HTTPS Read credentials to sites
+          - username: admin
+            description: httpsRead Sample 1
+        http_write_credential_list: #Assign HTTPS Write credentials to sites
+          - username: admin
+            description: httpsWrite Sample 1
+      discovery_specific_credentials:
+        net_conf_port: "830"
+      timeout: 30
+      retry: 2
+

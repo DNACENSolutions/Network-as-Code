@@ -35,11 +35,11 @@ network_settings_details:
         ip_address: 82.2.2.3
         port: 443
       snmp_server:
-        configure_dnac_ip: true
+        configure_dnac_ip: false
         ip_addresses: 
           - 9.9.9.9
       syslog_server:
-        configure_dnac_ip: true
+        configure_dnac_ip: false
         ip_addresses: 
           - 9.9.9.9
       timezone: America/Los_Angeles
