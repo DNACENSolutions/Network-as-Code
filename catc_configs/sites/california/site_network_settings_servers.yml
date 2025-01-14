@@ -1,0 +1,16 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+# Network Settings an IP Pools design.
+network_settings_details: 
+- network_management_details:
+  - site_name: Global/USA
+    settings:
+      message_of_the_day:
+        banner_message: These devices are for testing purposes only
+        retain_existing_banner: false
+      wired_data_collection:
+        enable_wired_data_collection: true
+      wireless_telemetry:
+        enable_wireless_telemetry: true
+

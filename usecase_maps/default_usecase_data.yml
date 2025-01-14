@@ -1,15 +1,18 @@
-# usecase_data.yaml
 
+# usecase_data.yaml
+# Create global device credentials can be used across sites
 GlobalCredentials:
   schema_file: "device_credentials/schema/device_credentials_schema.yml"
   playbook: "device_credentials/playbook/device_credentials_playbook.yml"
   data_file: "global/device_credentials.yml"
 
+#Create users ROLES, Users and assign users to roles (RBAC) functionallity
 RolesAndUsers:
   schema_file: "users_and_roles/schema/users_and_roles_workflow_schema.yml"
   playbook: "users_and_roles/playbook/users_and_roles_workflow_playbook.yml"
   data_file: "global/roles_and_users.yml"
 
+# Integrate Catalyst Center with ISE for Radius Authentication, and Add AAA Servers.
 CatalystCenterAndISEIntegration:
   schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
   playbook: "ise_radius_integration/playbook/ise_radius_integration_workflow_playbook.yml"
@@ -26,3 +29,75 @@ GlobalNetworkSettingsGlobalIPPools:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/network_settings_playbook.yml"
   data_file: "global/network_settings_global_ip_pools.yml"
+
+# SiteDesign California, area, building and floors
+CaliforniaSiteDesign:
+  schema_file: "site_hierarchy/schema/sites_schema.yml"
+  playbook: "site_hierarchy/playbook/site_hierarchy_playbook.yml"
+  data_file: "sites/california/site_hierarchy_design.yml"
+
+# SiteDeviceCredentials California
+CaliforniaSiteDeviceCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "sites/california/site_device_credentials.yml"
+
+#  Design and customize network settings for the site.
+CaliforniaSiteNetworkSettings:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "sites/california/site_network_settings_servers.yml"
+
+# Design and reserve the IP Pools for the site
+CaliforniaSiteNetworkSettingsIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "sites/california/site_nw_settings_ippools.yml"
+
+# Devices discovery for the site
+CaliforniaSiteDevicesDiscovery:
+  schema_file: "device_discovery/schema/device_discovery_schema.yml"
+  playbook: "device_discovery/playbook/device_discovery_playbook.yml"
+  data_file: "sites/california/site_device_discovery.yml"
+  
+# Devices  Inventory for the site
+CaliforniaSiteDevicesInventory:
+  schema_file: "inventory/schema/inventory_schema.yml"
+  playbook: "inventory/playbook/inventory_playbook.yml"
+  data_file: "sites/california/site_inventory.yml"
+
+#Provision the devices on sites
+CaliforniaSiteDevicesProvision:
+  schema_file: "provision/schema/provision_workflow_schema.yml"
+  playbook: "provision/playbook/provision_workflow_playbook.yml"
+  data_file: "sites/california/site_devices_provision.yml"
+
+# Create SDA Fabric Site and Fabric Zones
+CaliforniaSiteFabric:
+  schema_file: "sda_fabric_sites_zones/schema/sda_fabric_sites_zones_schema.yml"
+  playbook: "sda_fabric_sites_zones/playbook/sda_fabric_sites_zones_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_sites_zones.yml"
+
+# Create Fabric Transits
+CaliforniaSiteFabricTransits:
+  schema_file: "sda_fabric_transits/schema/sda_fabric_transits_workflow_schema.yml"
+  playbook: "sda_fabric_transits/playbook/sda_fabric_transits_workflow_playbook.yml"
+  data_file: "sites/california/site_sda_transits.yml"
+
+# Create Virtual Networks and assign to Fabric sites with Gateways
+CaliforniaSiteVirtualNetworks:
+  schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
+  playbook: "sda_virtual_networks_l2l3_gateways/playbook/sda_virtual_networks_l2_l3_gateways_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_vn_l2l3_gateways.yml"
+
+# Add Devices to Fabric site with Transits and Gateways
+CaliforniaSiteDevicesToFabric:
+  schema_file: "fabric/schema/fabric_schema.yml"
+  playbook: "fabric/playbook/fabric_playbook.yml"
+  data_file: "sites/california/site_devices_to_fabric.yml"
+
+# Create the Anchor VNs and Add to sites with gateways.
+CaliforniaSiteAnchorVNs:
+  schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
+  playbook: "sda_virtual_networks_l2l3_gateways/playbook/sda_virtual_networks_l2_l3_gateways_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_anchor_vns.yml"
