@@ -7,6 +7,7 @@ ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', '/Users/pawansi/wor
 CONFIG_FILES_BASE_PATH = os.getenv('CONFIG_FILES_BASE_PATH', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/catc_configs/')
 ANSIBLE_HOSTS_INVENTORY = os.getenv('ANSIBLE_HOSTS_INVENTORY', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/ansible_inventory/catalystcenter_inventory_10.195.243.53')
 ANSIBLE_LOG_DIR_PATH = os.getenv('ANSIBLE_LOG_DIR_PATH', '/Users/pawansi/workspace/CatC_Configs/ansible_logs/')
+CATC_LOG_DIR_PATH = os.getenv('CATC_LOG_DIR_PATH', '/Users/pawansi/workspace/CatC_Configs/catc_logs/')
 # Function to read usecase data from a YAML file
 def read_usecase_data(yaml_file):
     """Reads use case data from the specified YAML file."""
@@ -36,20 +37,36 @@ def execute_playbook(usecase_name, usecase_data):
     playbook = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["playbook"])
     data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
     ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
-
+    catalyst_center_log_file_path = os.path.join(CATC_LOG_DIR_PATH, f"{usecase_name}_catc.log")
+    #os.system(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}')
+    # Read Current time as start time
+    print(f"Executing playbook for {usecase_name}...")
+    os.system(f'start_time=$(date)')
     try:
         cmd = [
             "ansible-playbook",
             "-i", ANSIBLE_HOSTS_INVENTORY,
             playbook,
-            "--e", f"VARS_FILE_PATH={data_file}",
+            "--e", f"VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path}",
             "-vvvv"
         ]
         with open(ansible_log_path, 'w') as log_file:
+            print(f"Executing playbook command: {cmd} \n")
             subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
         print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
     except subprocess.CalledProcessError as e:
         print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
+    # Read Current time as end time
+    os.system(f'end_time=$(date)')
+    # Calculate the time taken to execute the playbook
+    #os.system(f'time_taken=$(($(date -d "$end_time" +%s) - $(date -d "$start_time" +%s)))')
+    # Print the time taken to execute the playbook
+    #Print end time
+    print(f"Start Time: $start_time")
+    print(f"End Time: $end_time")
+    print("Check the logs for more details.")
+    print(f"Ansible Logs dir: {ansible_log_path}")
+    print(f"CatC Logs dir: {catalyst_center_log_file_path}")
 
 def main():
     """Main function to handle user input and execute actions."""
@@ -98,16 +115,31 @@ def main():
         print("\nSelect a use case to run:")
         for i, usecase_name in enumerate(usecase_data.keys()):
             print(f"{i+1}. {usecase_name}")
+            #print(f"Description: {usecase_data[usecase_name]['description']}")
+        print("enter 'a' to select all usecases")
         print(f"{len(usecase_data.keys()) + 1}. Exit")
-        choice = input("Enter your choice: ")
-
+        choice = input("Enter your choice (comma-separated for multiple, hyphen-separated for range, 'a' for all): ")
+        #Update this function to handle the user input for taking multiple usecases as , seperated input or - seperated input for range and all.
         try:
-            choice = int(choice)
-            if choice == len(usecase_data.keys()) + 1:
-                print("Exiting...")
-                break
-            elif 1 <= choice <= len(usecase_data.keys()):
-                usecase_name = list(usecase_data.keys())[choice - 1]
+            if choice == "a":  # Run all use cases
+                selected_usecases = list(usecase_data.keys())
+            elif "-" in choice:  # Run a range of use cases
+                start, end = map(int, choice.split("-"))
+                selected_usecases = list(usecase_data.keys())[start-1:end]
+            elif "," in choice:  # Run multiple specific use cases
+                selected_usecases = [list(usecase_data.keys())[int(c)-1] for c in choice.split(",")]
+            else:  # Run a single use case
+                choice = int(choice)
+                if choice == len(usecase_data.keys()) + 1:
+                    print("Exiting...")
+                    break
+                elif 1 <= choice <= len(usecase_data.keys()):
+                    selected_usecases = [list(usecase_data.keys())[choice - 1]]
+                else:
+                    print("Invalid choice. Please try again.")
+                    continue
+
+            for usecase_name in selected_usecases:
                 if option == "1":
                     validate_schema(usecase_name, usecase_data)
                 elif option == "2":
@@ -117,10 +149,9 @@ def main():
                     execute_playbook(usecase_name, usecase_data)
                 else:
                     print("Invalid option. Please try again.")
-            else:
-                print("Invalid choice. Please try again.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
+
+        except (ValueError, IndexError) as e:
+            print(f"Invalid input: {e}. Please try again.")
 
 if __name__ == "__main__":
     main()
