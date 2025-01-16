@@ -4,10 +4,10 @@ catalyst_center_version: 2.3.7.6
 # This file contains the variables for the inventory workflow
 inventory_details:
   network_devices:
-    - ip_address_list: ["204.101.16.1", "204.101.16.2","204.192.12.1","204.192.13.1"]
-      role: ACCESS
     - ip_address_list: ["204.101.16.4"]
       role: BORDER ROUTER
+    - ip_address_list: ["204.101.16.1", "204.101.16.2","204.192.12.1","204.192.13.1"]
+      role: ACCESS
     - ip_address_list: ["204.101.16.4"]
       add_user_defined_field:
       - name: SDAtransitRouter
