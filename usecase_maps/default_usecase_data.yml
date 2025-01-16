@@ -71,6 +71,11 @@ CaliforniaSiteDevicesProvision:
   schema_file: "provision/schema/provision_workflow_schema.yml"
   playbook: "provision/playbook/provision_workflow_playbook.yml"
   data_file: "sites/california/site_devices_provision.yml"
+# SWIM Upgrade the devices on sites
+CaliforniaSiteSWIMDevicesUpgrade:
+  schema_file: "swim/schema/swim_schema.yml"
+  playbook: "swim/playbook/swim_workflow_playbook.yml"
+  data_file: "sites/california/site_swim.yml"
 
 # Create SDA Fabric Site and Fabric Zones
 CaliforniaSiteFabric:
@@ -92,9 +97,9 @@ CaliforniaSiteVirtualNetworks:
 
 # Add Devices to Fabric site with Transits and Gateways
 CaliforniaSiteDevicesToFabric:
-  schema_file: "fabric/schema/fabric_schema.yml"
-  playbook: "fabric/playbook/fabric_playbook.yml"
-  data_file: "sites/california/site_devices_to_fabric.yml"
+  schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
+  playbook: "sda_fabric_device_roles/playbook/sda_fabric_device_roles_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_devices.yml"
 
 # Create the Anchor VNs and Add to sites with gateways.
 CaliforniaSiteAnchorVNs:
