@@ -1,7 +1,7 @@
 import subprocess
 import os
 import yaml
-
+import datetime
 # Define the base path for Ansible playbooks and configuration files
 ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', '/Users/pawansi/workspace/CatC_Configs/dnac_ansible_workflows/workflows/')
 CONFIG_FILES_BASE_PATH = os.getenv('CONFIG_FILES_BASE_PATH', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/catc_configs/')
@@ -41,7 +41,8 @@ def execute_playbook(usecase_name, usecase_data):
     #os.system(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}')
     # Read Current time as start time
     print(f"Executing playbook for {usecase_name}...")
-    os.system(f'start_time=$(date)')
+    start_time = datetime.datetime.now()
+    print(f"Playbooks Start time: {start_time}")
     try:
         cmd = [
             "ansible-playbook",
@@ -57,13 +58,11 @@ def execute_playbook(usecase_name, usecase_data):
     except subprocess.CalledProcessError as e:
         print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
     # Read Current time as end time
-    os.system(f'end_time=$(date)')
+    end_time = datetime.datetime.now()
     # Calculate the time taken to execute the playbook
-    #os.system(f'time_taken=$(($(date -d "$end_time" +%s) - $(date -d "$start_time" +%s)))')
-    # Print the time taken to execute the playbook
-    #Print end time
-    print(f"Start Time: $start_time")
-    print(f"End Time: $end_time")
+    time_taken = end_time - start_time
+    print(f"Playbook execution time: {time_taken}")
+    print(f"End time: {end_time}")
     print("Check the logs for more details.")
     print(f"Ansible Logs dir: {ansible_log_path}")
     print(f"CatC Logs dir: {catalyst_center_log_file_path}")

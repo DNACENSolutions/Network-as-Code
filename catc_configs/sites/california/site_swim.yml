@@ -7,7 +7,11 @@ swim_details:
     - import_image_details:
         type: CCO
         cco_image_details:
-          image_name: cat9k_iosxe.17.12.04.SPA.bin
+          image_name: cat9k_iosxe.17.15.02.SPA.bin
+    - import_image_details:
+        type: CCO
+        cco_image_details:
+          image_name: C9800-SW-iosxe-wlc.17.15.02.SPA.bin
     - import_image_details:
         type: CCO
         cco_image_details:
@@ -19,9 +23,21 @@ swim_details:
         device_role: ALL
         device_image_family_name : Cisco Catalyst 9300 Switch
         site_name: Global
-        tagging: true
+        tagging: false
     - tagging_details:
         image_name: cat9k_iosxe.17.12.04.SPA.bin
+        device_role: ALL
+        device_image_family_name : Cisco Catalyst 9407R Switch-Cisco Catalyst 9400X Supervisor Engine-2XL
+        site_name: Global
+        tagging: false
+    - tagging_details:
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
+        device_role: ALL
+        device_image_family_name : Cisco Catalyst 9300 Switch
+        site_name: Global
+        tagging: true
+    - tagging_details:
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
         device_role: ALL
         device_image_family_name : Cisco Catalyst 9407R Switch-Cisco Catalyst 9400X Supervisor Engine-2XL
         site_name: Global
@@ -35,7 +51,7 @@ swim_details:
   # List of images to be distributed to the devices
   distribute_images:
     - image_distribution_details:
-        image_name: cat9k_iosxe.17.12.04.SPA.bin
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
         device_hostname: null
         device_mac_address: null
         device_ip_address: null
@@ -65,7 +81,7 @@ swim_details:
         device_serial_number: null
         device_upgrade_mode: currentlyExists
         distribute_if_needed: true
-        image_name: cat9k_iosxe.17.12.04.SPA.bin
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
         schedule_validate: false
         site_name: Global
     - image_activation_details:
