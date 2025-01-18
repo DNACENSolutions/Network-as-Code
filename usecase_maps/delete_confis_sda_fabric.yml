@@ -1,0 +1,109 @@
+# Create the Anchor VNs and Add to sites with gateways.
+RemoveCaliforniaSiteHostOnboarding:
+  schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"
+  playbook: "sda_hostonboarding/playbook/delete_sda_host_onboarding_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_hostonboarding.yml"
+
+# Create the Anchor VNs and Add to sites with gateways.
+RemoveCaliforniaSiteAnchorVNs:
+  schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
+  playbook: "sda_virtual_networks_l2l3_gateways/playbook/sda_virtual_networks_l2_l3_gateways_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_anchor_vns.yml"
+
+# Add Devices to Fabric site with Transits and Gateways
+RemoveCaliforniaSiteDevicesToFabric:
+  schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
+  playbook: "sda_fabric_device_roles/playbook/sda_fabric_device_roles_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_devices.yml"
+
+# Create Virtual Networks and assign to Fabric sites with Gateways
+RemoveCaliforniaSiteVirtualNetworks:
+  schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
+  playbook: "sda_virtual_networks_l2l3_gateways/playbook/sda_virtual_networks_l2_l3_gateways_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_vn_l2l3_gateways.yml"
+
+# Create Fabric Transits
+RemoveCaliforniaSiteFabricTransits:
+  schema_file: "sda_fabric_transits/schema/sda_fabric_transits_workflow_schema.yml"
+  playbook: "sda_fabric_transits/playbook/sda_fabric_transits_workflow_playbook.yml"
+  data_file: "sites/california/site_sda_transits.yml"
+
+# Create SDA Fabric Site and Fabric Zones
+RemoveCaliforniaSiteFabric:
+  schema_file: "sda_fabric_sites_zones/schema/sda_fabric_sites_zones_schema.yml"
+  playbook: "sda_fabric_sites_zones/playbook/sda_fabric_sites_zones_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_sites_zones.yml"
+
+#Provision the devices on sites
+RemoveCaliforniaSiteDevicesProvision:
+  schema_file: "provision/schema/provision_workflow_schema.yml"
+  playbook: "provision/playbook/provision_workflow_playbook.yml"
+  data_file: "sites/california/site_devices_provision.yml"
+
+# Devices  Inventory for the site
+RemoveCaliforniaSiteDevicesInventory:
+  schema_file: "inventory/schema/inventory_schema.yml"
+  playbook: "inventory/playbook/inventory_playbook.yml"
+  data_file: "sites/california/site_inventory.yml"
+
+# Devices discovery for the site
+RemoveCaliforniaSiteDevicesDiscovery:
+  schema_file: "device_discovery/schema/device_discovery_schema.yml"
+  playbook: "device_discovery/playbook/device_discovery_playbook.yml"
+  data_file: "sites/california/site_device_discovery.yml"
+
+# Design and reserve the IP Pools for the site
+RemoveCaliforniaSiteNetworkSettingsIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "sites/california/site_nw_settings_ippools.yml"
+
+#  Design and customize network settings for the site.
+RemoveCaliforniaSiteNetworkSettings:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "sites/california/site_network_settings_servers.yml"
+
+# SiteDeviceCredentials California
+RemoveCaliforniaSiteDeviceCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "sites/california/site_device_credentials.yml"
+
+# SiteDesign California, area, building and floors
+RemoveCaliforniaSiteDesign:
+  schema_file: "site_hierarchy/schema/sites_schema.yml"
+  playbook: "site_hierarchy/playbook/site_hierarchy_playbook.yml"
+  data_file: "sites/california/site_hierarchy_design.yml"
+
+# Add Global Network Settings Global IP Pools
+RemoveGlobalNetworkSettingsGlobalIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "global/network_settings_global_ip_pools.yml"
+
+# Add Global Network Settings servers
+RemoveGlobalNetworkSettingsServers:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "global/network_settings_servers.yml"
+
+# Integrate Catalyst Center with ISE for Radius Authentication, and Add AAA Servers.
+RemoveCatalystCenterAndISEIntegration:
+  schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
+  playbook: "ise_radius_integration/playbook/ise_radius_integration_workflow_playbook.yml"
+  data_file: "global/catalyst_center_and_ise_integration.yml"
+
+#Create users ROLES, Users and assign users to roles (RBAC) functionallity
+RemoveRolesAndUsers:
+  schema_file: "users_and_roles/schema/users_and_roles_workflow_schema.yml"
+  playbook: "users_and_roles/playbook/users_and_roles_workflow_playbook.yml"
+  data_file: "global/roles_and_users.yml"
+
+# usecase_data.yaml
+# Create global device credentials can be used across sites
+RemoveGlobalCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "global/device_credentials.yml"
+

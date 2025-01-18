@@ -106,3 +106,9 @@ CaliforniaSiteAnchorVNs:
   schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
   playbook: "sda_virtual_networks_l2l3_gateways/playbook/sda_virtual_networks_l2_l3_gateways_playbook.yml"
   data_file: "sites/california/site_sda_fabric_anchor_vns.yml"
+
+# Create the Anchor VNs and Add to sites with gateways.
+CaliforniaSiteHostOnboarding:
+  schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"
+  playbook: "sda_hostonboarding/playbook/sda_host_onboarding_playbook.yml"
+  data_file: "sites/california/site_sda_fabric_hostonboarding.yml"
