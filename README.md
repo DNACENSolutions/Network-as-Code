@@ -96,7 +96,6 @@
     │   ├── NW_Global_ip_pool.png
     │   ├── inventory_image_distribution_activation.png
     │   └── site_nw_ip_pools.png
-    ├── readme-ai.md
     ├── requirements.txt
     ├── scripts
     │   └── run_playbooks.py
