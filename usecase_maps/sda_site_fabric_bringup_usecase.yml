@@ -1,10 +1,5 @@
 
 # usecase_data.yaml
-# Create global device credentials can be used across sites
-GlobalCredentials:
-  schema_file: "device_credentials/schema/device_credentials_schema.yml"
-  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
-  data_file: "global/device_credentials.yml"
 
 #Create users ROLES, Users and assign users to roles (RBAC) functionallity
 RolesAndUsers:
@@ -17,6 +12,18 @@ CatalystCenterAndISEIntegration:
   schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
   playbook: "ise_radius_integration/playbook/ise_radius_integration_workflow_playbook.yml"
   data_file: "global/catalyst_center_and_ise_integration.yml"
+  
+# Create global device credentials can be used across sites
+GlobalCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "global/device_credentials.yml"
+
+# Devices discovery for the site
+CaliforniaSiteDevicesDiscovery:
+  schema_file: "device_discovery/schema/device_discovery_schema.yml"
+  playbook: "device_discovery/playbook/device_discovery_playbook.yml"
+  data_file: "sites/california/site_device_discovery.yml"
 
 # Add Global Network Settings servers
 GlobalNetworkSettingsServers:
@@ -53,12 +60,6 @@ CaliforniaSiteNetworkSettingsIPPools:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/network_settings_playbook.yml"
   data_file: "sites/california/site_nw_settings_ippools.yml"
-
-# Devices discovery for the site
-CaliforniaSiteDevicesDiscovery:
-  schema_file: "device_discovery/schema/device_discovery_schema.yml"
-  playbook: "device_discovery/playbook/device_discovery_playbook.yml"
-  data_file: "sites/california/site_device_discovery.yml"
   
 # Devices  Inventory for the site
 CaliforniaSiteDevicesInventory:
