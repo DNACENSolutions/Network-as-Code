@@ -3,7 +3,7 @@ import os
 import yaml
 import datetime
 # Define the base path for Ansible playbooks and configuration files
-ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', '/Users/pawansi/workspace/CatC_Configs/dnac_ansible_workflows/workflows/')
+ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', '/Users/pawansi/workspace/CatC_Configs/catc_ansible_workflows/workflows/')
 CONFIG_FILES_BASE_PATH = os.getenv('CONFIG_FILES_BASE_PATH', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/catc_configs/')
 ANSIBLE_HOSTS_INVENTORY = os.getenv('ANSIBLE_HOSTS_INVENTORY', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/ansible_inventory/catalystcenter_inventory_10.195.243.53')
 ANSIBLE_LOG_DIR_PATH = os.getenv('ANSIBLE_LOG_DIR_PATH', '/Users/pawansi/workspace/CatC_Configs/ansible_logs/')

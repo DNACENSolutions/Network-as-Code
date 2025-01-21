@@ -3,7 +3,7 @@
 catalyst_center_version: 2.3.7.6
 sda_host_onboarding_details: 
   - ip_address: 204.101.16.1
-    fabric_site_name_hierarchy: Global/USA/SAN JOSE
+   fabric_site_name_hierarchy: Global/USA/SAN JOSE
     port_assignments:
       - interface_name: GigabitEthernet6/0/13
         connected_device_type: TRUNKING_DEVICE
