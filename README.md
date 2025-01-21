@@ -38,13 +38,44 @@
 
 ##  Overview
 
-<code>❯ REPLACE-ME</code>
+<code> 
+	Cisco SD-Access Automation with Ansible
+	This GitHub project provides a comprehensive Ansible framework for automating the deployment and management of Cisco SD-Access on a freshly installed Catalyst center. By leveraging Ansible's automation capabilities, this project streamlines the configuration process, reduces manual errors, and ensures consistency across your SD-Access fabric.
+</code>
 
 ---
 
-##  Features
+##  Key Features
 
-<code>❯ REPLACE-ME</code>
+<code>❯
+	End-to-End Automation: This project covers the complete lifecycle of SD-Access deployment, from initial setup to ongoing management.
+	Modular Design: The Ansible roles are organized in a modular fashion, allowing you to easily adapt and customize the automation to your specific needs.
+	Idempotent Operations: The playbooks are designed to be idempotent, meaning they can be run multiple times without causing unintended changes to your network.
+	Comprehensive Documentation: Clear and concise documentation guides you through the setup and usage of the Ansible playbooks.
+	Workflow:
+
+	The project automates the following key steps in the SD-Access deployment process:
+
+	Roles and Users: Creates necessary roles and user accounts on the Catalyst center.
+	Catalyst Center and ISE Integration: Integrates the Catalyst center with Cisco ISE for authentication and authorization.
+	Global Credentials: Configures global credentials for device management.
+	California Site Devices Discovery: Discovers and adds devices at the California site to the Catalyst center.
+	Global Network Settings Servers: Configures global network settings, including DNS and NTP servers.
+	Global Network Settings Global IP Pools: Defines global IP address pools for various purposes.
+	California Site Design: Creates the site hierarchy and defines network settings specific to the California site.
+	California Site Device Credentials: Assigns device-specific credentials for secure access.
+	California Site Network Settings: Configures network settings for the California site, including VLANs and subnets.
+	California Site Network Settings IP Pools: Defines site-specific IP address pools.
+	California Site Devices Inventory: Gathers detailed inventory information for all devices at the California site.
+	California Site Devices Provision: Provisions the discovered devices with the necessary configurations.
+	California Site SWIM Devices Upgrade: Upgrades software images on devices using Cisco Software Image Management (SWIM).
+	California Site Fabric: Builds the SD-Access fabric, including control plane and data plane configurations.
+	California Site Fabric Transits: Configures fabric transit nodes for inter-site connectivity.
+	California Site Virtual Networks: Creates virtual networks (VN) for different user groups and applications.
+	California Site Devices to Fabric: Attaches devices to the SD-Access fabric.
+	California Site Anchor VNs: Configures anchor VNs for external network connectivity.
+	California Site Host Onboarding: Automates the onboarding of hosts onto the SD-Access fabric.
+</code>
 
 ---
 
@@ -285,7 +316,7 @@ Before getting started with CatC_SD_Access_campus.git, ensure your runtime envir
 
 ###  Installation
 
-Install CatC_SD_Access_campus.git using one of the following methods:
+Install CatC_SD_Access_campus using one of the following methods:
 
 **Build from source:**
 
@@ -296,45 +327,28 @@ Install CatC_SD_Access_campus.git using one of the following methods:
 
 2. Navigate to the project directory:
 ```sh
-❯ cd CatC_SD_Access_campus.git
+❯ cd CatC_SD_Access_campus
 ```
 
 3. Install the project dependencies:
 
 
-**Using `pip`** &nbsp; [<img align="center" src="" />]()
+**Using `bash`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'INSERT-INSTALL-COMMAND-HERE'
+❯ echo 'source setup.sh'
 ```
-
-
-
 
 ###  Usage
-Run CatC_SD_Access_campus.git using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="" />]()
+Run CatC_SD_Access_campus using the following command:
+**Using `Python3`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'INSERT-RUN-COMMAND-HERE'
+❯ echo 'python3 scripts/run_playbooks.py '
 ```
-
-
-###  Testing
-Run the test suite using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-TEST-COMMAND-HERE'
-```
-
 
 ---
 ##  Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
 
 ---
 
