@@ -12,6 +12,7 @@ git pull
 cd -
 # check if the path ./../ansible_logs exists, if not create the dir
 [ -d ./../ansible_logs ] || mkdir ./../ansible_logs
+[ -d ./../catc_logs ] || mkdir ./../catc_logs
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export ANSIBLE_PLAYBOOKS_PATH=$(pwd)/../catc_ansible_workflows/workflows
 export ANSIBLE_ROLES_PATH=$(pwd)/../catc_ansible_workflows/roles

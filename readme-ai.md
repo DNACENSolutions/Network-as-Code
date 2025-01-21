@@ -1,17 +1,20 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
-<p align="center"><h1 align="center"><code>❯ REPLACE-ME</code></h1></p>
+<p align="center"><h1 align="center">CATC_SD_ACCESS_CAMPUS.GIT</h1></p>
 <p align="center">
 	<em><code>❯ REPLACE-ME</code></em>
 </p>
 <p align="center">
-	<!-- local repository, no metadata badges. --></p>
-<p align="center">Built with the tools and technologies:</p>
+	<img src="https://img.shields.io/github/license/DNACENSolutions/CatC_SD_Access_campus.git?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/DNACENSolutions/CatC_SD_Access_campus.git?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/DNACENSolutions/CatC_SD_Access_campus.git?style=default&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/DNACENSolutions/CatC_SD_Access_campus.git?style=default&color=0080ff" alt="repo-language-count">
+</p>
+<p align="center"><!-- default option, no dependency badges. -->
+</p>
 <p align="center">
-	<img src="https://img.shields.io/badge/Jinja-B41717.svg?style=default&logo=Jinja&logoColor=white" alt="Jinja">
-	<img src="https://img.shields.io/badge/Ansible-EE0000.svg?style=default&logo=Ansible&logoColor=white" alt="Ansible">
-	<img src="https://img.shields.io/badge/GNU%20Bash-4EAA25.svg?style=default&logo=GNU-Bash&logoColor=white" alt="GNU%20Bash">
+	<!-- default option, no dependency badges. -->
 </p>
 <br>
 
@@ -48,29 +51,44 @@
 ##  Project Structure
 
 ```sh
-└── /
+└── CatC_SD_Access_campus.git/
+    ├── ansible.cfg
     ├── ansible_inventory
     │   └── catalystcenter_inventory_10.195.243.53
     ├── catc_configs
     │   ├── global
     │   └── sites
+    ├── images
+    │   ├── CCO_swim_image_download.png
+    │   ├── CatC_Ise_AAA-Intg.png
+    │   ├── CatC_Ise_AAA-Intg1.png
+    │   ├── NW_Global_ip_pool.png
+    │   ├── inventory_image_distribution_activation.png
+    │   └── site_nw_ip_pools.png
     ├── readme-ai.md
     ├── requirements.txt
-    └── scripts
-        ├── create_virtual_env.sh
-        └── run_playbooks.sh
+    ├── scripts
+    │   └── run_playbooks.py
+    ├── setup.sh
+    └── usecase_maps
+        ├── delete_confis_sda_fabric.yml
+        └── sda_site_fabric_bringup_usecase.yml
 ```
 
 
 ###  Project Index
 <details open>
-	<summary><b><code>/</code></b></summary>
+	<summary><b><code>CATC_SD_ACCESS_CAMPUS.GIT/</code></b></summary>
 	<details> <!-- __root__ Submodule -->
 		<summary><b>__root__</b></summary>
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='/requirements.txt'>requirements.txt</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/setup.sh'>setup.sh</a></b></td>
+				<td><code>❯ REPLACE-ME</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/requirements.txt'>requirements.txt</a></b></td>
 				<td><code>❯ REPLACE-ME</code></td>
 			</tr>
 			</table>
@@ -81,11 +99,22 @@
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='/scripts/create_virtual_env.sh'>create_virtual_env.sh</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/scripts/run_playbooks.py'>run_playbooks.py</a></b></td>
+				<td><code>❯ REPLACE-ME</code></td>
+			</tr>
+			</table>
+		</blockquote>
+	</details>
+	<details> <!-- usecase_maps Submodule -->
+		<summary><b>usecase_maps</b></summary>
+		<blockquote>
+			<table>
+			<tr>
+				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/sda_site_fabric_bringup_usecase.yml'>sda_site_fabric_bringup_usecase.yml</a></b></td>
 				<td><code>❯ REPLACE-ME</code></td>
 			</tr>
 			<tr>
-				<td><b><a href='/scripts/run_playbooks.sh'>run_playbooks.sh</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/delete_confis_sda_fabric.yml'>delete_confis_sda_fabric.yml</a></b></td>
 				<td><code>❯ REPLACE-ME</code></td>
 			</tr>
 			</table>
@@ -99,27 +128,27 @@
 				<blockquote>
 					<table>
 					<tr>
-						<td><b><a href='/catc_configs/global/network_settings_servers.yml'>network_settings_servers.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/network_settings_servers.yml'>network_settings_servers.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					<tr>
-						<td><b><a href='/catc_configs/global/device_credentials.yml'>device_credentials.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/device_credentials.yml'>device_credentials.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					<tr>
-						<td><b><a href='/catc_configs/global/users_and_roles.yml'>users_and_roles.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/catalyst_center_and_ise_integration.yml'>catalyst_center_and_ise_integration.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					<tr>
-						<td><b><a href='/catc_configs/global/catc_ise_radius_intg.yml'>catc_ise_radius_intg.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/network_settings_global_ip_pools.yml'>network_settings_global_ip_pools.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					<tr>
-						<td><b><a href='/catc_configs/global/global_nw_settings_ippools.yml'>global_nw_settings_ippools.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/swim_cco_image_tag.yml'>swim_cco_image_tag.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					<tr>
-						<td><b><a href='/catc_configs/global/swim_cco_image_tag.yml'>swim_cco_image_tag.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/roles_and_users.yml'>roles_and_users.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					</table>
@@ -129,59 +158,71 @@
 				<summary><b>sites</b></summary>
 				<blockquote>
 					<details>
-						<summary><b>san_jose</b></summary>
+						<summary><b>california</b></summary>
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_sda_fabric_devices.yml'>site_sda_fabric_devices.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_devices.yml'>site_sda_fabric_devices.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_sda_fabric_sites_zones.yml'>site_sda_fabric_sites_zones.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_network_settings_servers.yml'>site_network_settings_servers.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_inventory.yml'>site_inventory.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_sites_zones.yml'>site_sda_fabric_sites_zones.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_custom_network_settings.yml'>site_custom_network_settings.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_swim.yml'>site_swim.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/swim_distribution_activate.yml'>swim_distribution_activate.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_anchor_vns.yml'>site_sda_fabric_anchor_vns.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_devices_provision.yml'>site_devices_provision.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_inventory.yml'>site_inventory.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_nw_settings_ippools.yml'>site_nw_settings_ippools.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_device_discovery.yml'>site_device_discovery.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_hierarchy_design.yml'>site_hierarchy_design.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/swim_distribution_activate.yml'>swim_distribution_activate.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/device_discovery_vars.yml'>device_discovery_vars.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_devices_provision.yml'>site_devices_provision.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_sda_transite.yml'>site_sda_transite.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_nw_settings_ippools.yml'>site_nw_settings_ippools.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_sda_fabric_vn_l2l3_gateways.yml'>site_sda_fabric_vn_l2l3_gateways.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_hierarchy_design.yml'>site_hierarchy_design.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_network_compliance.yml'>site_network_compliance.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_vn_l2l3_gateways.yml'>site_sda_fabric_vn_l2l3_gateways.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='/catc_configs/sites/san_jose/site_sda_fabric_hostonboarding.yml'>site_sda_fabric_hostonboarding.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_transits.yml'>site_sda_transits.yml</a></b></td>
+								<td><code>❯ REPLACE-ME</code></td>
+							</tr>
+							<tr>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_device_credentials.yml'>site_device_credentials.yml</a></b></td>
+								<td><code>❯ REPLACE-ME</code></td>
+							</tr>
+							<tr>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_network_compliance.yml'>site_network_compliance.yml</a></b></td>
+								<td><code>❯ REPLACE-ME</code></td>
+							</tr>
+							<tr>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_hostonboarding.yml'>site_sda_fabric_hostonboarding.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							</table>
@@ -199,7 +240,7 @@
 				<blockquote>
 					<table>
 					<tr>
-						<td><b><a href='/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml'>hosts.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml'>hosts.yml</a></b></td>
 						<td><code>❯ REPLACE-ME</code></td>
 					</tr>
 					</table>
@@ -208,7 +249,7 @@
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='/ansible_inventory/catalystcenter_inventory_10.195.243.53/group_vars/all.yml'>all.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/group_vars/all.yml'>all.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							</table>
@@ -219,7 +260,7 @@
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='/ansible_inventory/catalystcenter_inventory_10.195.243.53/host_vars/dnac1.yml'>dnac1.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/host_vars/dnac1.yml'>dnac1.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							</table>
@@ -236,7 +277,7 @@
 
 ###  Prerequisites
 
-Before getting started with , ensure your runtime environment meets the following requirements:
+Before getting started with CatC_SD_Access_campus.git, ensure your runtime environment meets the following requirements:
 
 - **Programming Language:** Shell
 - **Package Manager:** Pip
@@ -244,18 +285,18 @@ Before getting started with , ensure your runtime environment meets the followin
 
 ###  Installation
 
-Install  using one of the following methods:
+Install CatC_SD_Access_campus.git using one of the following methods:
 
 **Build from source:**
 
-1. Clone the  repository:
+1. Clone the CatC_SD_Access_campus.git repository:
 ```sh
-❯ git clone ../
+❯ git clone https://github.com/DNACENSolutions/CatC_SD_Access_campus.git
 ```
 
 2. Navigate to the project directory:
 ```sh
-❯ cd 
+❯ cd CatC_SD_Access_campus.git
 ```
 
 3. Install the project dependencies:
@@ -271,7 +312,7 @@ Install  using one of the following methods:
 
 
 ###  Usage
-Run  using the following command:
+Run CatC_SD_Access_campus.git using the following command:
 **Using `pip`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
@@ -299,17 +340,17 @@ Run the test suite using the following command:
 
 ##  Contributing
 
-- **💬 [Join the Discussions](https://LOCAL///discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://LOCAL///issues)**: Submit bugs found or log feature requests for the `` project.
-- **💡 [Submit Pull Requests](https://LOCAL///blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **💬 [Join the Discussions](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/discussions)**: Share your insights, provide feedback, or ask questions.
+- **🐛 [Report Issues](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/issues)**: Submit bugs found or log feature requests for the `CatC_SD_Access_campus.git` project.
+- **💡 [Submit Pull Requests](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your LOCAL account.
+1. **Fork the Repository**: Start by forking the project repository to your github account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone ./
+   git clone https://github.com/DNACENSolutions/CatC_SD_Access_campus.git
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
@@ -320,7 +361,7 @@ Run the test suite using the following command:
    ```sh
    git commit -m 'Implemented new feature x.'
    ```
-6. **Push to LOCAL**: Push the changes to your forked repository.
+6. **Push to github**: Push the changes to your forked repository.
    ```sh
    git push origin new-feature-x
    ```
@@ -332,8 +373,8 @@ Run the test suite using the following command:
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://LOCAL{///}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=/">
+   <a href="https://github.com{/DNACENSolutions/CatC_SD_Access_campus.git/}graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=DNACENSolutions/CatC_SD_Access_campus.git">
    </a>
 </p>
 </details>
