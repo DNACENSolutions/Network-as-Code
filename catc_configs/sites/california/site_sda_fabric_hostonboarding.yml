@@ -14,6 +14,12 @@ sda_host_onboarding_details:
       - interface_name: "GigabitEthernet6/0/15"
         connected_device_type: ACCESS_POINT
         data_vlan_name: APPOOL_SJC_INFRA_VN
+      - interface_name: "GigabitEthernet5/0/17"
+        connected_device_type: ACCESS_POINT
+        data_vlan_name: APPOOL_SJC_INFRA_VN
+      - interface_name: "GigabitEthernet5/0/25"
+        connected_device_type: ACCESS_POINT
+        data_vlan_name: APPOOL_SJC_INFRA_VN
       - interface_name: "GigabitEthernet6/0/16"
         connected_device_type: ACCESS_POINT
         data_vlan_name: "APPOOL_SJC_INFRA_VN"
