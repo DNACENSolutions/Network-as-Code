@@ -335,7 +335,7 @@ Install CatC_SD_Access_campus using one of the following methods:
 **Using `bash`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'source setup.sh'
+❯ source setup.sh
 ```
 
 ###  Usage
@@ -343,9 +343,9 @@ Run CatC_SD_Access_campus using the following command:
 **Using `Python3`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'python3 scripts/run_playbooks.py '
+❯ python3 scripts/run_playbooks.py
 ```
-
+Follow the prompts. 
 ---
 ##  Project Roadmap
 
