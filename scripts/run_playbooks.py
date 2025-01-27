@@ -2,6 +2,7 @@ import subprocess
 import os
 import yaml
 import datetime
+import argparse
 # Define the base path for Ansible playbooks and configuration files
 ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', '/Users/pawansi/workspace/CatC_Configs/catc_ansible_workflows/workflows/')
 CONFIG_FILES_BASE_PATH = os.getenv('CONFIG_FILES_BASE_PATH', '/Users/pawansi/workspace/CatC_Configs/CatalystCenter_Configurations/catc_configs/')
@@ -69,88 +70,140 @@ def execute_playbook(usecase_name, usecase_data):
 
 def main():
     """Main function to handle user input and execute actions."""
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run Catalyst Center Ansible playbooks.")
+    parser.add_argument("suitename", nargs='?', default=None, help="Name of the suite to run (e.g., 'fabric', 'sdwan')")
+    parser.add_argument("method", choices=["validate", "execute", "both"], nargs='?', default=None, help="Action to perform: 'validate', 'execute', or 'both'")
+    parser.add_argument("usecases", nargs='*', default=None, help="List of use cases to run (or 'all')")
+    args = parser.parse_args()
     # Get the YAML file path from the user
     usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
     yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
     if not yaml_files:
         print(f"No YAML files found in {usecase_maps_dir}")
         return
-
     print("\nAvailable use case data files:")
-    for i, file in enumerate(yaml_files):
-        print(f"{i+1}. {file}")
 
-    while True:
-        try:
-            choice = int(input("\nSelect a file by entering its number: "))
-            if 1 <= choice <= len(yaml_files):
-                yaml_file = os.path.join(usecase_maps_dir, yaml_files[choice - 1])
-                break
-            else:
-                print("Invalid choice. Please try again.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-    if not yaml_files:
-        print(f"No YAML files found in {usecase_maps_dir}")
-        yaml_file = input("Enter the path to the YAML file containing use case data: ")
-    print(f"Reading use case data from {yaml_file}...")
-    usecase_data = read_usecase_data(yaml_file)
+    if args.suitename and args.method and args.usecases:
+        yaml_file = os.path.join(usecase_maps_dir, args.suitename)
+        print(f"Reading use case data from {yaml_file}...")
+        usecase_data = read_usecase_data(yaml_file)
+        if usecase_data is None:
+            print(f"Error reading use case data from {yaml_file}")
+            return
+        selected_usecases = ', '.join(args.usecases)
+        selected_usecases = selected_usecases.split(",")
+        print(f"Selected use cases: {selected_usecases}")
+        print(f"Available usecase from suie file: {usecase_data.keys()}")
+        # CLI arguments provided, use them
+        suite_usecases = [uc for uc in usecase_data.keys() if uc in selected_usecases]
+        if not suite_usecases:
+            print(f"No use cases found in suite '{args.suitename}'")
+            return
+        #if suite_usecases not in yaml_files:
+        #    print(f"Suite '{args.suitename}' not found in the available YAML files")
+        #    return
+        
+        if args.usecases == ["all"]:
+            selected_usecases = usecase_data.keys()
+        else:
+            # Check if the provided use cases are valid
+            invalid_usecases = set(selected_usecases) - set(suite_usecases)
+            if invalid_usecases:
+                print(f"Invalid use case(s): {', '.join(invalid_usecases)}")
+                return
 
-    if usecase_data is None:
-        return  # Exit if there was an error reading the YAML file
+            #selected_usecases = args.usecases
 
-    while True:
-        print("\nSelect an option to run:")
-        print("1. Validate")
-        print("2. Execute")
-        print("3. Validate and Execute")
-        print("4. Exit")
-        option = input("Enter your choice: ")
+        for usecase_name in selected_usecases:
+            if args.method == "validate" or args.method == "both":
+                validate_schema(usecase_name, usecase_data)
+            if args.method == "execute" or args.method == "both":
+                execute_playbook(usecase_name, usecase_data)
 
-        if option == "4":
-            print("Exiting...")
-            break
+    else:
+        # Get the YAML file path from the user
+        usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
+        yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
+        if not yaml_files:
+            print(f"No YAML files found in {usecase_maps_dir}")
+            return
 
-        print("\nSelect a use case to run:")
-        for i, usecase_name in enumerate(usecase_data.keys()):
-            print(f"{i+1}. {usecase_name}")
-            #print(f"Description: {usecase_data[usecase_name]['description']}")
-        print("enter 'a' to select all usecases")
-        print(f"{len(usecase_data.keys()) + 1}. Exit")
-        choice = input("Enter your choice (comma-separated for multiple, hyphen-separated for range, 'a' for all): ")
-        #Update this function to handle the user input for taking multiple usecases as , seperated input or - seperated input for range and all.
-        try:
-            if choice == "a":  # Run all use cases
-                selected_usecases = list(usecase_data.keys())
-            elif "-" in choice:  # Run a range of use cases
-                start, end = map(int, choice.split("-"))
-                selected_usecases = list(usecase_data.keys())[start-1:end]
-            elif "," in choice:  # Run multiple specific use cases
-                selected_usecases = [list(usecase_data.keys())[int(c)-1] for c in choice.split(",")]
-            else:  # Run a single use case
-                choice = int(choice)
-                if choice == len(usecase_data.keys()) + 1:
-                    print("Exiting...")
+        print("\nAvailable use case data files:")
+        for i, file in enumerate(yaml_files):
+            print(f"{i+1}. {file}")
+
+        while True:
+            try:
+                choice = int(input("\nSelect a file by entering its number: "))
+                if 1 <= choice <= len(yaml_files):
+                    yaml_file = os.path.join(usecase_maps_dir, yaml_files[choice - 1])
                     break
-                elif 1 <= choice <= len(usecase_data.keys()):
-                    selected_usecases = [list(usecase_data.keys())[choice - 1]]
                 else:
                     print("Invalid choice. Please try again.")
-                    continue
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        if not yaml_files:
+            print(f"No YAML files found in {usecase_maps_dir}")
+            yaml_file = input("Enter the path to the YAML file containing use case data: ")
+        print(f"Reading use case data from {yaml_file}...")
+        usecase_data = read_usecase_data(yaml_file)
 
-            for usecase_name in selected_usecases:
-                if option == "1":
-                    validate_schema(usecase_name, usecase_data)
-                elif option == "2":
-                    execute_playbook(usecase_name, usecase_data)
-                elif option == "3":
-                    validate_schema(usecase_name, usecase_data)
-                    execute_playbook(usecase_name, usecase_data)
-                else:
-                    print("Invalid option. Please try again.")
+        if usecase_data is None:
+            return  # Exit if there was an error reading the YAML file
 
-        except (ValueError, IndexError) as e:
-            print(f"Invalid input: {e}. Please try again.")
+        while True:
+            print("\nSelect an option to run:")
+            print("1. Validate")
+            print("2. Execute")
+            print("3. Validate and Execute")
+            print("4. Exit")
+            option = input("Enter your choice: ")
+
+            if option == "4":
+                print("Exiting...")
+                break
+
+            print("\nSelect a use case to run:")
+            for i, usecase_name in enumerate(usecase_data.keys()):
+                print(f"{i+1}. {usecase_name}")
+                #print(f"Description: {usecase_data[usecase_name]['description']}")
+            print("enter 'a' to select all usecases")
+            print(f"{len(usecase_data.keys()) + 1}. Exit")
+            choice = input("Enter your choice (comma-separated for multiple, hyphen-separated for range, 'a' for all): ")
+            #Update this function to handle the user input for taking multiple usecases as , seperated input or - seperated input for range and all.
+            try:
+                if choice == "a":  # Run all use cases
+                    selected_usecases = list(usecase_data.keys())
+                elif "-" in choice:  # Run a range of use cases
+                    start, end = map(int, choice.split("-"))
+                    selected_usecases = list(usecase_data.keys())[start-1:end]
+                elif "," in choice:  # Run multiple specific use cases
+                    selected_usecases = [list(usecase_data.keys())[int(c)-1] for c in choice.split(",")]
+                else:  # Run a single use case
+                    choice = int(choice)
+                    if choice == len(usecase_data.keys()) + 1:
+                        print("Exiting...")
+                        break
+                    elif 1 <= choice <= len(usecase_data.keys()):
+                        selected_usecases = [list(usecase_data.keys())[choice - 1]]
+                    else:
+                        print("Invalid choice. Please try again.")
+                        continue
+
+                for usecase_name in selected_usecases:
+                    if option == "1":
+                        validate_schema(usecase_name, usecase_data)
+                    elif option == "2":
+                        execute_playbook(usecase_name, usecase_data)
+                    elif option == "3":
+                        validate_schema(usecase_name, usecase_data)
+                        execute_playbook(usecase_name, usecase_data)
+                    else:
+                        print("Invalid option. Please try again.")
+
+            except (ValueError, IndexError) as e:
+                print(f"Invalid input: {e}. Please try again.")
 
 if __name__ == "__main__":
     main()

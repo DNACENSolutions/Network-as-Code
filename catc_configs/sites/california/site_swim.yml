@@ -59,13 +59,34 @@ swim_details:
         site_name: Global
         device_family_name: Switches and Hubs
         device_serial_number: null
+        #site_name: Global/USA/SAN JOSE/BLD23
+    - image_distribution_details:
+        image_name: C9800-SW-iosxe-wlc.17.15.02.SPA.bin
+        device_hostname: null
+        device_mac_address: null
+        device_ip_address: null
+        device_role: BORDER ROUTER
+        site_name: Global
+        device_family_name: Switches and Hubs
+        device_serial_number: null
+        #site_name: Global/USA/SAN JOSE/BLD23
+    - image_distribution_details:
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
+        device_hostname: null
+        device_mac_address: null
+        device_ip_address: null
+        device_role: ACCESS
+        site_name: Global
+        device_family_name: Switches and Hubs
+        device_serial_number: null
+        #site_name: Global/USA/SAN-FRANCISCO
     - image_distribution_details:
         image_name: C9800-80-universalk9_wlc.17.15.02.SPA.bin
         device_hostname: null
         device_mac_address: null
         device_ip_address: null
         device_role: ACCESS
-        site_name: Global/USA/SAN JOSE/BLD23
+        #site_name: Global/USA/SAN JOSE/BLD23
         device_family_name: Wireless Controller
         device_serial_number: null
 
@@ -84,6 +105,34 @@ swim_details:
         image_name: cat9k_iosxe.17.15.02.SPA.bin
         schedule_validate: false
         site_name: Global
+    - image_activation_details:
+        activate_lower_image_version: false
+        device_family_name: Switches and Hubs
+        device_hostname: null
+        device_ip_address: null
+        device_mac_address: null
+        device_role: ACCESS
+        device_serial_number: null
+        device_upgrade_mode: currentlyExists
+        distribute_if_needed: true
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
+        schedule_validate: false
+        site_name: Global
+        site_name: Global/USA/SAN-FRANCISCO/BLD_SF
+    - image_activation_details:
+        activate_lower_image_version: false
+        device_family_name: Switches and Hubs
+        device_hostname: null
+        device_ip_address: null
+        device_mac_address: null
+        device_role: ACCESS
+        device_serial_number: null
+        device_upgrade_mode: currentlyExists
+        distribute_if_needed: true
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
+        schedule_validate: false
+        site_name: Global
+        site_name: Global/USA/SAN JOSE/BLD23
     - image_activation_details:
         activate_lower_image_version: false
         device_family_name: Wireless Controller
