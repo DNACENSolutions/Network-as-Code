@@ -1,0 +1,23 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+network_compliance_details:
+# Define the device details for Network Compliance run and fix
+#Wireless controller provisioning
+  - ip_address_list: 
+      - 204.101.16.1
+      - 204.101.16.2
+      - 204.101.16.5
+      - 204.192.12.1
+      - 204.192.13.1
+    #site_name: Global
+    run_compliance: true
+    # 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILE,WORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EOX' , 'NETWORK_SETTINGS'
+    run_compliance_categories: 
+      - INTENT
+      - NETWORK_SETTINGS
+      - RUNNING_CONFIG
+      #- IMAGE
+      - PSIRT
+    sync_device_config: true
+    

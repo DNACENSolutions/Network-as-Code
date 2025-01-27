@@ -1,0 +1,17 @@
+#Provision the devices on sites
+CaliforniaSiteDevicesProvision:
+  schema_file: "provision/schema/provision_workflow_schema.yml"
+  playbook: "provision/playbook/provision_workflow_playbook.yml"
+  data_file: "sites/california/site_devices_provision.yml"
+
+# SWIM Upgrade the devices on sites
+CaliforniaSiteSWIMDevicesUpgrade:
+  schema_file: "swim/schema/swim_schema.yml"
+  playbook: "swim/playbook/swim_workflow_playbook.yml"
+  data_file: "sites/california/site_swim.yml"
+
+# SWIM Upgrade the devices on sites
+CaliforniaSiteNetworkCompliance:
+  schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
+  playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
+  data_file: "sites/california/site_network_complliance.yml"
