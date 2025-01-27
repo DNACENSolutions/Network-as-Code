@@ -41,6 +41,7 @@ export ANSIBLE_HOSTS_INVENTORY=$(pwd)/ansible_inventory/catalystcenter_inventory
 export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 export ANSIBLE_LOG_PATH=$(pwd)/../ansible_logs/ansible.log
 export ANSIBLE_LOG_DIR_PATH=$(pwd)/../ansible_logs
+export CATC_LOG_DIR_PATH=$(pwd)/../catc_logs
 export CATC_LOG_DIR=$(pwd)/../catc_logs/catalystcenter_logs.log
 export ANSIBLE_DEBUG=True
 export ANSIBLE_VERBOSITY=4
