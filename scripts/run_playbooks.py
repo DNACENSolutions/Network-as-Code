@@ -52,9 +52,14 @@ def execute_playbook(usecase_name, usecase_data):
             "--e", f"VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path}",
             "-vvvv"
         ]
+        with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
+            #ansible_suite.write(f'#!/bin/bash\n')
+            ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
+            ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -vvvv | tee {ansible_log_path} \n\n')
+            ansible_suite.write("echo 'Playbook for suite completed'\n\n")
         with open(ansible_log_path, 'w') as log_file:
             print(f"Executing playbook command: {cmd} \n")
-            subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
+            #subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
         print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
     except subprocess.CalledProcessError as e:
         print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
@@ -76,6 +81,9 @@ def main():
     parser.add_argument("method", choices=["validate", "execute", "both"], nargs='?', default=None, help="Action to perform: 'validate', 'execute', or 'both'")
     parser.add_argument("usecases", nargs='*', default=None, help="List of use cases to run (or 'all')")
     args = parser.parse_args()
+    #ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
+    with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
+        ansible_suite.write(f'#!/bin/bash\n')
     # Get the YAML file path from the user
     usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
     yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
