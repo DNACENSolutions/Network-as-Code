@@ -1,9 +1,30 @@
 #!/bin/bash
-python3 -m venv ./../venv-anisible --prompt=ansible-venv
+echo "Script name: $0"
+echo "First argument: $1"
+if [ "$1" == "clean" ]; then
+    echo "Cleaning the virtual environment"
+    rm -rf ./../venv-anisible
+    rm -rf ./../catc_ansible_workflows
+    rm -rf ./../ansible_logs/*
+    rm -rf ./../catc_logs/*
+    exit 0
+fi
+# check if $ contains python in it if so user $2 as python3 
+# if not use python2
+if [[ $1 == *python* ]]; then
+    echo "Creating virtual environment with $1"
+    $1 -m venv ./../venv-anisible --prompt=ansible-venv
+else
+    echo "Creating virtual environment with python"
+    python3 -m venv ./../venv-anisible --prompt=ansible-venv
+fi
+#python3 -m venv ./../venv-anisible --prompt=ansible-venv
 source ./../venv-anisible/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install -r ./requirements.txt
-python3 -m pip install --upgrade dnacentersdk
+which python
+export ANSIBLE_PYTHON_INTERPRETER=$(which python)
+python -m pip install --upgrade pip
+python -m pip install -r ./requirements.txt
+python -m pip install --upgrade dnacentersdk
 ansible-galaxy collection install cisco.dnac --force
 # check if the path ./../catc_ansible_workflows exists, if not clone the repo if exists then got to the dir and perform git pull
 [ -d ./../catc_ansible_workflows ] || git clone https://github.com/cisco-en-programmability/catalyst-center-ansible-iac.git ./../catc_ansible_workflows
