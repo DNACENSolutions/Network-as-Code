@@ -105,13 +105,12 @@ def main():
         print(f"Available usecase from suie file: {usecase_data.keys()}")
         # CLI arguments provided, use them
         suite_usecases = [uc for uc in usecase_data.keys() if uc in selected_usecases]
-        if not suite_usecases:
+        if not suite_usecases and args.usecases != ["all"]:
             print(f"No use cases found in suite '{args.suitename}'")
             return
-        #if suite_usecases not in yaml_files:
-        #    print(f"Suite '{args.suitename}' not found in the available YAML files")
-        #    return
-        
+        if args.usecases == ["all"]:
+            selected_usecases = list(usecase_data.keys())
+        print(f"Selected use cases: {selected_usecases}")
         if args.usecases == ["all"]:
             selected_usecases = usecase_data.keys()
         else:
@@ -120,15 +119,12 @@ def main():
             if invalid_usecases:
                 print(f"Invalid use case(s): {', '.join(invalid_usecases)}")
                 return
-
-            #selected_usecases = args.usecases
-
+        #selected_usecases = args.usecases
         for usecase_name in selected_usecases:
             if args.method == "validate" or args.method == "both":
                 validate_schema(usecase_name, usecase_data)
             if args.method == "execute" or args.method == "both":
                 execute_playbook(usecase_name, usecase_data)
-
     else:
         # Get the YAML file path from the user
         usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
