@@ -33,7 +33,7 @@ def validate_schema(usecase_name, usecase_data):
     except subprocess.CalledProcessError as e:
         print(f"Schema validation failed for {usecase_name}: {e} \U0001F44E ")
 
-def execute_playbook(usecase_name, usecase_data, jenkins=False):
+def execute_playbook(usecase_name, usecase_data, jenkins=False, verbose_level="vvvv"):
     """Executes the Ansible playbook for the given use case."""
     playbook = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["playbook"])
     data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
@@ -50,13 +50,13 @@ def execute_playbook(usecase_name, usecase_data, jenkins=False):
             "-i", ANSIBLE_HOSTS_INVENTORY,
             playbook,
             "--e", f"VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path}",
-            "-vvvv"
+            f"-{verbose_level}"
         ]
         if jenkins:
             with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
                 #ansible_suite.write(f'#!/bin/bash\n')
                 ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
-                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -vvvv | tee {ansible_log_path} \n\n')
+                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -{verbose_level} | tee {ansible_log_path} \n\n')
                 ansible_suite.write("echo 'Playbook for suite completed'\n\n")
         else:
             with open(ansible_log_path, 'w') as log_file:
@@ -82,7 +82,9 @@ def main():
     parser.add_argument("suitename", nargs='?', default=None, help="Name of the suite to run (e.g., 'fabric', 'sdwan')")
     parser.add_argument("method", choices=["validate", "execute", "both"], nargs='?', default=None, help="Action to perform: 'validate', 'execute', or 'both'")
     parser.add_argument("usecases", nargs='*', default=None, help="List of use cases to run (or 'all')")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Increase output verbosity")
     args = parser.parse_args()
+    verbose_level = "vvvv" if args.verbose else "v"
     #ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
     with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
         ansible_suite.write(f'#!/bin/bash\n')
@@ -121,12 +123,13 @@ def main():
             if invalid_usecases:
                 print(f"Invalid use case(s): {', '.join(invalid_usecases)}")
                 return
+        
         #selected_usecases = args.usecases
         for usecase_name in selected_usecases:
             if args.method == "validate" or args.method == "both":
                 validate_schema(usecase_name, usecase_data)
             if args.method == "execute" or args.method == "both":
-                execute_playbook(usecase_name, usecase_data, jenkins=True)
+                execute_playbook(usecase_name, usecase_data, jenkins=True, verbose_level=verbose_level)
     else:
         # Get the YAML file path from the user
         usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
@@ -201,10 +204,10 @@ def main():
                     if option == "1":
                         validate_schema(usecase_name, usecase_data)
                     elif option == "2":
-                        execute_playbook(usecase_name, usecase_data)
+                        execute_playbook(usecase_name, usecase_data,verbose_level=verbose_level)
                     elif option == "3":
                         validate_schema(usecase_name, usecase_data)
-                        execute_playbook(usecase_name, usecase_data)
+                        execute_playbook(usecase_name, usecase_data, verbose_level=verbose_level)
                     else:
                         print("Invalid option. Please try again.")
 
