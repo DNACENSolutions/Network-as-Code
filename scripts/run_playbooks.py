@@ -55,9 +55,10 @@ def execute_playbook(usecase_name, usecase_data, jenkins=False, verbose_level="v
         if jenkins:
             with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
                 #ansible_suite.write(f'#!/bin/bash\n')
-                ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
-                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -{verbose_level} | tee {ansible_log_path} \n\n')
-                ansible_suite.write("echo 'Playbook for suite completed'\n\n")
+                #ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
+                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -{verbose_level} \n')
+                #| tee {ansible_log_path} \n\n')
+                print("Ansible playbook command added to ansible_suite.sh, will be launched from shell script.")
         else:
             with open(ansible_log_path, 'w') as log_file:
                 print(f"Executing playbook command: {cmd} \n")
@@ -87,7 +88,7 @@ def main():
     verbose_level = "vvvv" if args.verbose else "v"
     #ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
     with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
-        ansible_suite.write(f'#!/bin/bash\n')
+        ansible_suite.write('\n')
     # Get the YAML file path from the user
     usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
     yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
