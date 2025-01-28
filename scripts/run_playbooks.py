@@ -88,7 +88,7 @@ def main():
     verbose_level = "vvvv" if args.verbose else "v"
     #ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
     with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
-        ansible_suite.write('\n')
+        ansible_suite.write('\n\n')
     # Get the YAML file path from the user
     usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
     yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
