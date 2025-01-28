@@ -53,7 +53,7 @@ def execute_playbook(usecase_name, usecase_data, jenkins=False, verbose_level="v
             f"-{verbose_level}"
         ]
         if jenkins:
-            with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
+            with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'a') as ansible_suite:
                 #ansible_suite.write(f'#!/bin/bash\n')
                 #ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
                 ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -{verbose_level} \n')
