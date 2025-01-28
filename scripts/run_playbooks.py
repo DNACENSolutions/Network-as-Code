@@ -33,7 +33,7 @@ def validate_schema(usecase_name, usecase_data):
     except subprocess.CalledProcessError as e:
         print(f"Schema validation failed for {usecase_name}: {e} \U0001F44E ")
 
-def execute_playbook(usecase_name, usecase_data):
+def execute_playbook(usecase_name, usecase_data, jenkins=False):
     """Executes the Ansible playbook for the given use case."""
     playbook = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["playbook"])
     data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
@@ -52,15 +52,17 @@ def execute_playbook(usecase_name, usecase_data):
             "--e", f"VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path}",
             "-vvvv"
         ]
-        with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
-            #ansible_suite.write(f'#!/bin/bash\n')
-            ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
-            ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -vvvv | tee {ansible_log_path} \n\n')
-            ansible_suite.write("echo 'Playbook for suite completed'\n\n")
-        with open(ansible_log_path, 'w') as log_file:
-            print(f"Executing playbook command: {cmd} \n")
-            #subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
-        print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
+        if jenkins:
+            with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w+') as ansible_suite:
+                #ansible_suite.write(f'#!/bin/bash\n')
+                ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
+                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -vvvv | tee {ansible_log_path} \n\n')
+                ansible_suite.write("echo 'Playbook for suite completed'\n\n")
+        else:
+            with open(ansible_log_path, 'w') as log_file:
+                print(f"Executing playbook command: {cmd} \n")
+                subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
+            print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
     except subprocess.CalledProcessError as e:
         print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
     # Read Current time as end time
@@ -124,7 +126,7 @@ def main():
             if args.method == "validate" or args.method == "both":
                 validate_schema(usecase_name, usecase_data)
             if args.method == "execute" or args.method == "both":
-                execute_playbook(usecase_name, usecase_data)
+                execute_playbook(usecase_name, usecase_data, jenkins=True)
     else:
         # Get the YAML file path from the user
         usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
