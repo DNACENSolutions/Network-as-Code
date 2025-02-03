@@ -1,0 +1,26 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+provision_details:
+# Define the devices for assigning devices on sites and provisioning
+#Wireless controller provisioning
+  #Switches and Hubs provisioning
+  - site_name_hierarchy: Global/USA/SAN JOSE/BLD23
+    management_ip_address: 204.101.16.4
+    provisioning: true
+    #force_provisioning: true
+  - site_name_hierarchy: Global/USA/SAN JOSE/BLD23
+    management_ip_address: 204.101.16.1
+    provisioning: true
+    #force_provisioning: true
+  - site_name_hierarchy: Global/USA/SAN JOSE/BLD23
+    management_ip_address: 204.192.12.1
+    provisioning: true
+    force_provisioning: false
+  - site_name_hierarchy: "Global/USA/SAN-FRANCISCO/BLD_SF"
+    management_ip_address: 204.101.16.2
+    provisioning: true
+    #force_provisioning: true
+  - site_name_hierarchy: "Global/USA/SAN-FRANCISCO/BLD_SF"
+    management_ip_address: 204.192.13.1
+    provisioning: true

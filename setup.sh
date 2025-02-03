@@ -58,7 +58,47 @@ export ANSIBLE_VERBOSITY=4
 export ANSIBLE_STDOUT_CALLBACK=debug
 export ANSIBLE_FORCE_COLOR=true
 #Assign current path as the base path for the config files
-export CONFIG_FILES_BASE_PATH=$(pwd)/catc_configs
+export CONFIG_FILES_BASE_PATH=$(pwd)
 echo "Virtual environment created and activated successfully"
 echo "Create you inventory file in the path: $(pwd)/ansible_inventory."
 echo "Refer the sample file in the path: $(pwd)/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml"
+
+# Initialize an empty array to store individual playbook results
+results=()
+
+# Loop through each playbook and execute it
+for playbook in "${playbooks[@]}"; do
+  echo "Running playbook: $playbook"
+  ansible-playbook "$playbook"
+  results+=("$?")  # Store the exit code of the playbook
+done
+
+# Check the results of all playbooks
+overall_status=0
+for status in "${results[@]}"; do
+  if [ "$status" -ne 0 ]; then
+    overall_status=1
+    break
+  fi
+done
+
+# Print the combined report
+echo "-----------------------------------------"
+echo "Combined Ansible Run Report"
+echo "-----------------------------------------"
+for i in "${!playbooks[@]}"; do
+  playbook="${playbooks[$i]}"
+  status="${results[$i]}"
+  if [ "$status" -eq 0 ]; then
+    echo "$playbook: SUCCESS"
+  else
+    echo "$playbook: FAILED"
+  fi
+done
+
+# Print the overall status
+if [ "$overall_status" -eq 0 ]; then
+  echo "Overall Status: SUCCESS"
+else
+  echo "Overall Status: FAILED"
+fi

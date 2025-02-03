@@ -1,0 +1,44 @@
+---
+catalyst_center_version: "2.3.7.6"
+catalyst_center_debug: false
+sda_fabric_virtual_networks_details:
+  - anycast_gateways:
+    - vn_name: "Anchored_VN"
+      vlan_name: "GUESTWIFIPOOL_sjc_Anchored_VN"
+      fabric_site_location:
+        site_name_hierarchy: "Global/USA/SAN-FRANCISCO"
+        fabric_type: "fabric_site"
+      ip_pool_name: "GUESTWIFIPOOL_sjc"
+      tcp_mss_adjustment: 1400
+      traffic_type: "DATA"
+      is_critical_pool: false
+      ip_directed_broadcast: true
+      layer2_flooding_enabled: true
+      auto_generate_vlan_name: false
+      fabric_enabled_wireless: true
+  - anycast_gateways:
+    - vn_name: "Anchored_VN"
+      vlan_name: "GUESTWIFIPOOL_sjc_Anchored_VN"
+      fabric_site_location:
+        site_name_hierarchy: "Global/USA/SAN JOSE"
+        fabric_type: "fabric_site"
+      ip_pool_name: "GUESTWIFIPOOL_sjc"
+      tcp_mss_adjustment: 1400
+      traffic_type: "DATA"
+      is_critical_pool: false
+      ip_directed_broadcast: true
+      layer2_flooding_enabled: true
+      auto_generate_vlan_name: false
+      fabric_enabled_wireless: true
+  - virtual_networks:
+    - vn_name: "Anchored_VN"
+      anchored_site_name: "Global/USA/SAN JOSE"
+      fabric_site_locations:
+        - site_name_hierarchy: "Global/USA/SAN-FRANCISCO"
+          fabric_type: "fabric_site"
+  - virtual_networks:
+    - vn_name: "Anchored_VN"
+      anchored_site_name: "Global/USA/SAN JOSE"
+      fabric_site_locations:
+        - site_name_hierarchy: "Global/USA/SAN JOSE"
+          fabric_type: "fabric_site"

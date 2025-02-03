@@ -1,0 +1,370 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+# Network Settings an IP Pools design.
+network_settings_details: 
+  - global_pool_details:
+      settings:
+        ip_pool:
+        - name:  underlay
+          gateway: 204.1.1.1
+          ip_address_space: IPv4
+          cidr: 204.1.0.0/16
+          pool_type: Generic
+        - name:  underlay1
+          gateway: 204.2.0.1
+          ip_address_space: IPv4
+          cidr: 204.2.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  APPOOL
+          gateway: 204.3.0.1
+          ip_address_space: IPv4
+          cidr: 204.3.0.0/20
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  EXTPOOL
+          gateway: 204.4.0.1
+          ip_address_space: IPv4
+          cidr: 204.4.0.0/20
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  EMPLOYEEPOOL
+          gateway: 192.168.0.1
+          ip_address_space: IPv4
+          cidr: 192.168.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  EMPLOYEEPOOLIPV6
+          gateway: 2004:192:168::1
+          ip_address_space: IPv6
+          cidr: 2004:192:168::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  GUESTPOOL
+          gateway: 192.169.0.1
+          ip_address_space: IPv4
+          cidr: 192.169.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  GUESTPOOLIPV6
+          gateway: 2004:192:169::1
+          ip_address_space: IPv6
+          cidr: 2004:192:169::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  IOTPOOL
+          gateway: 192.170.0.1
+          ip_address_space: IPv4
+          cidr: 192.170.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  IOTPOOLIPV6
+          gateway: 2004:192:170::1
+          ip_address_space: IPv6
+          cidr: 2004:192:170::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  MGMTPOOL
+          gateway: 192.171.0.1
+          ip_address_space: IPv4
+          cidr: 192.171.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  MGMTPOOLIPV6
+          gateway: 2004:192:171::1
+          ip_address_space: IPv6
+          cidr: 2004:192:171::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  VOICEPOOL
+          gateway: 192.172.0.1
+          ip_address_space: IPv4
+          cidr: 192.172.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  VOICEPOOLIPV6
+          gateway: 2004:192:172::1
+          ip_address_space: IPv6
+          cidr: 2004:192:172::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  CRITICALDATAPOOL
+          gateway: 192.173.0.1
+          ip_address_space: IPv4
+          cidr: 192.173.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  CRITICALDATAPOOLIPV6
+          gateway: 2004:192:173::1
+          ip_address_space: IPv6
+          cidr: 2004:192:173::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  CRITICALVOICEPOOL
+          gateway: 192.174.0.1
+          ip_address_space: IPv4
+          cidr: 192.174.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  CRITICALVOICEPOOLIPV6
+          gateway: 2004:192:174::1
+          ip_address_space: IPv6
+          cidr: 2004:192:174::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  MULTICASTPOOL
+          gateway: 192.175.0.1
+          ip_address_space: IPv4
+          cidr: 192.175.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  MULTICASTPOOLIPV6
+          gateway: 2004:192:175::1
+          ip_address_space: IPv6
+          cidr: 2004:192:175::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+  # - global_pool_details:
+  #     settings:
+        # ip_pool:
+        - name:  PRINTPOOL
+          gateway: 192.176.0.1
+          ip_address_space: IPv4
+          cidr: 192.176.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  PRINTPOOLIPV6
+          gateway: 2004:192:176::1
+          ip_address_space: IPv6
+          cidr: 2004:192:176::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  VIDEOCAMPOOL
+          gateway: 192.177.0.1
+          ip_address_space: IPv4
+          cidr: 192.177.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  VIDEOCAMPOOLIPV6
+          gateway: 2004:192:177::1
+          ip_address_space: IPv6
+          cidr: 2004:192:177::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  SERVERSPOOL
+          gateway: 192.178.0.1
+          ip_address_space: IPv4
+          cidr: 192.178.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  SERVERSPOOLIPV6
+          gateway: 2004:192:178::1
+          ip_address_space: IPv6
+          cidr: 2004:192:178::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  BORDERHandoff
+          gateway: 192.179.0.1
+          ip_address_space: IPv4
+          cidr: 192.179.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  BORDERHandoffIPV6
+          gateway: 2004:192:179::1
+          ip_address_space: IPv6
+          cidr: 2004:192:179::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  GUESTWIFIPOOL
+          gateway: 192.180.0.1
+          ip_address_space: IPv4
+          cidr: 192.180.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  GUESTWIFIPOOLIPV6
+          gateway: 2004:192:180::1
+          ip_address_space: IPv6
+          cidr: 2004:192:180::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  ITStaffPool
+          gateway: 192.181.0.1
+          ip_address_space: IPv4
+          cidr: 192.181.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  ITStaffPoolIPV6
+          gateway: 2004:192:181::1
+          ip_address_space: IPv6
+          cidr: 2004:192:181::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+  - global_pool_details:
+      settings:
+        ip_pool:
+        - name:  Contractors
+          gateway: 192.182.0.1
+          ip_address_space: IPv4
+          cidr: 192.182.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  ContractorsIPV6
+          gateway: 2004:192:182::1
+          ip_address_space: IPv6
+          cidr: 2004:192:182::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  BYOD
+          gateway: 192.183.0.1
+          ip_address_space: IPv4
+          cidr: 192.183.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  BYODIPV6
+          gateway: 2004:192:183::1
+          ip_address_space: IPv6
+          cidr: 2004:192:183::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  Auditors
+          gateway: 192.184.0.1
+          ip_address_space: IPv4
+          cidr: 192.184.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  AuditorsIPV6
+          gateway: 2004:192:184::1
+          ip_address_space: IPv6
+          cidr: 2004:192:184::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1
+        - name:  GuestAnchor
+          gateway: 192.185.0.1
+          ip_address_space: IPv4
+          cidr: 192.185.0.0/16
+          pool_type: Generic
+          dhcp_server_ips:
+            - 204.192.3.40
+          dns_server_ips:
+            - 171.70.168.183
+        - name:  GuestAnchorIPV6
+          gateway: 2004:192:185::1
+          ip_address_space: IPv6
+          cidr: 2004:192:185::/64
+          pool_type: Generic
+          dhcp_server_ips:
+            - 2004:192:3::40
+          dns_server_ips:
+            - 2006:1:1::1

@@ -1,0 +1,12 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+swim_details:
+  # List of images and sub packages to be imported to the Cisco Catalyst Center
+  golden_tag_images:
+    - tagging_details:
+        image_name: cat9k_iosxe.17.15.02.SPA.bin
+        device_role: ALL
+        device_image_family_name : Cisco Catalyst 9300 Switch
+        site_name: Global
+        tagging: false
