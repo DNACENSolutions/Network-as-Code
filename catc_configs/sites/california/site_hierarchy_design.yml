@@ -59,6 +59,8 @@ design_sites:
         width: 100.00
         length: 100.00
         height: 10.00
+        units_of_measure: feet
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
     type: floor
   - site:
       floor:
@@ -69,6 +71,8 @@ design_sites:
         width: 100.00
         length: 100.00
         height: 10.00
+        units_of_measure: feet
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
     type: floor
   - site:
       floor:
@@ -89,6 +93,8 @@ design_sites:
         width: 100.00
         length: 100.00
         height: 10.00
+        units_of_measure: feet
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/floor1image.jpg"
     type: floor
   - site:
       floor:
@@ -99,6 +105,8 @@ design_sites:
         width: 100.00
         length: 100.00
         height: 10.00
+        units_of_measure: feet
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
     type: floor
   - site:
       floor:
@@ -110,7 +118,7 @@ design_sites:
         length: 5.00
         height: 3.00
         units_of_measure: meters
-        upload_floor_image_path: "/Users/pawansi/workspace/CatC_Configs/CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
     type: floor
   - site:
       floor:
@@ -122,5 +130,5 @@ design_sites:
         length: 12.00
         height: 8.00
         units_of_measure: feet
-        upload_floor_image_path: "/Users/pawansi/workspace/CatC_Configs/CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/california/floor_images/wireless-access-points.pdf"
     type: floor

@@ -1,0 +1,47 @@
+---
+catalyst_center_version: 2.3.7.6
+fabric_devices_details:
+  - fabric_devices:
+      fabric_name: Global/USA/SAN JOSE
+      device_config:
+        - device_ip: 204.101.16.1
+          device_roles: 
+            - CONTROL_PLANE_NODE
+            - BORDER_NODE
+            - EDGE_NODE
+          route_distribution_protocol: LISP_PUB_SUB 
+          borders_settings:
+            layer3_settings:
+              local_autonomous_system_number: 655600
+              is_default_exit: true
+              import_external_routes: true
+              border_priority: 1
+              prepend_autonomous_system_count: 1
+        - device_ip: 204.192.12.1
+          device_roles: 
+            - WIRELESS_CONTROLLER_NODE
+  - fabric_devices:
+      fabric_name: Global/USA/SAN-FRANCISCO
+      device_config:
+        - device_ip: 204.101.16.2
+          device_roles: 
+            - CONTROL_PLANE_NODE
+            - BORDER_NODE
+            - EDGE_NODE
+          route_distribution_protocol: LISP_PUB_SUB 
+          borders_settings:
+            layer3_settings:
+              local_autonomous_system_number: 655601
+              is_default_exit: true
+              import_external_routes: true
+              border_priority: 1
+              prepend_autonomous_system_count: 1
+            layer3_handoff_sda_transit:
+              transit_network_name: SDATransitCalifornia
+              affinity_id_prime: 1        
+              affinity_id_decider: 1     
+              connected_to_internet: false
+              is_multicast_over_transit_enabled: true
+        - device_ip: 204.192.13.1
+          device_roles: 
+            - WIRELESS_CONTROLLER_NODE

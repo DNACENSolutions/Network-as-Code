@@ -1,0 +1,44 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+roles_users_details:
+  # Define roles and users to be created or updated, and their permissions
+  # Assign users with customed roles
+  user_details:
+    - username: testuser1
+      first_name: Pawan
+      last_name: Singh
+      email: pawansingh@example.com
+      #Password Restrictions: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character, no white spaces, no more than 2 identical characters in a row, no more than 3 consecutive characters,
+      password: "Lablab#!1245"
+      password_update: false
+      role_list: 
+        - Admin_customized_role
+        - Assurance-role
+    - username: observer1
+      first_name: Observer1
+      #Password Restrictions: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character, no white spaces, no more than 2 identical characters in a row, no more than 3 consecutive characters,
+      password: "Lablab#!12459"
+      password_update: false
+      role_list: 
+        - OBSERVER-ROLE
+    - username: nwadmin1
+      first_name: NWAdmin1
+      email: nwadmin1@example.com
+      #Password Restrictions: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character, no white spaces, no more than 2 identical characters in a row, no more than 3 consecutive characters,
+      password: "Lablab#@12459"
+      password_update: false
+      role_list: 
+        - NETWORK-ADMIN-ROLE
+    - username: sadmin1
+      first_name: SuperAdmin1
+      #Password Restrictions: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character, no white spaces, no more than 2 identical characters in a row, no more than 3 consecutive characters,
+      password: "Lablab!@12459"
+      password_update: false
+      role_list: 
+        - SUPER-ADMIN-ROLE
+  role_details:
+    - role_name: Admin_customized_role
+      description: This role is created for Ansible module testing
+    - role_name: Assurance-role
+      description: With write access overall

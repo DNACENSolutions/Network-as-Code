@@ -1,0 +1,55 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+# This file contains the variables for the inventory workflow
+inventory_details:
+  network_devices:
+    - ip_address_list: ["204.101.16.4"]
+      role: BORDER ROUTER
+    - ip_address_list: ["204.101.16.1", "204.101.16.2","204.192.12.1","204.192.13.1"]
+      role: ACCESS
+    - ip_address_list: ["204.101.16.4"]
+      add_user_defined_field:
+      - name: SDAtransitRouter
+        description: "This device is the SDA transit CP"
+        value: "Transit CP"
+      role: BORDER ROUTER
+      site_name: "Global/USA/SAN JOSE/BGL23"
+      device_resync: False
+      force_sync: False
+    - ip_address_list: ["204.101.16.1"]
+      add_user_defined_field:
+      - name: fiabborder
+        description: "This device is the Fabric in a BoX"
+        value: "FIAB"
+      role: ACCESS
+      site_name: "Global/USA/SAN JOSE/BGL23"
+      device_resync: False
+      force_sync: False
+    - ip_address_list: ["204.192.12.1"]
+      add_user_defined_field:
+      - name: wireless-controller
+        description: "This device is the WLC"
+        value: "WLC"
+      role: ACCESS
+      site_name: "Global/USA/SAN JOSE/BGL23"
+      device_resync: False
+      force_sync: False
+    - ip_address_list: ["204.101.16.2"]
+      add_user_defined_field:
+      - name: fiabborder
+        description: "This device is the Fabric in a BoX"
+        value: "FIAB"
+      role: ACCESS
+      site_name: "Global/USA/SAN-FRANCISCO/BLD_SF"
+      device_resync: False
+      force_sync: False
+    - ip_address_list: ["204.192.13.1"]
+      add_user_defined_field:
+      - name: wireless-controller
+        description: "This device is the WLC"
+        value: "WLC"
+      role: ACCESS
+      site_name: "Global/USA/SAN-FRANCISCO/BLD_SF"
+      device_resync: False
+      force_sync: False
