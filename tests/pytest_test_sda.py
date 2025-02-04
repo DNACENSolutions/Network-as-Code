@@ -48,7 +48,7 @@ def get_runtype(request):
     """
     return request.config.getoption("--RUNTYPE")
 
-def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
+def run_playbook(playbook_path, inventory_path, data_file, verbosity=1):
     """
     Helper function to run an Ansible playbook using ansible-runner.
 
