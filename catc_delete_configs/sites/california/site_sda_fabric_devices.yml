@@ -45,3 +45,25 @@ fabric_devices_details:
         - device_ip: 204.192.13.1
           device_roles: 
             - WIRELESS_CONTROLLER_NODE
+  - fabric_devices:
+      fabric_name: Global/USA/SAN JOSE
+      device_config:
+        - device_ip: 204.101.16.1
+          device_roles: 
+            - CONTROL_PLANE_NODE
+            - BORDER_NODE
+            - EDGE_NODE
+        - device_ip: 204.192.12.1
+          device_roles: 
+            - WIRELESS_CONTROLLER_NODE
+  - fabric_devices:
+      fabric_name: Global/USA/SAN-FRANCISCO
+      device_config:
+        - device_ip: 204.101.16.2
+          device_roles: 
+            - CONTROL_PLANE_NODE
+            - BORDER_NODE
+            - EDGE_NODE
+        - device_ip: 204.192.13.1
+          device_roles: 
+            - WIRELESS_CONTROLLER_NODE
