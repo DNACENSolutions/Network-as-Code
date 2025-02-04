@@ -5,6 +5,18 @@ swim_details:
   # List of images and sub packages to be imported to the Cisco Catalyst Center
   import_images:
     - import_image_details:
+        type: remote 
+        url_details:
+          payload:
+          - source_url: 
+            - http://172.21.236.183/swim/V1715_1PRD18_FC1/cat9k_iosxe.17.15.01prd18.SPA.bin
+            - http://172.21.236.183/swim/V1715_1PRD18_FC1/C9800-universalk9_wlc.17.15.01prd18.SPA.bin
+            - http://172.21.236.183/swim/V1715_1PRD18_FC1/cat9k_lite_iosxe.17.15.01prd18.SPA.bin
+            third_party: false
+          - source_url: 
+            - http://sdaso.cisco.com/swim/alpha/cat9k_iosxe.17.17.01prd5.SPA.bin
+            third_party: false
+    - import_image_details:
         type: CCO
         cco_image_details:
           image_name: cat9k_iosxe.17.15.02.SPA.bin
@@ -65,7 +77,7 @@ swim_details:
         device_hostname: null
         device_mac_address: null
         device_ip_address: null
-        device_role: BORDER ROUTER
+        device_role: ACCESS
         site_name: Global
         device_family_name: Switches and Hubs
         device_serial_number: null
@@ -117,7 +129,6 @@ swim_details:
         distribute_if_needed: true
         image_name: cat9k_iosxe.17.15.02.SPA.bin
         schedule_validate: false
-        site_name: Global
         site_name: Global/USA/SAN-FRANCISCO/BLD_SF
     - image_activation_details:
         activate_lower_image_version: false
@@ -131,7 +142,6 @@ swim_details:
         distribute_if_needed: true
         image_name: cat9k_iosxe.17.15.02.SPA.bin
         schedule_validate: false
-        site_name: Global
         site_name: Global/USA/SAN JOSE/BLD23
     - image_activation_details:
         activate_lower_image_version: false
