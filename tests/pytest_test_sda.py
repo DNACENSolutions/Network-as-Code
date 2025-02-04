@@ -47,6 +47,11 @@ def get_runtype(request):
     Fixture to get the run type.
     """
     return request.config.getoption("--RUNTYPE")
+def make_usecase_list(usecases_to_run, usecases_map):
+    """
+    Helper function to get the list of usecases to run.
+    """
+    return usecases_to_run.split(",") if usecases_to_run != "all" else list(usecases_map.keys())
 
 def run_playbook(playbook_path, inventory_path, data_file, verbosity=1):
     """
@@ -104,7 +109,7 @@ def test_catalyst_center_playbook(get_usecases_map, get_inventory, get_usecases,
 
     usecases_map = get_usecases_map
     inventory_path = get_inventory
-    usecases_to_run = get_usecases.split(",") if get_usecases!= "all" else list(usecases_map.keys())
+    usecases_to_run = make_usecase_list(get_usecases, usecases_map)
     runtype = get_runtype
 
     for usecase_name in usecases_to_run:
