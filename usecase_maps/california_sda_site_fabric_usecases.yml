@@ -113,3 +113,9 @@ CaliforniaSiteHostOnboarding:
   schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"
   playbook: "sda_hostonboarding/playbook/sda_host_onboarding_playbook.yml"
   data_file: "catc_configs/sites/california/site_sda_fabric_hostonboarding.yml"
+  
+# Create the Anchor VNs and Add to sites with gateways.
+CaliforniaSiteNetworkCompliance:
+  schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
+  playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
+  data_file: "catc_configs/sites/california/site_network_complliance.yml"
