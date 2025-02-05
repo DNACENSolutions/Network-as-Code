@@ -9,12 +9,19 @@ swim_details:
         url_details:
           payload:
           - source_url: 
-            - http://172.21.236.183/swim/V1715_1PRD18_FC1/cat9k_iosxe.17.15.01prd18.SPA.bin
+            - http://172.21.236.183/swim/V17141CCO/C9800-CL-universalk9.17.14.01.SPA.bin
             - http://172.21.236.183/swim/V1715_1PRD18_FC1/C9800-universalk9_wlc.17.15.01prd18.SPA.bin
-            - http://172.21.236.183/swim/V1715_1PRD18_FC1/cat9k_lite_iosxe.17.15.01prd18.SPA.bin
+            - http://172.21.236.183/swim/V17141CCO/ie3x00-universalk9.17.14.01.SPA.bin
+            - http://172.21.236.183/swim/V17141CCO/isr4400v2-universalk9.17.14.01.SPA.bin
+            - http://172.21.236.183/swim/V17141CCO/isr4400-universalk9.17.14.01.SPA.bin
             third_party: false
-          - source_url: 
-            - http://sdaso.cisco.com/swim/alpha/cat9k_iosxe.17.17.01prd5.SPA.bin
+    - import_image_details:
+        type: remote 
+        url_details:
+          payload:
+          - source_url: http://sdaso.cisco.com/swim/alpha/cat9k_iosxe.17.17.01prd5.SPA.bin
+            third_party: false
+          - source_url: http://172.21.236.183/swim/V17141CCO/cat9k_lite_iosxe.17.14.01.SPA.bin
             third_party: false
     - import_image_details:
         type: CCO
