@@ -32,6 +32,8 @@ fi
 if [[ "$1" != "sourceonly" ]]; then
     #python3 -m venv ./../venv-anisible --prompt=ansible-venv
     python -m pip install --upgrade pip
+    pip install --upgrade pip setuptools
+    pip install pyats
     python -m pip install -r ./requirements.txt
     python -m pip install --upgrade dnacentersdk
     ansible-galaxy collection install cisco.dnac --force
@@ -56,7 +58,7 @@ export CATC_LOG_DIR=$(pwd)/../catc_logs/catalystcenter_logs.log
 export ANSIBLE_DEBUG=True
 export ANSIBLE_VERBOSITY=4
 export ANSIBLE_STDOUT_CALLBACK=debug
-export ANSIBLE_FORCE_COLOR=true
+#export ANSIBLE_FORCE_COLOR=true
 #Assign current path as the base path for the config files
 export CONFIG_FILES_BASE_PATH=$(pwd)
 echo "Virtual environment created and activated successfully"
