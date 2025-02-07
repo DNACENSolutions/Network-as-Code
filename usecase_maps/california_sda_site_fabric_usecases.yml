@@ -113,7 +113,13 @@ CaliforniaSiteHostOnboarding:
   schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"
   playbook: "sda_hostonboarding/playbook/sda_host_onboarding_playbook.yml"
   data_file: "catc_configs/sites/california/site_sda_fabric_hostonboarding.yml"
-  
+
+# Add Devices to Fabric site with Transits and Gateways
+HandOffAnchorVNs:
+  schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
+  playbook: "sda_fabric_device_roles/playbook/sda_fabric_device_roles_playbook.yml"
+  data_file: "catc_configs/sites/california/site_sda_fabric_devices_anchor_vn_handoff.yml"
+
 # Create the Anchor VNs and Add to sites with gateways.
 CaliforniaSiteNetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
