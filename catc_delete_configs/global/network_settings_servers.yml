@@ -7,44 +7,26 @@ network_settings_details:
   - site_name: Global
     settings:
       dns_server:
-        domain_name: cisco.com
-        primary_ip_address: "204.192.3.40"
-        secondary_ip_address: "2006:1:1::1"
+        []
       dhcp_server: 
-          - "204.192.3.40"
-          - "2004:192:3::40"
+          []
       network_aaa:
-        server_type: ISE
-        shared_secret: Maglev123
-        pan_address: "10.195.243.31"
-        primary_server_address: "82.2.2.3"
-        protocol: RADIUS
+        {}
       client_and_endpoint_aaa:
-        server_type: ISE
-        shared_secret: Maglev123
-        pan_address: "10.195.243.31"
-        primary_server_address: "82.2.2.3"
-        protocol: RADIUS
+        {}
       ntp_server: 
-        - "204.192.3.40"
+        []
       message_of_the_day:
-        banner_message: This Device belongs to En Solutions, Stay away
-        retain_existing_banner: true
+        {}
       netflow_collector:
-        enable_on_wired_access_devices: true
-        ip_address: 82.2.2.3
-        port: 443
+        {}
       snmp_server:
-        configure_dnac_ip: false
-        ip_addresses: 
-          - 9.9.9.9
+        {}
       syslog_server:
-        configure_dnac_ip: false
-        ip_addresses: 
-          - 9.9.9.9
+        {}
       timezone: America/Los_Angeles
       wired_data_collection:
-        enable_wired_data_collection: true
+        enable_wired_data_collection: false
       wireless_telemetry:
-        enable_wireless_telemetry: true
+        enable_wireless_telemetry: false
 
