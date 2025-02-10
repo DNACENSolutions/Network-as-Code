@@ -1,0 +1,79 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+catalyst_center_verify: false
+design_sites:
+  - site:
+      area:
+        name: USA
+        parent_name: Global
+    type: area
+  - site:
+      area:
+        name: New York
+        parent_name: Global/USA
+    type: area
+  - site:
+      building:
+        name: NYC_BLD1
+        parent_name: Global/USA/New York
+        address: McCarthy Blvd, San Jose, California 95131, United States
+        latitude: 37.398188
+        longitude: -121.912974
+        country: United States
+    type: building
+  - site:
+      building:
+        name: NYC_BLD2
+        parent_name: Global/USA/New York
+        address: 725 Alder Drive, Milpitas, California 95035, United States
+        country: United States
+    type: building
+  - site:
+      floor:
+        name: BLD1FLOOR1
+        floor_number: -1
+        parent_name: Global/USA/New York/NYC_BLD1
+        rfModel: Drywall Office Only
+        width: 5.00
+        length: 5.00
+        height: 3.00
+        units_of_measure: meters
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/newyork/floor_images/wireless-access-points.pdf"
+    type: floor
+  - site:
+      floor:
+        name: BLD1FLOOR1
+        floor_number: -1
+        parent_name: Global/USA/New York/NYC_BLD2
+        rfModel: Drywall Office Only
+        width: 5.00
+        length: 5.00
+        height: 3.00
+        units_of_measure: meters
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/newyork/floor_images/wireless-access-points.pdf"
+    type: floor
+  - site:
+      floor:
+        name: BLD2FLOOR1
+        floor_number: 2
+        parent_name: Global/USA/New York/NYC_BLD2
+        rfModel: Drywall Office Only
+        width: 10.00
+        length: 12.00
+        height: 8.00
+        units_of_measure: feet
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/newyork/floor_images/wireless-access-points.pdf"
+    type: floor
+  - site:
+      floor:
+        name: BLD2FLOOR2
+        floor_number: -1
+        parent_name: Global/USA/New York/NYC_BLD2
+        rfModel: Drywall Office Only
+        width: 5.00
+        length: 5.00
+        height: 3.00
+        units_of_measure: meters
+        upload_floor_image_path: "../../../../CatC_SD_Access_campus/catc_configs/sites/newyork/floor_images/wireless-access-points.pdf"
+    type: floor

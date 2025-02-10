@@ -1,0 +1,15 @@
+inventory_details:
+  network_devices:
+    - ip_address_list: 
+      - 204.1.11.1
+      - 204.1.11.2
+      role: BORDER ROUTER
+    - ip_address_list: 
+      - 204.1.11.4
+      - "204.1.11.5"
+      - "204.1.11.6"
+      - "204.1.11.7"
+      - "204.1.11.8"
+      - "204.1.11.9"
+      - "204.1.11.10"
+      role: ACCESS

@@ -1,9 +1,9 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
-<p align="center"><h1 align="center">CATC_SD_ACCESS_CAMPUS.GIT</h1></p>
+<p align="center"><h1 align="center">images/Catalyst_center_SDA_Fabric.png</h1></p>
 <p align="center">
-	<em><code>❯ REPLACE-ME</code></em>
+	<em><code>❯ Catalyst Center SDA Fabric Bringup with Cisco Validated Ansible Playbooks</code></em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/DNACENSolutions/CatC_SD_Access_campus.git?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
@@ -39,56 +39,69 @@
 ##  Overview
 
 <code> 
-	Cisco SD-Access Automation with Ansible
-	This GitHub project provides a comprehensive Ansible framework for automating the deployment and management of Cisco SD-Access on a freshly installed Catalyst center. By leveraging Ansible's automation capabilities, this project streamlines the configuration process, reduces manual errors, and ensures consistency across your SD-Access fabric.
+Cisco SD-Access Automation with Ansible
+This GitHub project provides a comprehensive Ansible framework for automating the deployment and management of Cisco SD-Access on a freshly installed Catalyst center. By leveraging Ansible's automation capabilities, this project streamlines the configuration process, reduces manual errors, and ensures consistency across your SD-Access fabric.
 </code>
 
 ---
 
 ##  Key Features
 
-<code>❯
-	End-to-End Automation: This project covers the complete lifecycle of SD-Access deployment, from initial setup to ongoing management.
-	Modular Design: The Ansible roles are organized in a modular fashion, allowing you to easily adapt and customize the automation to your specific needs.
-	Idempotent Operations: The playbooks are designed to be idempotent, meaning they can be run multiple times without causing unintended changes to your network.
-	Comprehensive Documentation: Clear and concise documentation guides you through the setup and usage of the Ansible playbooks.
-	Workflow:
+This project covers the lifecycle of SD-Access deployment through Ansible Automation, from initial setup to ongoing management.
 
-	The project automates the following key steps in the SD-Access deployment process:
+The Ansible roles are organized in a modular fashion, allowing you to easily adapt and customize the automation to your specific needs.
 
-	Roles and Users: Creates necessary roles and user accounts on the Catalyst center.
-	Catalyst Center and ISE Integration: Integrates the Catalyst center with Cisco ISE for authentication and authorization.
-	Global Credentials: Configures global credentials for device management.
-	California Site Devices Discovery: Discovers and adds devices at the California site to the Catalyst center.
-	Global Network Settings Servers: Configures global network settings, including DNS and NTP servers.
-	Global Network Settings Global IP Pools: Defines global IP address pools for various purposes.
-	California Site Design: Creates the site hierarchy and defines network settings specific to the California site.
-	California Site Device Credentials: Assigns device-specific credentials for secure access.
-	California Site Network Settings: Configures network settings for the California site, including VLANs and subnets.
-	California Site Network Settings IP Pools: Defines site-specific IP address pools.
-	California Site Devices Inventory: Gathers detailed inventory information for all devices at the California site.
-	California Site Devices Provision: Provisions the discovered devices with the necessary configurations.
-	California Site SWIM Devices Upgrade: Upgrades software images on devices using Cisco Software Image Management (SWIM).
-	California Site Fabric: Builds the SD-Access fabric, including control plane and data plane configurations.
-	California Site Fabric Transits: Configures fabric transit nodes for inter-site connectivity.
-	California Site Virtual Networks: Creates virtual networks (VN) for different user groups and applications.
-	California Site Devices to Fabric: Attaches devices to the SD-Access fabric.
-	California Site Anchor VNs: Configures anchor VNs for external network connectivity.
-	California Site Host Onboarding: Automates the onboarding of hosts onto the SD-Access fabric.
-</code>
+The playbooks are designed to be idempotent, meaning they can be run multiple times without causing unintended changes to your network.
 
----
+Clear and concise documentation guides you through the setup and usage of the Ansible playbooks.
+
+### The project automates the following key steps in the SD-Access deployment process:
+
+1. Roles and Users: Creates necessary roles and user accounts on the Catalyst center.
+2. Catalyst Center and ISE Integration: Integrates the Catalyst center with Cisco ISE for authentication and authorization.
+3. Global Credentials: Configures global credentials for device management.
+4. California Site Devices Discovery: Discovers and adds devices at the California site to the Catalyst center.
+5. Global Network Settings Servers: Configures global network settings, including DNS and NTP servers.
+6. Global Network Settings Global IP Pools: Defines global IP address pools for various purposes.
+7. California Site Design: Creates the site hierarchy and defines network settings specific to the California site.
+8. California Site Device Credentials: Assigns device-specific credentials for secure access.
+9. California Site Network Settings: Configures network settings for the California site, including VLANs and subnets.
+10. California Site Network Settings IP Pools: Defines site-specific IP address pools.
+11. California Site Devices Inventory: Gathers detailed inventory information for all devices at the California site.
+12. California Site Devices Provision: Provisions the discovered devices with the necessary configurations.
+13. California Site SWIM Devices Upgrade: Upgrades software images on devices using Cisco Software Image Management (SWIM).
+14. California Site Fabric: Builds the SD-Access fabric, including control plane and data plane configurations.
+15. California Site Fabric Transits: Configures fabric transit nodes for inter-site connectivity.
+16. California Site Virtual Networks: Creates virtual networks (VN) for different user groups and applications.
+17. California Site Devices to Fabric: Attaches devices to the SD-Access fabric.
+18. California Site Anchor VNs: Configures anchor VNs for external network connectivity.
+19. California Site Host Onboarding: Automates the onboarding of hosts onto the SD-Access fabric.
+
+### Configuration Updates
+Any changes required to be done in the network can be updated in the configuration files of each related section and rerun the playbook to configurations 
+the Updated configurations into Catalyst Center.
+
+### Fabric Sites and Topology
+![SDA Fabric Topology](#images/SDAccessFabric.png)
 
 ##  Project Structure
-
 ```sh
 └── CatC_SD_Access_campus.git/
     ├── ansible.cfg
     ├── ansible_inventory
-    │   └── catalystcenter_inventory_10.195.243.53
+    │   └── catalystcenter_inventory
     ├── catc_configs
     │   ├── global
+	|   |   └── YAML Input files for Catalyst Center Global Configurations, i.e. ISE Integrations, Global Credentials, Global IP Pools etc. 
     │   └── sites
+	|   	|── California
+	|   	|	|── floor_images
+	|   	|	|	└── Site Floor image files: pdf, jpeg, jpg or png ext Floor images files to be uploaded on the floors.
+	|       |   |        The location of each file is to be specified in the site hierarchy design input file unser floor inputs
+	|	    |   └── YAML Input files for configuration for Sites California
+	|       |       These input files are named to easiy map with the corresponding configurations in the Catalyst Center.
+	|       └── New York
+	|       └── <Other Sites> 
     ├── images
     │   ├── CCO_swim_image_download.png
     │   ├── CatC_Ise_AAA-Intg.png
@@ -115,11 +128,11 @@
 			<table>
 			<tr>
 				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/setup.sh'>setup.sh</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><code>❯ Setup script to create your python environment and install Catalyst Center Python SDK (dnacentersdk) and Ansible collection (cisco.dnac)</code></td>
 			</tr>
 			<tr>
 				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/requirements.txt'>requirements.txt</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><code>❯ This file contains the required python modules. This file is used by setup.sh script</code></td>
 			</tr>
 			</table>
 		</blockquote>
@@ -130,22 +143,34 @@
 			<table>
 			<tr>
 				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/scripts/run_playbooks.py'>run_playbooks.py</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><code>❯ This Python tool is to run the Ansible playbooks with Inputs files preprogrammed in the usecase_maps files. The Tools lets you choose option to Validate the inout, Execute the playbook for do both. Further it give option for user to run the Catalyst Center Configuration usecases in a group, indivisual usecase or all the usecase in the order specified in the input file selected from usecase_maps directory.</code></td>
 			</tr>
 			</table>
 		</blockquote>
 	</details>
 	<details> <!-- usecase_maps Submodule -->
-		<summary><b>usecase_maps</b></summary>
+		<summary><b>usecase_maps This Directory contain yaml file where you can organize your configuration bringup, update or deletion sequences and bundle them as usecase which can be run using scripts/run_playbooks.py. The Order during execution is maintained as given in the this yaml file. 
+		Defining a new usecase in existing file or new file:
+		1. GIve a name to the usecase
+		2. Give the playbvook Location
+		3. Give the schema file location
+		4. Provide the input for this usecase
+		Example:
+		# Execute the Network compliance on Site and fix configuration mismatches.
+			CaliforniaSiteNetworkCompliance:
+			schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
+			playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
+			data_file: "catc_configs/sites/california/site_network_complliance.yml"
+		 </b></summary>
 		<blockquote>
 			<table>
 			<tr>
 				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/sda_site_fabric_bringup_usecase.yml'>sda_site_fabric_bringup_usecase.yml</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><code>❯ This yaml file contain usecase which are to bringup confguration on the catalyst Center. You are free to add more usecases for your need.</code></td>
 			</tr>
 			<tr>
 				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/delete_confis_sda_fabric.yml'>delete_confis_sda_fabric.yml</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><code>❯ This file contain usecase for removing configurations from catalyst Center for the California site. Delete playbooks are used to remove configurations. </code></td>
 			</tr>
 			</table>
 		</blockquote>
@@ -159,7 +184,7 @@
 					<table>
 					<tr>
 						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/network_settings_servers.yml'>network_settings_servers.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
+						<td><code>❯ These configurations are network setting for Servers like AAA, NTP etc and also telemetry configuration to be configuration at global level.</code></td>
 					</tr>
 					<tr>
 						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/device_credentials.yml'>device_credentials.yml</a></b></td>
@@ -193,15 +218,15 @@
 							<table>
 							<tr>
 								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_devices.yml'>site_sda_fabric_devices.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><code>❯ This files contains configurations required to create your desired fabric devices in fabric sites. Here you can provide details of your fabric sites with roles and other setting. The Border router shuld be provided with L3 and L2 Handoff details if needed to be added on that border.</code></td>
 							</tr>
 							<tr>
 								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_network_settings_servers.yml'>site_network_settings_servers.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><code>❯ This file contains network Settings configuration required to be customized at this fabric site.</code></td>
 							</tr>
 							<tr>
 								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_sites_zones.yml'>site_sda_fabric_sites_zones.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><code>❯ This files contains configurations required to create your desired Fabric sites and fabric Zones.</code></td>
 							</tr>
 							<tr>
 								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_swim.yml'>site_swim.yml</a></b></td>
@@ -266,12 +291,30 @@
 		<summary><b>ansible_inventory</b></summary>
 		<blockquote>
 			<details>
-				<summary><b>catalystcenter_inventory_10.195.243.53</b></summary>
+				<summary><b>catalystcenter_inventory</b></summary>
 				<blockquote>
 					<table>
 					<tr>
 						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml'>hosts.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
+						<td><code>❯ This is a sample Host file to be created for your Catalyst Center to be able to run the existing playbooks.
+						Sample Inventory file
+							---
+							catalyst_center_hosts:
+								hosts:
+									give_any_hostname:
+										dnac_password: Catalyst Center Credentials password
+										dnac_host: Catalyst Center Host IP address Reachable fron ansible server.
+										dnac_port: 443
+										dnac_timeout: 60
+										dnac_username: Catalyst Center Credentials username
+										dnac_verify: false
+										dnac_version: Catalyst Center Release. (i.e. 2.3.7.6)
+										dnac_debug: true
+										dnac_log_level: DEBUG
+										dnac_log: true
+										dnac_log_append: false
+										dnac_log_file_path: log file location i.e.catc_logs
+						</code></td>
 					</tr>
 					</table>
 					<details>
