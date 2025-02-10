@@ -1,0 +1,341 @@
+---
+#Select Catalyst Cennter version, this one overwrite the default version from host file
+catalyst_center_version: 2.3.7.6
+# Network Settings an IP Pools design.
+network_settings_details: 
+  - reserve_pool_details:
+    #Underlay Pools SJC
+    - ipv6_address_space: False
+      ipv4_global_pool: 204.1.0.0/16
+      ipv4_prefix: true
+      ipv4_prefix_length: 24
+      ipv4_subnet: 204.1.10.0
+      ipv4_gateway: 204.1.10.1
+      name: underlay_linkpool_nyc
+      site_name: Global/USA/New York
+      slaac_support: False
+      pool_type: LAN
+    - ipv6_address_space: False
+      ipv4_global_pool: 204.1.0.0/16
+      ipv4_prefix: true
+      ipv4_prefix_length: 24
+      ipv4_subnet: 204.1.11.0
+      ipv4_gateway: 204.1.11.1
+      name: underlay_lbpool_nyc
+      site_name: Global/USA/New York
+      slaac_support: False
+      pool_type: LAN
+    # AP Pools and EXT Node Pools SJC
+    - ipv6_address_space: False
+      ipv4_global_pool: 204.3.0.0/20
+      ipv4_prefix: true
+      ipv4_prefix_length: 24
+      ipv4_subnet: 204.3.10.0
+      ipv4_gateway: 204.3.10.1
+      name: APPOOL_nyc
+      site_name: Global/USA/New York
+      slaac_support: False
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+    - ipv6_address_space: False
+      ipv4_global_pool: 204.4.0.0/20
+      ipv4_prefix: true
+      ipv4_prefix_length: 24
+      ipv4_subnet: 204.4.10.0
+      ipv4_gateway: 204.4.10.1
+      name: EXTPOOL_nyc
+      site_name: Global/USA/New York
+      slaac_support: False
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+    - ipv6_address_space: True
+      ipv4_global_pool: 192.168.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.168.10.0
+      ipv4_gateway: 192.168.10.1
+      ipv6_global_pool: 2004:192:168::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:168::11:0
+      ipv6_gateway: 2004:192:168::11:1
+      name: EMPLOYEEPOOL_nyc
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay Guest Pools SJC
+    - name: GUESTPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.169.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.169.10.0
+      ipv4_gateway: 192.169.10.1
+      ipv6_global_pool: 2004:192:169::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:169::0
+      ipv6_gateway: 2004:192:169::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay IOTPOOL SJC
+    - name: IOTPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.170.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.170.10.0
+      ipv4_gateway: 192.170.10.1
+      ipv6_global_pool: 2004:192:170::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:170::0
+      ipv6_gateway: 2004:192:170::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay MGMTPOOL SJC
+    - name: MGMTPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.171.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.171.10.0
+      ipv4_gateway: 192.171.10.1
+      ipv6_global_pool: 2004:192:171::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:171::0
+      ipv6_gateway: 2004:192:171::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay VOICEPOOL SJC
+    - name: VOICEPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.172.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.172.10.0
+      ipv4_gateway: 192.172.10.1
+      ipv6_global_pool: 2004:192:172::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:172::0
+      ipv6_gateway: 2004:192:172::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay CRITICALDATAPOOL SJC
+    - name: CRITICALDATAPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.173.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.173.10.0
+      ipv4_gateway: 192.173.10.1
+      ipv6_global_pool: 2004:192:173::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:173::0
+      ipv6_gateway: 2004:192:173::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay CRITICALVOICEPOOL SJC
+    - name: CRITICALVOICEPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.174.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.174.10.0
+      ipv4_gateway: 192.174.10.1
+      ipv6_global_pool: 2004:192:174::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:174::0
+      ipv6_gateway: 2004:192:174::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay MULTICASTPOOL SJC
+    - name: MULTICASTPOOL_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.175.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.175.10.0
+      ipv4_gateway: 192.175.10.1
+      ipv6_global_pool: 2004:192:175::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:175::0
+      ipv6_gateway: 2004:192:175::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+
+  # Overlay BORDERHandoff SJC
+    - name: BORDERHandoff_nyc
+      ipv6_address_space: true
+      ipv4_global_pool: 192.179.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.179.10.0
+      ipv4_gateway: 192.179.10.1
+      ipv6_global_pool: 2004:192:179::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:179::0
+      ipv6_gateway: 2004:192:179::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+
+# Overlay SERVERSPOOL SJC
+    - name: SERVERSPOOL_nyc
+      ipv6_address_space: False
+      ipv4_global_pool: 192.178.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.178.10.0
+      ipv4_gateway: 192.178.10.1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+
+# Overlay Contractors SJC
+    - name: CONTRACTORS_nyc
+      ipv6_address_space: True
+      ipv4_global_pool: 192.182.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.182.10.0
+      ipv4_gateway: 192.182.10.1
+      ipv6_global_pool: 2004:192:182::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:182::0
+      ipv6_gateway: 2004:192:182::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay PRINTPOOL SJC
+    - name: PRINTPOOL_nyc
+      ipv6_address_space: True
+      ipv4_global_pool: 192.176.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.176.10.0
+      ipv4_gateway: 192.176.10.1
+      ipv6_global_pool: 2004:192:176::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:176::0
+      ipv6_gateway: 2004:192:176::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
+  # Overlay GUESTWIFIPOOL SJC
+    - name: GUESTWIFIPOOL_nyc
+      ipv6_address_space: True
+      ipv4_global_pool: 192.180.0.0/16
+      ipv4_prefix: True
+      ipv4_prefix_length: 24
+      ipv4_subnet: 192.180.10.0
+      ipv4_gateway: 192.180.10.1
+      ipv6_global_pool: 2004:192:180::/64
+      ipv6_prefix: True
+      ipv6_prefix_length: 112
+      ipv6_subnet: 2004:192:180::0
+      ipv6_gateway: 2004:192:180::1
+      site_name: Global/USA/New York
+      slaac_support: false
+      pool_type: Generic
+      ipv4_dhcp_servers:
+        - 204.192.3.40
+      ipv4_dns_servers:
+        - 204.192.3.40
+      ipv6_dhcp_servers: 
+        - 2004:192:3::40
+      ipv6_dns_servers: 
+        - 2006:1:1::1
