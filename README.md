@@ -1,7 +1,6 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
-![Catalyst Center SDA Fabric](images/Catalyst_center_SDA_Fabric.png)
 <p align="center">
 	<em><code>❯ Catalyst Center SDA Fabric Bringup with Cisco Validated Ansible Playbooks</code></em>
 </p>
@@ -17,6 +16,9 @@
 	<!-- default option, no dependency badges. -->
 </p>
 <br>
+
+![Catalyst Center SDA Fabric](images/Catalyst_center_SDA_Fabric.png)
+
 
 ##  Table of Contents
 
