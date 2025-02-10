@@ -49,7 +49,7 @@ cd -
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export ANSIBLE_PLAYBOOKS_PATH=$(pwd)/../catc_ansible_workflows/workflows
 export ANSIBLE_ROLES_PATH=$(pwd)/../catc_ansible_workflows/roles
-export ANSIBLE_HOSTS_INVENTORY=$(pwd)/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml
+export ANSIBLE_HOSTS_INVENTORY=$(pwd)/ansible_inventory/catalystcenter_inventory/hosts.yml
 export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 export ANSIBLE_LOG_PATH=$(pwd)/../ansible_logs/ansible.log
 export ANSIBLE_LOG_DIR_PATH=$(pwd)/../ansible_logs
