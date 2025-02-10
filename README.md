@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
-<p align="center"><h1 align="center">images/Catalyst_center_SDA_Fabric.png</h1></p>
+<p align="center"><h1 align="center">![Catalyst Center SDA Fabric](images/Catalyst_center_SDA_Fabric.png)</h1></p>
 <p align="center">
 	<em><code>❯ Catalyst Center SDA Fabric Bringup with Cisco Validated Ansible Playbooks</code></em>
 </p>
@@ -92,16 +92,16 @@ the Updated configurations into Catalyst Center.
     │   └── catalystcenter_inventory
     ├── catc_configs
     │   ├── global
-	|   |   └── YAML Input files for Catalyst Center Global Configurations, i.e. ISE Integrations, Global Credentials, Global IP Pools etc. 
+    |   |   └── YAML Input files for Catalyst Center Global Configurations, i.e. ISE Integrations, Global Credentials, Global IP Pools etc. 
     │   └── sites
-	|   	|── California
-	|   	|	|── floor_images
-	|   	|	|	└── Site Floor image files: pdf, jpeg, jpg or png ext Floor images files to be uploaded on the floors.
-	|       |   |        The location of each file is to be specified in the site hierarchy design input file unser floor inputs
-	|	    |   └── YAML Input files for configuration for Sites California
-	|       |       These input files are named to easiy map with the corresponding configurations in the Catalyst Center.
-	|       └── New York
-	|       └── <Other Sites> 
+    |        |── California
+    |        |    |── floor_images
+    |        |    |	└── Site Floor image files: pdf, jpeg, jpg or png ext Floor images files to be uploaded on the floors.
+    |        |    |        The location of each file is to be specified in the site hierarchy design input file unser floor inputs
+    |        |    └── YAML Input files for configuration for Sites California
+    |        |       These input files are named to easiy map with the corresponding configurations in the Catalyst Center.
+    |        └── New York
+    |        └── <Other Sites> 
     ├── images
     │   ├── CCO_swim_image_download.png
     │   ├── CatC_Ise_AAA-Intg.png
