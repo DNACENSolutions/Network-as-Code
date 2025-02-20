@@ -7,7 +7,7 @@ network_settings_details:
   - site_name: Global
     settings:
       dns_server:
-        []
+        {}
       dhcp_server: 
           []
       network_aaa:
