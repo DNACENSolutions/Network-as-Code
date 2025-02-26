@@ -390,6 +390,14 @@ Run CatC_SD_Access_campus using the following command:
 ```sh
 ❯ python3 scripts/run_playbooks.py
 ```
+#### ISE Integration
+Post Running ISE AAA Integration you can validate in the Catalyst Center UI
+
+
+### SDA FABRIC UI SNAPSHOTS
+Post running the SDA usecases, you can validate through UI that the configurations are reflecting in the UI.
+
+
 Follow the prompts. 
 ---
 ##  Project Roadmap
