@@ -2,7 +2,7 @@
 #Select Catalyst Cennter version, this one overwrite the default version from host file
 catalyst_center_version: 2.3.7.9
 swim_details:
-  # List of images and sub packages to be imported to the Cisco Catalyst Center
+  List of images and sub packages to be imported to the Cisco Catalyst Center
   import_images:
     - import_image_details:
         type: remote 
@@ -75,7 +75,7 @@ swim_details:
         site_name: Global
         device_family_name: Switches and Hubs
         device_serial_number: null
-        site_name: Global/USA/SAN JOSE/BLD23
+        site_name: Global
     - image_distribution_details:
         image_name: cat9k_iosxe.17.16.01.SPA.bin
         device_hostname: null
@@ -91,11 +91,20 @@ swim_details:
         device_hostname: null
         device_mac_address: null
         device_ip_address: null
-        device_role: ACCESS
-        site_name: Global
+        device_role: BORDER ROUTER
         device_family_name: Switches and Hubs
         device_serial_number: null
         #site_name: Global/USA/SAN-FRANCISCO
+    - image_distribution_details:
+        image_name: C9800-SW-iosxe-wlc.17.16.01.SPA.bin
+        device_hostname: null
+        device_mac_address: null
+        device_ip_address: null
+        device_role: ACCESS
+        site_name: Global/USA/SAN JOSE/BLD23
+        device_family_name: Switches and Hubs
+        device_serial_number: null
+        site_name: Global/USA/SAN-FRANCISCO
     - image_distribution_details:
         image_name: C9800-80-universalk9_wlc.17.15.02b.SPA.bin
         device_hostname: null
@@ -120,7 +129,7 @@ swim_details:
         distribute_if_needed: false
         image_name: cat9k_iosxe.17.16.01.SPA.bin
         schedule_validate: false
-        site_name: Global
+        #site_name: Global/USA/SAN JOSE/BLD23
     - image_activation_details:
         activate_lower_image_version: false
         device_family_name: Switches and Hubs
