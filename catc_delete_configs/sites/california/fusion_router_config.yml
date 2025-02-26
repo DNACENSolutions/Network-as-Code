@@ -1,0 +1,21 @@
+bgp_asn: 65001
+bgp_router_id: 1.1.1.1
+
+bgp_config_block: |
+  router bgp {{ bgp_asn }}
+  bgp router-id {{ bgp_router_id }}
+  neighbor 192.168.1.2 remote-as 65002
+  neighbor 192.168.1.2 update-source Loopback0
+  neighbor 192.168.1.2 description "Neighbor to Router B"
+  neighbor 192.168.2.2 remote-as 65003
+  neighbor 192.168.2.2 update-source Loopback0
+  neighbor 192.168.2.2 description "Neighbor to Router C"
+  network 10.1.0.0 mask 255.255.255.0
+  network 10.2.0.0 mask 255.255.255.0
+  aggregate-address 10.0.0.0 255.255.0.0 summary-only
+  redistribute connected
+  timers bgp 10 30
+  log-neighbor-changes
+
+save_config: true
+verify_bgp: true
