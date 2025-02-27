@@ -86,9 +86,9 @@ class ValidateInputsTestcase(aetest.Testcase):
         if not cfg_base_path:
             self.skip("Environment variable 'CONFIG_FILES_BASE_PATH' not set.")
 
-        schema_file = os.path.join(playbooks_path_base, uc["schema_file"])
-        playbook = os.path.join(playbooks_path_base, uc["playbook"])
-        data_file = os.path.join(cfg_base_path, uc["data_file"])
+        schema_file = os.path.join(playbooks_path_base, usecaseyaml[uc]["schema_file"])
+        playbook = os.path.join(playbooks_path_base, usecaseyaml[uc]["playbook"])
+        data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
         if runtype in ["validate", "both"]:
             try:
                 schema = yamale.make_schema(schema_file)
@@ -116,9 +116,9 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
         if not cfg_base_path:
             self.skip("Environment variable 'CONFIG_FILES_BASE_PATH' not set.")
 
-        schema_file = os.path.join(playbooks_path_base, uc["schema_file"])
-        playbook = os.path.join(playbooks_path_base, uc["playbook"])
-        data_file = os.path.join(cfg_base_path, uc["data_file"])
+        schema_file = os.path.join(playbooks_path_base, usecaseyaml[uc]["schema_file"])
+        playbook = os.path.join(playbooks_path_base, usecaseyaml[uc]["playbook"])
+        data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
         if runtype in ["execute", "both"]:
             try:
                 result = run_playbook(playbook, inventory_path, data_file)
