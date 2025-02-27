@@ -1,0 +1,28 @@
+testbed:
+  name: Daily Ansible Sanity Testbed
+  credentials:
+      default:
+        username: wlcaccess
+        password: Lablab#123
+        enable_password: Cisco#123
+
+devices:
+  ISBTE-TB3-Fusion:
+    os: iosxe
+    type: IOS-XE
+    credentials:
+      default:
+        username: wlcaccess
+        password: Lablab#123
+        enable_password: Cisco#123
+    alias: device-ISBTE-TB3-Fusion
+    connections:
+      cli:
+        protocol: telnet
+        ip: 10.195.243.23
+        port: 2039
+      con_credentials:
+        terminal_server_username: lab
+        terminal_server_password: lab
+        terminal_server_enable_password: lab
+

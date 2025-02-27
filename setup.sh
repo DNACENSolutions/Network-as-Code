@@ -33,7 +33,7 @@ if [[ "$1" != "sourceonly" ]]; then
     #python3 -m venv ./../venv-anisible --prompt=ansible-venv
     python -m pip install --upgrade pip
     pip install --upgrade pip setuptools
-    pip install pyats
+    pip install 'pyats[full]'
     python -m pip install -r ./requirements.txt
     python -m pip install --upgrade dnacentersdk
     ansible-galaxy collection install cisco.dnac --force
