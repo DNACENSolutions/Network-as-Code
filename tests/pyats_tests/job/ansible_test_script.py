@@ -70,12 +70,12 @@ class CommonSetup(aetest.CommonSetup):
         if runtype in ["validate", "both"]:
             aetest.loop.mark(ValidateInputsTestcase, uc=exec_usecases)
         else:
-            self.info('Skipping Validation as only execution is selected')
+            logger.info('Skipping Validation as only execution is selected')
             aetest.loop.mark(ValidateInputsTestcase, uc=["skip"])
         if runtype in ["execute", "both"]:
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
         else:
-            self.info('Skipping Execution as only validation is selected')
+            logger.info('Skipping Execution as only validation is selected')
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=["skip"])
 
 class ValidateInputsTestcase(aetest.Testcase):
