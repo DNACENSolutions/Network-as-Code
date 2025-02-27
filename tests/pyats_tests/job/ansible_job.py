@@ -25,7 +25,11 @@ def main():
     
     parser.add_argument('--runtype', dest = 'runtype',
                         type = str, default = 'validate')
+    
+    parser.add_argument('--inventory', dest = 'inventory',
+                        type = str, default = '../../ansible_inventory/catalystcenter_inventory/hosts.yml')
+    
     args, unknown = parser.parse_known_args()
 
     # run api launches a testscript as an individual task.
-    run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, execute=args.execute, basedir=args.runtype)
+    run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, execute=args.execute, basedir=args.runtype, inventory_path=args.inventory)
