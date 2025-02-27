@@ -69,12 +69,21 @@ class CommonSetup(aetest.CommonSetup):
         self.parent.parameters['exec_usecases'] = exec_usecases
         if runtype in ["validate", "both"]:
             aetest.loop.mark(ValidateInputsTestcase, uc=exec_usecases)
+        else:
+            self.info('Skipping Validation as only execution is selected')
+            aetest.loop.mark(ValidateInputsTestcase, uc=["skip"])
         if runtype in ["execute", "both"]:
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
+        else:
+            self.info('Skipping Execution as only validation is selected')
+            aetest.loop.mark(ExecuteAnsibleTestcase, uc=["skip"])
 
 class ValidateInputsTestcase(aetest.Testcase):
     @aetest.test
     def validate_usecase_inputs(self,uc,usecaseyaml,runtype, inventory_path):
+        if uc == "skip":
+            self.skipped('Skipping validation')
+            return
         logger.info('Running usecase: {}'.format(uc))
         if uc not in usecaseyaml.keys():
             self.failed('Usecase {} not found in usecase set'.format(uc))
@@ -105,6 +114,8 @@ class ValidateInputsTestcase(aetest.Testcase):
 class ExecuteAnsibleTestcase(aetest.Testcase):
     @aetest.test
     def run_usecase(self,uc,usecaseyaml,runtype, inventory_path):
+        if uc == "skip":
+            self.skipped('Skipping execution')
         logger.info('Running usecase: {}'.format(uc))
         if uc not in usecaseyaml.keys():
             self.failed('Usecase {} not found in usecase set'.format(uc))
