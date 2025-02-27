@@ -6,14 +6,12 @@ from ansible_runner import Runner, RunnerConfig
 import re
 
 logger = logging.getLogger("AnsibleLogger")
-log = logger
 
 def remove_ansi_escape_sequences(content):
     ansi_escape_regex = re.compile(r"\x1B(?:\[[0-?]*[ -/]*[@-~])")
     return ansi_escape_regex.sub("", content)
 
-
-class AnsibleRunner:
+class CatAnsibleRunner:
     def __init__(self, private_data_dir=None, playbook=None, inventory=None, verbosity=5,artifact_dir=None, **kwargs):
         """
         Initializes the AnsibleRunner object.
@@ -123,13 +121,13 @@ if __name__ == "__main__":
     playbook = "../catc_ansible_workflows/workflows/sda_fabric_sites_zones/playbook/sda_fabric_sites_zones_playbook.yml"
     data_file = "catc_configs/sites/california/site_sda_fabric_sites_zones.yml"
     inventory = "ansible_inventory/catalystcenter_inventory/hosts.yml"
-    ansible_runner = AnsibleRunner(
+    ar = CatAnsibleRunner(
         private_data_dir,
         playbook,
         inventory,
         extravars={"VARS_FILE_PATH": data_file}
     )
-    status, return_code = ansible_runner.run()
+    status, return_code = ar.run()
 
     if status != "successful":
         logger.error(f"ANSIBLE: DNAC DISCOVERY FAILED\n{status}")

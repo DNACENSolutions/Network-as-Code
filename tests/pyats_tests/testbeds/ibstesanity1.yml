@@ -1,0 +1,28 @@
+testbed:
+  name: Daily Ansible Sanity Testbed
+  credentials:
+      default:
+        username: wlcaccess
+        password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_1') }}"
+        enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_1') }}"
+
+devices:
+  ISBTE-TB3-Fusion:
+    os: iosxe
+    type: IOS-XE
+    credentials:
+      default:
+        username: wlcaccess
+        password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_2') }}"
+        enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_2') }}"
+    alias: device-ISBTE-TB3-Fusion
+    connections:
+      cli:
+        protocol: telnet
+        ip: 10.195.243.23
+        port: 2039
+      con_credentials:
+        terminal_server_username: lab
+        terminal_server_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_PASSWORD_1') }}"
+        terminal_server_enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_ENABLE_PASSWORD_1') }}"
+
