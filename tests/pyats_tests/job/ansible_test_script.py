@@ -2,13 +2,12 @@
 # -------
 #
 #   ansible_test_script.py --testbed testbed.yaml --usecasefile usecases.yaml
-#   pyats run job ansible_job.py --testbed testbed.yaml --usecasefile usecases.yaml --execute usecase1,usecase2
-
-
+#   pyats run job ansible_job.py --testbed testbed.yaml --usecasefile usecases.yaml --execute usecase1,usecase2 --runtype validate --inventory inventory.yml
 from pyats import aetest
 import yaml
 import logging
 import yamale
+import os
 from ansible_runner import run
 
 exec_usecases = []
@@ -72,7 +71,7 @@ class CommonSetup(aetest.CommonSetup):
             aetest.loop.mark(ValidateInputsTestcase, uc=exec_usecases)
         if runtype in ["execute", "both"]:
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
-            
+
 class ValidateInputsTestcase(aetest.Testcase):
     @aetest.test
     def validate_usecase_inputs(self,uc,usecaseyaml,runtype, inventory_path):
