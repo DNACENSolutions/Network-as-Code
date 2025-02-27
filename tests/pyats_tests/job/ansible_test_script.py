@@ -8,7 +8,7 @@
 from pyats import aetest
 import yaml
 import logging
-#import yamale
+import yamale
 from ansible_runner import run
 
 exec_usecases = []
@@ -43,7 +43,7 @@ def run_playbook(playbook_path, inventory_path, data_file, verbosity=1):
 
 class CommonSetup(aetest.CommonSetup):
     @aetest.subsection
-    def setup(self,testbed,usecasefile,execute):
+    def setup(self,testbed,usecasefile,execute,runtype):
         # add them to testscript parameters
         logger.info('Setting up testbed and usecases')
         logger.info('Testbed: {}'.format(testbed))
