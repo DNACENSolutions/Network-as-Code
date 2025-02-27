@@ -68,11 +68,14 @@ class CommonSetup(aetest.CommonSetup):
             exec_usecases = execute.split(',')
         logger.info('\nExecuting usecases: {}'.format(exec_usecases))
         self.parent.parameters['exec_usecases'] = exec_usecases
-        aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
-
-class ExecuteAnsibleTestcase(aetest.Testcase):
+        if runtype in ["validate", "both"]:
+            aetest.loop.mark(ValidateInputsTestcase, uc=exec_usecases)
+        if runtype in ["execute", "both"]:
+            aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
+            
+class ValidateInputsTestcase(aetest.Testcase):
     @aetest.test
-    def run_usecase(self,uc,usecaseyaml,runtype, inventory_path):
+    def validate_usecase_inputs(self,uc,usecaseyaml,runtype, inventory_path):
         logger.info('Running usecase: {}'.format(uc))
         if uc not in usecaseyaml.keys():
             self.failed('Usecase {} not found in usecase set'.format(uc))
@@ -97,7 +100,26 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
                         self.fail(f"Schema validation failed for {uc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
             except Exception as e:
                 self.fail(f"Schema validation failed for {uc}: {e}")
-                                                                
+        logger.info('Usecase: {}'.format(usecaseyaml[uc]))
+        self.passed('Usecase {} passed'.format(uc))
+
+class ExecuteAnsibleTestcase(aetest.Testcase):
+    @aetest.test
+    def run_usecase(self,uc,usecaseyaml,runtype, inventory_path):
+        logger.info('Running usecase: {}'.format(uc))
+        if uc not in usecaseyaml.keys():
+            self.failed('Usecase {} not found in usecase set'.format(uc))
+
+        playbooks_path_base = os.environ.get("ANSIBLE_PLAYBOOKS_PATH")
+        if not playbooks_path_base:
+            self.skip("Environment variable 'ANSIBLE_PLAYBOOKS_PATH' not set.")
+        cfg_base_path = os.environ.get("CONFIG_FILES_BASE_PATH")
+        if not cfg_base_path:
+            self.skip("Environment variable 'CONFIG_FILES_BASE_PATH' not set.")
+
+        schema_file = os.path.join(playbooks_path_base, uc["schema_file"])
+        playbook = os.path.join(playbooks_path_base, uc["playbook"])
+        data_file = os.path.join(cfg_base_path, uc["data_file"])
         if runtype in ["execute", "both"]:
             try:
                 result = run_playbook(playbook, inventory_path, data_file)
