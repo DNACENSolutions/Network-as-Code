@@ -67,26 +67,31 @@ class CommonSetup(aetest.CommonSetup):
             exec_usecases = execute.split(',')
         logger.info('\nExecuting usecases: {}'.format(exec_usecases))
         self.parent.parameters['exec_usecases'] = exec_usecases
-        if runtype in ["validate", "both"]:
-            aetest.loop.mark(ValidateInputsTestcase, uc=exec_usecases)
-        else:
-            logger.info('Skipping Validation as only execution is selected')
-            aetest.loop.mark(ValidateInputsTestcase, uc=["skip"])
-        if runtype in ["execute", "both"]:
+        if runtype == 'both':
+            logger.info('Running both validation and execution')
+            aetest.loop.mark(ValidateInputsTestcase, vc=exec_usecases)
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
+        elif runtype == 'validate':
+            logger.info('Running only validation')
+            aetest.loop.mark(ValidateInputsTestcase, vc=exec_usecases)
+            aetest.loop.mark(ExecuteAnsibleTestcase, uc=["skip"])
+        elif runtype == 'execute':
+            logger.info('Running only execution')
+            aetest.loop.mark(ExecuteAnsibleTestcase, uc=exec_usecases)
+            aetest.loop.mark(ValidateInputsTestcase, vc=["skip"])
         else:
             logger.info('Skipping Execution as only validation is selected')
             aetest.loop.mark(ExecuteAnsibleTestcase, uc=["skip"])
-
+            aetest.loop.mark(ValidateInputsTestcase, vc=["skip"])
 class ValidateInputsTestcase(aetest.Testcase):
     @aetest.test
-    def validate_usecase_inputs(self,uc,usecaseyaml,runtype, inventory_path):
-        if uc == "skip":
+    def validate_usecase_inputs(self,vc,usecaseyaml,runtype):
+        if vc == "skip":
             self.skipped('Skipping validation')
             return
-        logger.info('Running usecase: {}'.format(uc))
-        if uc not in usecaseyaml.keys():
-            self.failed('Usecase {} not found in usecase set'.format(uc))
+        logger.info('Running usecase: {}'.format(vc))
+        if vc not in usecaseyaml.keys():
+            self.failed('Usecase {} not found in usecase set'.format(vc))
 
         playbooks_path_base = os.environ.get("ANSIBLE_PLAYBOOKS_PATH")
         if not playbooks_path_base:
@@ -95,9 +100,9 @@ class ValidateInputsTestcase(aetest.Testcase):
         if not cfg_base_path:
             self.skip("Environment variable 'CONFIG_FILES_BASE_PATH' not set.")
 
-        schema_file = os.path.join(playbooks_path_base, usecaseyaml[uc]["schema_file"])
-        playbook = os.path.join(playbooks_path_base, usecaseyaml[uc]["playbook"])
-        data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
+        schema_file = os.path.join(playbooks_path_base, usecaseyaml[vc]["schema_file"])
+        playbook = os.path.join(playbooks_path_base, usecaseyaml[vc]["playbook"])
+        data_file = os.path.join(cfg_base_path, usecaseyaml[vc]["data_file"])
         if runtype in ["validate", "both"]:
             try:
                 schema = yamale.make_schema(schema_file)
@@ -105,13 +110,13 @@ class ValidateInputsTestcase(aetest.Testcase):
                 val_result = yamale.validate(schema, data)
                 for res in val_result:
                     if not res.isValid():
-                        self.fail(f"Schema validation failed for {uc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
+                        self.fail(f"Schema validation failed for {vc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
                     else:
-                        logger.info(f"Schema validation passed for {uc}, {schema_file}, {data_file}")
+                        logger.info(f"Schema validation passed for {vc}, {schema_file}, {data_file}")
             except Exception as e:
-                self.fail(f"Schema validation failed for {uc}: {e}")
-        logger.info('Usecase: {}'.format(usecaseyaml[uc]))
-        self.passed('Usecase {} passed'.format(uc))
+                self.fail(f"Schema validation failed for {vc}: {e}")
+        logger.info('Usecase: {}'.format(usecaseyaml[vc]))
+        self.passed('Usecase {} passed'.format(vc))
 
 class ExecuteAnsibleTestcase(aetest.Testcase):
     @aetest.test
