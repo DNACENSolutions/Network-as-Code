@@ -2,19 +2,18 @@
 #Select Catalyst Cennter version, this one overwrite the default version from host file
 catalyst_center_version: 2.3.7.9
 swim_details:
-  List of images and sub packages to be imported to the Cisco Catalyst Center
+  #List of images and sub packages to be imported to the Cisco Catalyst Center
   import_images:
     - import_image_details:
         type: remote 
         url_details:
-          payload:
-          - source_url: 
-            - http://172.21.236.183/swim/V17141CCO/C9800-CL-universalk9.17.14.01.SPA.bin
-            - http://172.21.236.183/swim/V1715_1PRD18_FC1/C9800-universalk9_wlc.17.15.01prd18.SPA.bin
-            - http://172.21.236.183/swim/V17141CCO/ie3x00-universalk9.17.14.01.SPA.bin
-            - http://172.21.236.183/swim/V17141CCO/isr4400v2-universalk9.17.14.01.SPA.bin
-            - http://172.21.236.183/swim/V17141CCO/isr4400-universalk9.17.14.01.SPA.bin
-            third_party: false
+            payload:
+            - source_url: 
+                - http://172.21.236.183/swim/V17141CCO/C9800-CL-universalk9.17.14.01.SPA.bin
+                - http://172.21.236.183/swim/V1715_1PRD18_FC1/C9800-universalk9_wlc.17.15.01prd18.SPA.bin
+                - http://172.21.236.183/swim/V17141CCO/ie3x00-universalk9.17.14.01.SPA.bin
+                - http://172.21.236.183/swim/V17141CCO/isr4400v2-universalk9.17.14.01.SPA.bin
+              third_party: false
     - import_image_details:
         type: remote 
         url_details:

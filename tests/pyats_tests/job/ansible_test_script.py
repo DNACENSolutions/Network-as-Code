@@ -106,6 +106,8 @@ class ValidateInputsTestcase(aetest.Testcase):
                 for res in val_result:
                     if not res.isValid():
                         self.fail(f"Schema validation failed for {uc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
+                    else:
+                        logger.info(f"Schema validation passed for {uc}, {schema_file}, {data_file}")
             except Exception as e:
                 self.fail(f"Schema validation failed for {uc}: {e}")
         logger.info('Usecase: {}'.format(usecaseyaml[uc]))
@@ -127,7 +129,6 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
         if not cfg_base_path:
             self.skip("Environment variable 'CONFIG_FILES_BASE_PATH' not set.")
 
-        schema_file = os.path.join(playbooks_path_base, usecaseyaml[uc]["schema_file"])
         playbook = os.path.join(playbooks_path_base, usecaseyaml[uc]["playbook"])
         data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
         if runtype in ["execute", "both"]:
@@ -135,6 +136,8 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
                 result = run_playbook(playbook, inventory_path, data_file)
                 if result.rc != 0:
                     self.fail(f"Playbook execution failed for {uc}: {result.rc}")
+                else:
+                    logger.info(f"Playbook execution passed for {uc}, INV:{inventory_path} Playbook:{playbook}, Input:{data_file}")
             except Exception as e:
                 self.fail(f"Playbook execution failed for {uc}: {e}")
 
