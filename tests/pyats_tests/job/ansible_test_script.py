@@ -13,7 +13,7 @@ from ansible_runner import run
 exec_usecases = []
 logger = logging.getLogger(__name__)
 
-def run_playbook(playbook_path, inventory_path, data_file, verbosity=1):
+def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
     """
     Helper function to run an Ansible playbook using ansible-runner.
 
@@ -30,6 +30,9 @@ def run_playbook(playbook_path, inventory_path, data_file, verbosity=1):
     playbook = playbook_path.split("/")[-1]
     extra_vars = {}
     extra_vars['VARS_FILE_PATH'] = os.path.abspath(data_file)
+    inventory_path = os.path.abspath(inventory_path)
+    logger.info(f"Running playbook: {playbook_path}, inventory: {inventory_path}, data_file: {data_file}")
+    logger.info(f"Extra vars: {extra_vars}")
     result = run(
         private_data_dir=private_data_dir,
         playbook=playbook,
