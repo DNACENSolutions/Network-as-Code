@@ -31,7 +31,8 @@ def main():
     #verbosity
     parser.add_argument('--verbosity', dest = 'verbosity',
                         type = int, default = 3)
-
+    args, unknown = parser.parse_known_args()
+    
     # run api launches a testscript as an individual task.
     run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, 
         execute=args.execute, runtype=args.runtype,  inventory_path=args.inventory,
