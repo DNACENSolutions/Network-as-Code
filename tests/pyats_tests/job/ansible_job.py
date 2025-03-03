@@ -28,8 +28,11 @@ def main():
     
     parser.add_argument('--inventory', dest = 'inventory',
                         type = str, default = '../../ansible_inventory/catalystcenter_inventory/hosts.yml')
-    
-    args, unknown = parser.parse_known_args()
+    #verbosity
+    parser.add_argument('--verbosity', dest = 'verbosity',
+                        type = int, default = 3)
 
     # run api launches a testscript as an individual task.
-    run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, execute=args.execute, runtype=args.runtype, inventory_path=args.inventory)
+    run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, 
+        execute=args.execute, runtype=args.runtype,  inventory_path=args.inventory,
+        verbosity = args.verbosity)

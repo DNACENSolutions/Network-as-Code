@@ -113,17 +113,17 @@ class ValidateInputsTestcase(aetest.Testcase):
                 val_result = yamale.validate(schema, data)
                 for res in val_result:
                     if not res.isValid():
-                        self.fail(f"Schema validation failed for {vc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
+                        self.failed(f"Schema validation failed for {vc}: {res.errors}\n Schema: {res.schema}\n Data: {res.data}")
                     else:
                         logger.info(f"Schema validation passed for {vc}, {schema_file}, {data_file}")
             except Exception as e:
-                self.fail(f"Schema validation failed for {vc}: {e}")
+                self.failed(f"Schema validation failed for {vc}: {e}")
         logger.info('Usecase: {}'.format(usecaseyaml[vc]))
         self.passed('Usecase {} passed'.format(vc))
 
 class ExecuteAnsibleTestcase(aetest.Testcase):
     @aetest.test
-    def run_usecase(self,uc,usecaseyaml,runtype, inventory_path):
+    def run_usecase(self,uc,usecaseyaml,runtype, inventory_path, verbosity):
         if uc == "skip":
             self.skipped('Skipping execution')
         logger.info('Running usecase: {}'.format(uc))
@@ -141,13 +141,13 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
         data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
         if runtype in ["execute", "both"]:
             try:
-                result = run_playbook(playbook, inventory_path, data_file)
+                result = run_playbook(playbook, inventory_path, data_file, verbosity)
                 if result.rc != 0:
-                    self.fail(f"Playbook execution failed for {uc}: {result.rc}")
+                    self.failed(f"Playbook execution failed for {uc}: {result.rc}")
                 else:
                     logger.info(f"Playbook execution passed for {uc}, INV:{inventory_path} Playbook:{playbook}, Input:{data_file}")
             except Exception as e:
-                self.fail(f"Playbook execution failed for {uc}: {e}")
+                self.failed(f"Playbook execution failed for {uc}: {e}")
 
         logger.info('Usecase: {}'.format(usecaseyaml[uc]))
         self.passed('Usecase {} passed'.format(uc))
