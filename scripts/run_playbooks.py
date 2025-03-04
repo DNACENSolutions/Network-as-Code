@@ -90,6 +90,26 @@ def main():
     with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
         ansible_suite.write('\n\n')
     # Get the YAML file path from the user
+    ANSIBLE_HOSTS_INVENTORY = os.getenv('ANSIBLE_HOSTS_INVENTORY', '$(pwd)/ansible_inventory/catalystcenter_inventory/hosts.yml')
+    ANSIBLE_HOSTS_INVENTORY_DIR = os.path.dirname(ANSIBLE_HOSTS_INVENTORY)
+    invyaml_files = [f for f in os.listdir(ANSIBLE_HOSTS_INVENTORY_DIR) if f.endswith(".yml")]
+    if not invyaml_files:
+        print(f"No YAML files found in {ANSIBLE_HOSTS_INVENTORY_DIR}")
+        return
+    print("\nAvailable inventory files:")
+    for i, file in enumerate(invyaml_files):
+        print(f"{i+1}. {file}")
+    while True:
+        try:
+            choice = int(input("\nSelect a file by entering its number: "))
+            if 1 <= choice <= len(invyaml_files):
+                ANSIBLE_HOSTS_INVENTORY_FILE = os.path.join(ANSIBLE_HOSTS_INVENTORY_DIR, invyaml_files[choice - 1])
+                break
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
     usecase_maps_dir = "usecase_maps"  # Replace with the actual directory path
     yaml_files = [f for f in os.listdir(usecase_maps_dir) if f.endswith(".yml")]
     if not yaml_files:
