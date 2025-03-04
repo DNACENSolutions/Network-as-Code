@@ -8,10 +8,118 @@ import yaml
 import logging
 import yamale
 import os
-from ansible_runner import run
+import shutil
+from pyats.easypy import runtime
+from ansible_runner import Runner, RunnerConfig
 
 exec_usecases = []
 logger = logging.getLogger(__name__)
+
+def remove_ansi_escape_sequences(content):
+    ansi_escape_regex = re.compile(r"\x1B(?:\[[0-?]*[ -/]*[@-~])")
+    return ansi_escape_regex.sub("", content)
+
+class AnsibleRunner:
+    def __init__(self, private_data_dir=None, playbook=None, inventory=None, **kwargs):
+        """
+        Initializes the AnsibleRunner object.
+
+        :param kwargs: Dictionary of arguments.
+        :type kwargs: dict
+        :param private_data_dir: Path to the private data directory.
+        :type private_data_dir: str
+        :param playbook: Path to the playbook from private_data_dir path.
+        :type playbook: str
+        :param inventory: Path to the inventory file from private_data_dir path.
+        :type inventory: str
+        :param extravars: Dictionary of extra variables, extravars will be used in playbook include vars.
+        :type extravars: dict
+        :param envvars: Dictionary of environment variables.
+        :type envvars: dict
+        :param tags: Comma-separated list of tags to run.
+        :type tags: str
+        """
+        if not private_data_dir:
+            raise ValueError("Missing private data directory argument")
+
+        if not playbook:
+            raise ValueError("Missing playbook argument")
+
+        if not inventory:
+            raise ValueError("Missing inventory argument")
+
+        if (
+            "envvars" not in kwargs
+            or "ANSIBLE_PYTHON_INTERPRETER" not in kwargs["envvars"]
+        ):
+            kwargs["envvars"] = {
+                "ANSIBLE_PYTHON_INTERPRETER": "$(which python)",
+            }
+
+        kwargs["private_data_dir"] = private_data_dir
+        kwargs["playbook"] = playbook
+        kwargs["inventory"] = inventory
+        logger.info(
+            f"Ansible Runner initialized with private data directory: {kwargs['private_data_dir']}"
+        )
+        logger.info(f"Ansible Runner initialized with playbook: {kwargs['playbook']}")
+        logger.info(f"Ansible Runner initialized with inventory: {kwargs['inventory']}")
+        logger.info(f"Ansible Runner initialized with envvars: {kwargs['envvars']}")
+        logger.info(f"Ansible Runner initialized with extravars: {kwargs['extravars']}")
+        logger.info(
+            f"Ansible Runner initialized with artifact_dir: {kwargs['artifact_dir']}"
+        )
+        logger.info(
+            f"Ansible Runner initialized with verbosity level: {kwargs['verbosity']}"
+        )
+
+        self.__setup_runner_config(**kwargs)
+
+    def __setup_runner_config(self, **kwargs):
+        """
+        Sets up the RunnerConfig object.
+        """
+        self.runner_config = RunnerConfig(**kwargs)
+        self.runner_config.prepare()
+
+    def ansible_run(self, cleanup_events=True):
+        """
+        Run ansible playbook based on RunnerConfig
+        Returns:
+            tuple: (status: str, return_code: int)
+        """
+
+        r = Runner(config=self.runner_config)
+        status, return_code = r.run()
+
+        logger.info(f"Executed Playbook: {r.config.playbook}")
+        logger.info(f"run RC: {r.rc}")
+        logger.info(f"run output location: {r.stdout.name}")
+        logger.info(f"run error location: {r.stderr.name}")
+        logger.info(f"run failed events: {r.config.only_failed_event_data}")
+        logger.info(f"Run result status {r.stats}")
+
+        a = r.stderr.name.replace("stderr", "job_events")
+        if not r.rc == 0:
+            with open(r.stderr.name, "r") as f:
+                html_content = remove_ansi_escape_sequences(f.read())
+                logger.error(html_content)
+
+            with open(r.stdout.name, "r") as f:
+                html_content = remove_ansi_escape_sequences(f.read())
+                logger.info(html_content)
+
+        else:
+            with open(r.stdout.name, "r") as f:
+                html_content = remove_ansi_escape_sequences(f.read())
+                logger.info(html_content)
+
+        if cleanup_events:
+            shutil.rmtree(a)
+            os.mkdir(a)
+
+        return r
+    
 
 def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
     """
@@ -33,15 +141,8 @@ def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
     inventory_path = os.path.abspath(inventory_path)
     logger.info(f"Running playbook: {playbook_path}, inventory: {inventory_path}, data_file: {data_file}")
     logger.info(f"Extra vars: {extra_vars}")
-    result = run(
-        private_data_dir=private_data_dir,
-        playbook=playbook,
-        inventory=inventory_path,
-        extravars=extra_vars,
-        #extravars=load_yaml_file(data_file),  # Pass data file as extra variables
-        verbosity = verbosity
-    )
-    return result
+    r = AnsibleRunner(private_data_dir=private_data_dir, playbook=playbook, inventory=inventory_path, extravars=extra_vars)
+    return r.ansible_run()
 
 class CommonSetup(aetest.CommonSetup):
     @aetest.subsection
@@ -106,6 +207,7 @@ class ValidateInputsTestcase(aetest.Testcase):
         schema_file = os.path.join(playbooks_path_base, usecaseyaml[vc]["schema_file"])
         playbook = os.path.join(playbooks_path_base, usecaseyaml[vc]["playbook"])
         data_file = os.path.join(cfg_base_path, usecaseyaml[vc]["data_file"])
+
         if runtype in ["validate", "both"]:
             try:
                 schema = yamale.make_schema(schema_file)
