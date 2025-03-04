@@ -125,3 +125,9 @@ CaliforniaSiteNetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
   playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
   data_file: "catc_configs/sites/california/site_network_complliance.yml"
+
+# Create the Extranet Policies for the Fabric site
+CaliforniaSiteExtranetPolicies:
+  schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
+  playbook: "sda_fabric_extranet_policy/playbook/fabric_extranet_policy_playbook.yml"
+  data_file: "catc_configs/sites/california/site_sda_fabric_extranet_policies.yml"
