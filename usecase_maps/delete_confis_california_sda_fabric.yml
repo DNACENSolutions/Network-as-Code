@@ -1,3 +1,10 @@
+
+# Create the Extranet Policies for the Fabric site
+RemoveCaliforniaSiteExtranetPolicies:
+  schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
+  playbook: "sda_fabric_extranet_policy/playbook/delete_fabric_extranet_policy_playbook.yml"
+  data_file: "catc_delete_configs/sites/california/site_sda_fabric_extranet_policies.yml"
+
 # Create the Anchor VNs and Add to sites with gateways.
 RemoveCaliforniaSiteHostOnboarding:
   schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"

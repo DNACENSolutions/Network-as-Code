@@ -1,0 +1,7 @@
+---
+# Description: This file contains the input variables for the fabric Extranet Policy workflow.
+extranet_policies:
+    - extranet_policy_name: ex_policy_infra_vn_provider
+      provider_virtual_network: INFRA_VN
+      subscriber_virtual_networks: 
+        - Guest_VN
