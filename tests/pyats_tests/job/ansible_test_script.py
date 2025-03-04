@@ -20,7 +20,7 @@ def remove_ansi_escape_sequences(content):
     return ansi_escape_regex.sub("", content)
 
 class AnsibleRunner:
-    def __init__(self, private_data_dir=None, playbook=None, inventory=None,artifact_dir=None **kwargs):
+    def __init__(self, private_data_dir=None, playbook=None, inventory=None,artifact_dir=None, **kwargs):
         """
         Initializes the AnsibleRunner object.
 
