@@ -1,6 +1,6 @@
 ---
 #Select Catalyst Cennter version, this one overwrite the default version from host file
-catalyst_center_version: 2.3.7.6
+#catalyst_center_version: 2.3.7.6
 swim_details:
   # List of images to be deleted from the Cisco Catalyst Center All steps are specified in one step better to be done per image with full mapping 
   upload_tag_dis_activate_images:

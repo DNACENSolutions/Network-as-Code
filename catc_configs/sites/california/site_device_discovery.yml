@@ -1,4 +1,4 @@
-catalyst_center_version: 2.3.7.6
+#catalyst_center_version: 2.3.7.9
 discovery_details:
   multi_range:
     - ip_address_list:
