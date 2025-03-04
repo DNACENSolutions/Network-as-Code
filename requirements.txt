@@ -7,5 +7,5 @@ jinja2
 yamale
 pytest
 pytest-check
-pyats
-genie
+#pyats
+#genie
