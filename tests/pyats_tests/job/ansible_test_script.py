@@ -8,6 +8,7 @@ import yaml
 import logging
 import yamale
 import os
+import re
 import shutil
 from pyats.easypy import runtime
 from ansible_runner import Runner, RunnerConfig
@@ -109,12 +110,10 @@ class AnsibleRunner:
             with open(r.stdout.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
-
         else:
             with open(r.stdout.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
-
         if cleanup_events:
             shutil.rmtree(a)
             os.mkdir(a)
