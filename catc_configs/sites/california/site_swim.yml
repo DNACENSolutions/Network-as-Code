@@ -117,7 +117,7 @@ swim_details:
   # # List of images to be activated on the devices
   activate_images:
     - image_activation_details:
-        activate_lower_image_version: false
+        activate_lower_image_version: true
         device_family_name: Switches and Hubs
         device_hostname: ISBTE-SDA-TransitSW.cisco.com
         device_ip_address: null
@@ -130,7 +130,7 @@ swim_details:
         schedule_validate: false
         #site_name: Global/USA/SAN JOSE/BLD23
     - image_activation_details:
-        activate_lower_image_version: false
+        activate_lower_image_version: true
         device_family_name: Switches and Hubs
         device_hostname: null
         device_ip_address: null
@@ -143,7 +143,7 @@ swim_details:
         schedule_validate: false
         site_name: Global/USA/SAN-FRANCISCO/BLD_SF
     - image_activation_details:
-        activate_lower_image_version: false
+        activate_lower_image_version: true
         device_family_name: Switches and Hubs
         device_hostname: null
         device_ip_address: null
@@ -156,7 +156,7 @@ swim_details:
         schedule_validate: false
         site_name: Global/USA/SAN JOSE/BLD23
     - image_activation_details:
-        activate_lower_image_version: false
+        activate_lower_image_version: true
         device_family_name: Wireless Controller
         device_hostname: null
         device_ip_address: null
