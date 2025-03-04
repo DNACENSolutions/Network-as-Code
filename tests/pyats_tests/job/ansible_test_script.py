@@ -142,7 +142,7 @@ def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
     inventory_path = os.path.abspath(inventory_path)
     logger.info(f"Running playbook: {playbook_path}, inventory: {inventory_path}, data_file: {data_file}")
     logger.info(f"Extra vars: {extra_vars}")
-    r = AnsibleRunner(private_data_dir=private_data_dir, playbook=playbook, inventory=inventory_path, artifact_dir=runtime.directory, extravars=extra_vars)
+    r = AnsibleRunner(private_data_dir=private_data_dir, playbook=playbook, inventory=inventory_path, artifact_dir=runtime.directory, verbosity=verbosity, extravars=extra_vars)
     return r.ansible_run()
 
 class CommonSetup(aetest.CommonSetup):
