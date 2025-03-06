@@ -131,3 +131,15 @@ CaliforniaSiteExtranetPolicies:
   schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
   playbook: "sda_fabric_extranet_policy/playbook/fabric_extranet_policy_playbook.yml"
   data_file: "catc_configs/sites/california/site_sda_fabric_extranet_policies.yml"
+
+# Create the Extranet Policies for the Fabric site
+AccessPointProvision:
+  schema_file: "accesspoints_configuration_provisioning/schema/accesspoints_config_schema.yml"
+  playbook: "accesspoints_configuration_provisioning/playbook/accesspoints_config_playbook.yml"
+  data_file: "catc_configs/sites/california/site_access_point_provision.yml"
+
+# Create the Extranet Policies for the Fabric site
+DeviceTemplatesProvision:
+  schema_file: "device_templates/schema/template_workflow_schema.yml"
+  playbook: "device_templates/playbook/template_workflow_playbook.yml"
+  data_file: "catc_configs/sites/california/site_device_templates.yml"
