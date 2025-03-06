@@ -1,0 +1,90 @@
+
+! L3handoff Vlan
+vlan 3001
+ interface Loopback0
+ ip address 204.192.3.40 255.255.255.255
+ ipv6 address 2004:192:3::40/128
+ ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 dhcp server EMPPool
+
+! L3handdoff interface for provider VN
+interface Vlan3001
+ ip address 192.179.0.2 255.255.255.252
+ ip route-cache same-interface
+ ipv6 address 2004:192:179::2/126
+ ipv6 enable
+ ipv6 tcp adjust-mss 1400
+! Router bgp configuration
+router bgp 4294967290
+ bgp log-neighbor-changes
+ bgp graceful-restart
+ neighbor 2004:192:179::1 remote-as 655600
+ neighbor 2004:192:179::1 update-source Vlan3001
+ neighbor 192.179.0.1 remote-as 655600
+ neighbor 192.179.0.1 update-source Vlan3001
+ !
+ address-family ipv4
+  bgp redistribute-internal
+  bgp aggregate-timer 0
+  no neighbor 2004:192:179::1 activate
+  neighbor 192.179.0.1 activate
+  neighbor 192.179.0.1 advertisement-interval 0
+ exit-address-family
+
+  address-family ipv6
+    bgp redistribute-internal
+    bgp aggregate-timer 0
+    neighbor 2004:192:179::1 activate
+    neighbor 2004:192:179::1 advertisement-interval 0
+
+! DHCP configuration
+ip dhcp relay information option
+ip dhcp pool APPool_sjc
+ network 204.3.0.0 255.255.255.0
+ default-router 204.3.0.1
+ option 43 hex f104.ccc0.0c01
+ lease 10 20 0
+ class new1
+  address range 204.3.0.10 204.3.0.254
+!
+ip dhcp pool APPool_nyc
+ network 204.3.1.0 255.255.255.0
+ default-router 204.3.1.1
+ option 43 hex f104.ccc0.0d01
+ lease 1 20 30
+ class new1
+  address range 204.3.1.10 204.3.1.254
+
+ip dhcp pool EXTPool_sjc
+ network 204.4.0.0 255.255.255.0
+ default-router 204.4.0.1
+ option 43 ascii 5A1N;B2;K4;I82.2.2.2;J80
+ lease 10 20 0
+ class new1
+  address range 204.4.0.10 204.4.0.254
+!
+ip dhcp pool EXTPool_nyc
+ network 204.4.1.0 255.255.255.0
+ default-router 204.4.1.1
+ option 43 ascii 5A1N;B2;K4;I82.2.2.2;J80
+ lease 10 20 0
+ class new1
+  address range 204.4.1.10 204.4.1.254
+
+ip dhcp pool Employees_sjc
+ network 192.168.0.0 255.255.255.0
+ default-router 192.168.0.1
+ lease 10 20 0
+ class new1
+  address range 192.168.0.2 192.168.0.254
+
+ip dhcp pool Employees_nyc
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ lease 10 20 0
+ class new1
+  address range 192.168.1.2 192.168.1.254
+
+ip dhcp class new1
+   relay agent information
