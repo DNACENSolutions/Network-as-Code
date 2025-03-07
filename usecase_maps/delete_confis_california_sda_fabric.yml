@@ -12,6 +12,12 @@ RemoveCaliforniaSiteHostOnboarding:
   data_file: "catc_delete_configs/sites/california/site_sda_fabric_hostonboarding.yml"
 
 # Create the Anchor VNs and Add to sites with gateways.
+RemoveAnchorVNsFromBorderL3Handoff:
+  schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
+  playbook: "sda_fabric_device_roles/playbook/delete_sda_fabric_device_roles_playbook.yml"
+  data_file: "catc_delete_configs/sites/california/site_sda_fabric_devices_anchor_vn_handoff.yml"
+
+# Create the Anchor VNs and Add to sites with gateways.
 RemoveCaliforniaSiteAnchorVNs:
   schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
   playbook: "sda_virtual_networks_l2l3_gateways/playbook/delete_sda_virtual_networks_l2_l3_gateways_playbook.yml"
