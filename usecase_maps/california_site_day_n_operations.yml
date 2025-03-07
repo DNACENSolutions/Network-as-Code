@@ -15,3 +15,15 @@ CaliforniaSiteNetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
   playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
   data_file: "catc_configs/sites/california/site_network_complliance.yml"
+
+# Create the Extranet Policies for the Fabric site
+AccessPointProvision:
+  schema_file: "accesspoints_configuration_provisioning/schema/accesspoints_config_schema.yml"
+  playbook: "accesspoints_configuration_provisioning/playbook/accesspoints_config_playbook.yml"
+  data_file: "catc_configs/sites/california/site_access_point_provision.yml"
+
+# Create the Extranet Policies for the Fabric site
+DeviceTemplatesProvision:
+  schema_file: "device_templates/schema/template_workflow_schema.yml"
+  playbook: "device_templates/playbook/template_workflow_playbook.yml"
+  data_file: "catc_configs/sites/california/site_device_templates.yml"

@@ -1,0 +1,18 @@
+---
+#catalyst_center_version: 2.3.7.9
+fabric_devices_details:
+  - fabric_devices:
+      fabric_name: Global/USA/SAN JOSE
+      device_config:
+        - device_ip: 204.101.16.1
+          device_roles: 
+            - CONTROL_PLANE_NODE
+            - BORDER_NODE
+            - EDGE_NODE
+          borders_settings:
+            layer3_handoff_ip_transit:
+              - transit_network_name: IP Transit_AS4Byte4294967290
+                interface_name: GigabitEthernet5/0/29
+                external_connectivity_ip_pool_name: BORDERHandoff_sjc
+                virtual_network_name: Anchored_VN
+                vlan_id: 3006
