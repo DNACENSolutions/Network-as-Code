@@ -42,3 +42,5 @@ sda_fabric_virtual_networks_details:
       fabric_site_locations:
         - site_name_hierarchy: "Global/USA/SAN JOSE"
           fabric_type: "fabric_site"
+        - site_name_hierarchy: "Global/USA/SAN-FRANCISCO"
+          fabric_type: "fabric_site"
