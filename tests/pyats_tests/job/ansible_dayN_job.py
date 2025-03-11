@@ -40,15 +40,3 @@ def main():
         execute=args.execute, runtype=args.runtype,  inventory_path=args.inventory,
         verbosity = args.verbosity)
     
-    # Upload the results.json file to the server
-    upload_results_to_iacdashboard()
-
-def upload_results_to_iacdashboard():
-    # Upload the results.json file to the server
-    url = "http://172.23.241.202:8002/uploadfile/"
-    result_dir = runtime.directory
-    files = {'json_file': open(f'{result_dir}/results.json', 'rb')}
-    response = requests.post(url, files=files)
-    print(response.text)
-    print("Results uploaded to IAC Dashboard")
-
