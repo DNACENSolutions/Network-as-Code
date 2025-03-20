@@ -1,0 +1,10 @@
+# Example playbook to use the role (example.yml)
+---
+- name: Manage Catalyst Center Device Inventory
+  hosts: catalyst_center_hosts
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{ VARS_FILE_PATH }}"
+  roles:
+    - catalyst_center_device_inventory

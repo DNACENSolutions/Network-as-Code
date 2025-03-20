@@ -33,7 +33,24 @@ def main():
     #verbosity
     parser.add_argument('--verbosity', dest = 'verbosity',
                         type = int, default = 3)
+    # parse CATCVERSION
+    parser.add_argument('--release', dest = 'catcversion', 
+                        type = str, default = '2.3.7.9')
+    
     args, unknown = parser.parse_known_args()
+    
+    with open(args.inventory,'r') as inv:
+        hostfile = yaml.safe_load(inv)
+    # Find catalyst_center_version in the hostfile nested dict and update it to the version passed in the command line
+    # catalyst_center_hosts:
+    # hosts:
+    #     catalyst_center53:
+    #         catalyst_center_version: 2.3.7.9
+    for key in hostfile['catalyst_center_hosts']['hosts'].keys():
+        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
+
+    with open(args.inventory,'w') as inv:
+        yaml.dump(hostfile, inv)
     
     # run api launches a testscript as an individual task.
     run(testscript=SCRIPT_PATH, testbed=args.testbed, usecasefile=args.usecasefile, 

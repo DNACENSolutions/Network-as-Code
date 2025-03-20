@@ -80,7 +80,7 @@ roles_users_details:
       password: "Lablab#!12459"
       password_update: false
       role_list: 
-        - OBSERVER-ROLE
+        - OBSERVER
     - username: nwadmin1
       first_name: NWAdmin1
       email: nwadmin1@example.com
@@ -88,11 +88,11 @@ roles_users_details:
       password: "Lablab#@12459"
       password_update: false
       role_list: 
-        - NETWORK-ADMIN-ROLE
+        - NETWORK-ADMIN-
     - username: sadmin1
       first_name: SuperAdmin1
       #Password Restrictions: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character, no white spaces, no more than 2 identical characters in a row, no more than 3 consecutive characters,
       password: "Lablab!@12459"
       password_update: false
       role_list: 
-        - SUPER-ADMIN-ROLE
+        - SUPER-ADMIN
