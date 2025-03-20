@@ -47,8 +47,12 @@ def main():
     # hosts:
     #     catalyst_center53:
     #         catalyst_center_version: 2.3.7.9
+    logdir = runtime.directory
     for key in hostfile['catalyst_center_hosts']['hosts'].keys():
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
+        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = True
+        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + "/dnac_log.log"
+        
     print(hostfile)
     with open(args.inventory,'w') as inv:
         yaml.dump(hostfile, inv)
