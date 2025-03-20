@@ -48,7 +48,7 @@ def main():
     #         catalyst_center_version: 2.3.7.9
     for key in hostfile['catalyst_center_hosts']['hosts'].keys():
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
-
+    print(hostfile)
     with open(args.inventory,'w') as inv:
         yaml.dump(hostfile, inv)
     # run api launches a testscript as an individual task.
