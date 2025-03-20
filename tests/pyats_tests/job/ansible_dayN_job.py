@@ -10,6 +10,7 @@ from genie.testbed import load
 #from pyats.topology import loader
 from pyats.easypy import run
 import requests
+import yaml
 from pyats.easypy import runtime
 
 SCRIPT_PATH = './job/ansible_test_script.py'
