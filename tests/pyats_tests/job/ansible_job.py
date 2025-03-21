@@ -9,6 +9,7 @@ from pyats import aetest
 from genie.testbed import load
 #from pyats.topology import loader
 from pyats.easypy import run
+import yaml
 
 SCRIPT_PATH = './job/ansible_test_script.py'
 CONFIG_FILE = './job/ansible_test_script.py'
@@ -30,7 +31,7 @@ def main():
                         type = str, default = '../../ansible_inventory/catalystcenter_inventory/hosts.yml')
     #verbosity
     parser.add_argument('--verbosity', dest = 'verbosity',
-                        type = int, default = 3)
+                        type = int, default = 1)
     args, unknown = parser.parse_known_args()
     
     # run api launches a testscript as an individual task.
