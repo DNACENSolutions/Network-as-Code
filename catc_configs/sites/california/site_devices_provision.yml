@@ -38,3 +38,7 @@ provision_details:
       - Global/USA/SAN-FRANCISCO/BLD_SF/FLOOR2
     provisioning: true
     #force_provisioning: true
+    #Switches and Hubs provisioning
+  - site_name_hierarchy: Global/USA/SAN JOSE/BLD23
+    management_ip_address: 204.192.3.40
+    provisioning: true
