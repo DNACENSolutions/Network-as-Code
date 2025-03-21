@@ -106,7 +106,7 @@ class AnsibleRunner:
             with open(r.stderr.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.error(html_content)
-            os.remove(r.stdout.name)
+            os.remove(r.stderr.name)
             with open(r.stdout.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
@@ -116,10 +116,10 @@ class AnsibleRunner:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
             os.remove(r.stdout.name)
+        print(a)
         if cleanup_events:
             shutil.rmtree(a)
             os.mkdir(a)
-
         return r
     
 
