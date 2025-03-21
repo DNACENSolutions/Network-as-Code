@@ -253,7 +253,7 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
                     hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = False
                     hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + f"/{uc}_catc.log"
                 with open(inventory_path, 'w') as file:
-                    yaml.dump(hostfile, inventory_path)
+                    yaml.dump(hostfile, file)
                 result = run_playbook(playbook, inventory_path, data_file, verbosity)
                 if result.rc != 0:
                     self.failed(f"Playbook execution failed for {uc}: {result.rc}")
