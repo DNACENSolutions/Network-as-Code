@@ -33,7 +33,7 @@ def main():
                         type = str, default = '../../ansible_inventory/catalystcenter_inventory/hosts.yml')
     #verbosity
     parser.add_argument('--verbosity', dest = 'verbosity',
-                        type = int, default = 3)
+                        type = int, default = 1)
     
     # parse CATCVERSION
     parser.add_argument('--release', dest = 'catcversion', 

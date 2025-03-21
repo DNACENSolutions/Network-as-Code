@@ -33,7 +33,7 @@ def main():
                         type = str, default = '../../ansible_inventory/catalystcenter_inventory/hosts.yml')
     #verbosity
     parser.add_argument('--verbosity', dest = 'verbosity',
-                        type = int, default = 3)
+                        type = int, default = 1)
     # parse CATCVERSION
     parser.add_argument('--release', dest = 'catcversion', 
                         type = str, default = '2.3.7.9')
@@ -50,9 +50,9 @@ def main():
     logdir = runtime.directory
     for key in hostfile['catalyst_center_hosts']['hosts'].keys():
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
-        hostfile['catalyst_center_hosts']['hosts'][key][] = logdir
-        print(hostfile['catalyst_center_hosts']['hosts'][key])
-
+        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = True
+        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + "/dnac_log.log"
+        
     print(hostfile)
     with open(args.inventory,'w') as inv:
         yaml.dump(hostfile, inv)
