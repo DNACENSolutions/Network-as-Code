@@ -53,3 +53,12 @@ inventory_details:
       site_name: "Global/USA/SAN-FRANCISCO/BLD_SF"
       device_resync: False
       force_sync: False
+    - ip_address_list: ["204.192.3.40"]
+      add_user_defined_field:
+      - name: Fusion Router
+        description: "This device is the Fusion Router"
+        value: "Fusion Router"
+      role: CORE
+      site_name: "Global/USA/SAN JOSE/BGL23"
+      device_resync: False
+      force_sync: False
