@@ -106,14 +106,16 @@ class AnsibleRunner:
             with open(r.stderr.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.error(html_content)
-
+            os.remove(r.stdout.name)
             with open(r.stdout.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
+            os.remove(r.stdout.name)
         else:
             with open(r.stdout.name, "r") as f:
                 html_content = remove_ansi_escape_sequences(f.read())
                 logger.info(html_content)
+            os.remove(r.stdout.name)
         if cleanup_events:
             shutil.rmtree(a)
             os.mkdir(a)
@@ -141,6 +143,7 @@ def run_playbook(playbook_path, inventory_path, data_file, verbosity=4):
     inventory_path = os.path.abspath(inventory_path)
     logger.info(f"Running playbook: {playbook_path}, inventory: {inventory_path}, data_file: {data_file}")
     logger.info(f"Extra vars: {extra_vars}")
+
     r = AnsibleRunner(private_data_dir=private_data_dir, playbook=playbook, inventory=inventory_path, artifact_dir=runtime.directory, verbosity=verbosity, extravars=extra_vars)
     return r.ansible_run()
 
@@ -243,6 +246,14 @@ class ExecuteAnsibleTestcase(aetest.Testcase):
         data_file = os.path.join(cfg_base_path, usecaseyaml[uc]["data_file"])
         if runtype in ["execute", "both"]:
             try:
+                with open(inventory_path, 'r') as file:
+                    hostfile = yaml.safe_load(file)
+                logdir = runtime.directory
+                for key in hostfile['catalyst_center_hosts']['hosts'].keys():
+                    hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = False
+                    hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + f"/{uc}_catc.log"
+                with open(inventory_path, 'w') as file:
+                    yaml.dump(hostfile, inventory_path)
                 result = run_playbook(playbook, inventory_path, data_file, verbosity)
                 if result.rc != 0:
                     self.failed(f"Playbook execution failed for {uc}: {result.rc}")
