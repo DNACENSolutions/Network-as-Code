@@ -53,7 +53,7 @@ swim_details:
         site_name: Global
         tagging: true
     - tagging_details:
-        image_name: C9800-80-universalk9_wlc.17.15.02b.SPA.bin
+        image_name: C9800-80-universalk9_wlc.17.12.04.SPA.bin
         device_role: ALL
         device_image_family_name: Cisco Catalyst 9800-80 Wireless Controller
         site_name: Global
@@ -63,7 +63,7 @@ swim_details:
         device_role: ALL
         device_image_family_name: Cisco Catalyst 9800-80 Wireless Controller
         site_name: Global
-        tagging: false
+        tagging: true
   # # List of images to be distributed to the devices
   distribute_images:
     - image_distribution_details:
