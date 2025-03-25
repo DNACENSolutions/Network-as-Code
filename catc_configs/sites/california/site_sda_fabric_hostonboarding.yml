@@ -46,11 +46,13 @@ sda_host_onboarding_details:
     wireless_ssids: 
       - vlan_name: EMPLOYEEPOOL_sjc_Employee_VN
         ssid_details:
-          - ssid_name: employees
+          - ssid_name: iac-employees
             security_group_name: Employees
       - vlan_name: GUESTPOOL_sjc_Guest_VN
         ssid_details:
-          - ssid_name: guest-nw
+          - ssid_name: iac-guests
+            security_group_name: Guests
+          - ssid_name: "iac-open"
             security_group_name: Guests
 
   - fabric_site_name_hierarchy: Global/USA/SAN-FRANCISCO
@@ -104,9 +106,11 @@ sda_host_onboarding_details:
     wireless_ssids: 
       - vlan_name: EMPLOYEEPOOL_sf_EMPLOYEE_VN
         ssid_details:
-          - ssid_name: employees
+          - ssid_name: iac-employees
             security_group_name: Employees
       - vlan_name: GUESTPOOL_sf_Guest_VN
         ssid_details:
-          - ssid_name: guest-nw
+          - ssid_name: iac-guests
+            security_group_name: Guests
+          - ssid_name: "iac-open"
             security_group_name: Guests

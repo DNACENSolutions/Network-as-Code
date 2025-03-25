@@ -60,7 +60,18 @@ CaliforniaSiteNetworkSettingsIPPools:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/network_settings_playbook.yml"
   data_file: "catc_configs/sites/california/site_nw_settings_ippools.yml"
-  
+# Wireless Network Settings for the site
+CaliforniaSiteWirelessNetworkSettings:
+  schema_file: "wireless_design/schema/wireless_design_schema.yml"
+  playbook: "wireless_design/playbook/wireless_design_playbook.yml"
+  data_file: "catc_configs/global/network_settings_wireless.yml"
+
+# Wireless Network profile for the site
+CaliforniaSiteWirelessNetworkProfile:
+  schema_file: "network_profile_wireless/schema/network_profile_wireless_schema.yml"
+  playbook: "network_profile_wireless/playbook/network_profile_wireless_playbook.yml"
+  data_file: "catc_configs/sites/california/site_nw_profile_wireless.yml"
+
 # Devices  Inventory for the site
 CaliforniaSiteDevicesInventory:
   schema_file: "inventory/schema/inventory_schema.yml"
