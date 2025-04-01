@@ -1,0 +1,10 @@
+pnp_details:
+  add_network_device:
+    - device_info:
+      - serial_number: FOX2639PAYD
+  add_bulk_network_devices:
+    - device_info:
+      - serial_number: FXS2502Q2HC
+      - serial_number: FJC271923AK
+      - serial_number: FOX2639PAYD
+      - serial_number: FGL2402LCYH
