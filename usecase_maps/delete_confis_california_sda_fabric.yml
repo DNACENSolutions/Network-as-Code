@@ -53,6 +53,18 @@ RemoveCaliforniaSiteDevicesProvision:
   playbook: "provision/playbook/delete_provision_workflow_playbook.yml"
   data_file: "catc_delete_configs/sites/california/site_devices_provision.yml"
 
+# Create the Extranet Policies for the Fabric site
+PnPDeviceConfigandClaim:
+  schema_file: "plug_and_play/schema/plug_and_play_schema.yml"
+  playbook: "plug_and_play/playbook/delete_catalyst_center_pnp_playbook.yml"
+  data_file: "catc_delete_configs/sites/california/site_devices_pnp_onboarding.yml"
+
+# Design and Provision APP Policy for the site
+RemoveCaliforniaSiteApplicationPolicy:
+  schema_file: "application_policy/schema/application_policy_schema.yml"
+  playbook: "application_policy/playbook/delete_application_policy_playbook.yml"
+  data_file: "catc_configs/sites/california/site_application_policy.yml"
+
 # Devices  Inventory for the site
 RemoveCaliforniaSiteDevicesInventory:
   schema_file: "inventory/schema/inventory_schema.yml"

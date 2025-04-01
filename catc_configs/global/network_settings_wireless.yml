@@ -217,6 +217,13 @@ wireless_design_details:
       default_rf_profile: false
       radio_bands: [5]
       radio_bands_5ghz_settings:
+        parent_profile: "HIGH"
+        channel_width: '20'
+        zero_wait_dfs: true
+    - radio_frequency_profile_name: "cistom_rf_5ghz_typical"
+      default_rf_profile: false
+      radio_bands: [5]
+      radio_bands_5ghz_settings:
         parent_profile: "TYPICAL"
         channel_width: '20'
         zero_wait_dfs: true

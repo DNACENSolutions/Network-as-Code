@@ -1,0 +1,31 @@
+pnp_details:
+  add_network_device:
+    - device_info:
+      - serial_number: FOX2639PAYD
+        hostname: SJ-EWLC-1
+        state: Unclaimed
+        pid: C9800-40-K9
+
+  add_bulk_network_devices:
+    - device_info:
+      - serial_number: FXS2502Q2HC
+        hostname: SF-BN-2-ASR.cisco.local
+        state: Unclaimed
+        pid: ASR1001-X
+      - serial_number: FJC271923AK
+        hostname: NY-EN-9300
+        state: Unclaimed
+        pid: C9300-48UXM
+      - serial_number: FOX2639PAYD
+        hostname: SJ-EWLC-1.cisco.local
+        state: Unclaimed
+        pid: C9800-40-K9 
+  claim_access_points:
+    - site_name: Global/USA/New York/NY_BLD2/FLOOR1
+      rf_profile: HIGH
+      device_info:
+        - serial_number: FGL2402LCYH
+          hostname: NY-AP1-C9120AXE
+          state: Unclaimed
+          pid: C9120AXE-E
+      pnp_type: AccessPoint

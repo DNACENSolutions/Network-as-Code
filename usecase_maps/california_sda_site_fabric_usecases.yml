@@ -83,6 +83,13 @@ CaliforniaSiteDevicesProvision:
   schema_file: "provision/schema/provision_workflow_schema.yml"
   playbook: "provision/playbook/provision_workflow_playbook.yml"
   data_file: "catc_configs/sites/california/site_devices_provision.yml"
+
+# Design and Provision APP Policy for the site
+CaliforniaSiteApplicationPolicy:
+  schema_file: "application_policy/schema/application_policy_schema.yml"
+  playbook: "application_policy/playbook/application_policy_playbook.yml"
+  data_file: "catc_configs/sites/california/site_application_policy.yml"
+
 # SWIM Upgrade the devices on sites
 CaliforniaSiteSWIMDevicesUpgrade:
   schema_file: "swim/schema/swim_schema.yml"
@@ -135,13 +142,19 @@ HandOffAnchorVNs:
 CaliforniaSiteNetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
   playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
-  data_file: "catc_configs/sites/california/site_network_complliance.yml"
+  data_file: "catc_configs/sites/california/site_network_compliance.yml"
 
 # Create the Extranet Policies for the Fabric site
 CaliforniaSiteExtranetPolicies:
   schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
   playbook: "sda_fabric_extranet_policy/playbook/fabric_extranet_policy_playbook.yml"
   data_file: "catc_configs/sites/california/site_sda_fabric_extranet_policies.yml"
+
+# Create the Extranet Policies for the Fabric site
+PnPDeviceConfigandClaim:
+  schema_file: "plug_and_play/schema/plug_and_play_schema.yml"
+  playbook: "plug_and_play/playbook/catalyst_center_pnp_playbook.yml"
+  data_file: "catc_configs/sites/california/site_devices_pnp_onboarding.yml"
 
 # Create the Extranet Policies for the Fabric site
 AccessPointProvision:

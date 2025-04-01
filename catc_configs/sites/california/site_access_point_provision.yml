@@ -8,7 +8,6 @@ accesspoints_details:
       floor:
         name: FLOOR1
         parent_name: Global/USA/SAN JOSE/BLD23
-
   - mac_address:  10:b3:d6:88:f3:a0
     ap_name: "AP084F.A9FD.7C4C"
     admin_status: Enabled
@@ -16,7 +15,7 @@ accesspoints_details:
     led_brightness_level: 3
     is_assigned_site_as_location: Enabled
     failover_priority: Low
-    rf_profile: "HIGH"
+    rf_profile: "cistom_rf_5ghz_typical"
     site:
       floor:
         name: FLOOR1
