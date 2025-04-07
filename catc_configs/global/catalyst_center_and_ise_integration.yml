@@ -13,8 +13,8 @@ ise_radius_integration_details:
             timeout: 4
             role: secondary
           - server_type: ISE
-            server_ip_address: 10.195.243.31
-            shared_secret: "Labab123"
+            server_ip_address: 10.195.243.59
+            shared_secret: "Labab#123"
             protocol: RADIUS_TACACS
             # encryption_scheme: KEYWRAP
             # encryption_key: "1234567890123456"
