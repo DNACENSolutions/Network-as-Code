@@ -6,7 +6,7 @@ discovery_details:
       - 204.192.13.1-204.192.13.1
       discovery_type: MULTI RANGE
       protocol_order: ssh
-      discovery_name: Range IP WLCs
+      discovery_name: Multi Range Discoveryfor WLCs
       global_credentials:
         cli_credentials_list:
           - description: switchandwlc credentials
@@ -51,7 +51,7 @@ discovery_details:
       - 204.192.3.40
       discovery_type: SINGLE
       protocol_order: ssh
-      discovery_name: Multi Range Discoveryfor switches
+      discovery_name: Fusion Router
       global_credentials:
         cli_credentials_list:
           - description: switchandwlc credentials

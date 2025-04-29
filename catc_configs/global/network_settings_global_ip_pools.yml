@@ -137,6 +137,9 @@ network_settings_details:
             - 204.192.3.40
           dns_server_ips:
             - 171.70.168.183
+  - global_pool_details:
+      settings:
+        ip_pool:
         - name:  CRITICALDATAPOOLIPV6
           gateway: 2004:192:173::1
           ip_address_space: IPv6
@@ -239,6 +242,9 @@ network_settings_details:
             - 2004:192:3::40
           dns_server_ips:
             - 2006:1:1::1
+  - global_pool_details:
+      settings:
+        ip_pool:
         - name:  BORDERHandoff
           gateway: 192.179.0.1
           ip_address_space: IPv4

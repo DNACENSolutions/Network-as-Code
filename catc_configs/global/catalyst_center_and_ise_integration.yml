@@ -14,7 +14,7 @@ ise_radius_integration_details:
             role: secondary
           - server_type: ISE
             server_ip_address: 10.195.243.59
-            shared_secret: "Labab#123"
+            shared_secret: "Lablab#123"
             protocol: RADIUS_TACACS
             # encryption_scheme: KEYWRAP
             # encryption_key: "1234567890123456"
@@ -28,9 +28,9 @@ ise_radius_integration_details:
             pxgrid_enabled: true
             cisco_ise_dtos:
                 - user_name: admin
-                  password: "Maglev#123"
-                  fqdn: IBSTE-ISE1.cisco.com
-                  ip_address: 10.195.243.31
+                  password: "Lablab#123"
+                  fqdn: ISE3-1.cisco.com
+                  ip_address: 10.195.243.59
                   description: Cisco ISE
             trusted_server: true
             ise_integration_wait_time: 20

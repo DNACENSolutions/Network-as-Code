@@ -1,42 +1,50 @@
 pnp_details:
   network_devices:
     - device_info:
-      - serial_number: FOX2639PAYD
-        hostname: SJ-EWLC-1
+    #   # - serial_number: FOX2639PAYD
+    #   #   hostname: SJ-EWLC-1
+    #   #   state: Unclaimed
+    #   #   pid: C9800-40-K9
+    #   # - serial_number: FXS2502Q2HC
+    #   #   hostname: SF-BN-2-ASR.cisco.local
+    #   #   state: Unclaimed
+    #   #   pid: ASR1001-X
+      - serial_number: FOC2336Y179
+        #hostname: SN-FOC2336Y179
         state: Unclaimed
-        pid: C9800-40-K9
-      - serial_number: FXS2502Q2HC
-        hostname: SF-BN-2-ASR.cisco.local
+        pid: WS-C3560CX-12PC-S
+      - serial_number: JAD23340CVT
         state: Unclaimed
-        pid: ASR1001-X
-      - serial_number: FJC271923AK
-        hostname: NY-EN-9300
+        pid: C9200-48P
+        #pid: AIR-AP2802I-B-K9
+        #hostname: SJ-X-1-9300_AP
+      - serial_number: KWC21400D0O
         state: Unclaimed
-        pid: C9300-48UXM
-  
+        pid: AIR-AP1800S-B-K9
+
   # claim_access_points:
-  #   - site_name: Global/USA/New York/NY_BLD2/FLOOR1
+  #   - site_name: Global/USA/SAN JOSE/SJ_BLD23/FLOOR1
   #     rf_profile: HIGH
   #     device_info:
-  #       - serial_number: FGL2402LCYH
-  #         hostname: NY-AP1-C9120AXE
+  #       - serial_number: FCW2332PCDW
+  #         hostname: AP084F.A9FD.7C4C
   #         state: Unclaimed
-  #         pid: C9120AXE-E
+  #         pid: AIR-AP2802I-B-K9
   #     pnp_type: AccessPoint
 
-  # claim_switching_devices:
-  #   - site_name: Global/USA/SAN JOSE/SJ_BLD21
-  #     project_name: Onboarding Configuration
-  #     template_name: PnP-Devices-SW
-  #     image_name: cat9k_iosxe.17.12.04.SPA.bin
-  #     # template_params:
-  #     #   PNP_VLAN_ID: 2000
-  #     #   LOOPBACK_IP: 204.1.2.100
-  #     device_info:
-  #       - serial_number: FJC272127LW
-  #         hostname: DC-FR-9300.cisco.local
-  #         state: Unclaimed
-  #         pid: C9300-48T
+  claim_switching_devices:
+    - site_name: Global/USA/SAN JOSE/BLD23
+      project_name: Onboarding Configuration
+      #template_name: PnP-Devices-SW
+      image_name: cat9k_lite_iosxe.17.14.01.SPA.bin
+      # template_params:
+      #   PNP_VLAN_ID: 2000
+      #   LOOPBACK_IP: 204.1.2.100
+      device_info:
+        - serial_number: JAD23340CVT
+          hostname: SN-JAD23340CVT
+          state: Unclaimed
+          pid: C9200-48P
 
   # claim_switching_devices:
   #   - site_name:  Global/USA/New York/NY_BLD1

@@ -1,0 +1,42 @@
+retry_count: 60
+retry_delay: 30
+pnp_details:
+  - device_info:
+    - serial_number: JAD23340CVT
+      state: Unclaimed
+      pid: C9200-48P
+    - serial_number: FCW2332PCDW
+      hostname: AP084F.A9FD.7C4C
+      state: Unclaimed
+      pid: AIR-AP2802I-B-K9
+sben_devices:
+  - serial_number: JAD23340CVT
+template_details:
+  - configuration_templates:
+      name: "SBEN Switch Config Template"
+      template_name: SBEN Switch Hostname Template
+      description: "Configuration template for SBEN Switches"
+      project_name: SBEN Switch Configuration Templates
+      tags: []
+      author: admin
+      device_types:
+        - product_family: "Switches and Hubs"
+          product_series: "Cisco Catalyst 9200 Series Switches"
+      software_type: IOS-XE
+      language: VELOCITY
+      failure_policy: ABORT_TARGET_ON_ERROR
+      template_content: |
+        !configure hostname
+        hostname  $hostname
+template_deployment_details:
+  - deploy_template:
+      project_name: SBEN Switch Configuration Templates
+      template_name: SBEN Switch Hostname Template
+      force_push: true
+      template_parameters: 
+        - param_name: hostname
+          param_value: SN-JAD23340CVT
+          #param_value: SBEN-Access-sjc
+      device_details:
+          serial_numbers:
+            - JAD23340CVT
