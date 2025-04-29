@@ -27,3 +27,9 @@ DeviceTemplatesProvision:
   schema_file: "device_templates/schema/template_workflow_schema.yml"
   playbook: "device_templates/playbook/template_workflow_playbook.yml"
   data_file: "catc_configs/sites/california/site_device_templates.yml"
+
+# # Create the Extranet Policies for the Fabric site
+SiteSBENOnboarding:
+  schema_file: "device_templates/schema/template_workflow_schema.yml"
+  playbook: "./../../CatC_SD_Access_campus/playbooks/sap_sben_playbook.yml"
+  data_file: "catc_configs/sites/california/site_sben_onboarding.yml"

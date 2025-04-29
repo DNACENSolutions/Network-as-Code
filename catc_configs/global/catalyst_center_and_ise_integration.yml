@@ -29,8 +29,8 @@ ise_radius_integration_details:
             cisco_ise_dtos:
                 - user_name: admin
                   password: "{{ lookup('env', 'NAC_CATC_CONFIGS_GLOBAL_CATALYST_CENTER_AND_ISE_INTEGRATION_YML_PASSWORD_1') }}"
-                  fqdn: IBSTE-ISE1.cisco.com
-                  ip_address: 10.195.243.31
+                  fqdn: ISE3-1.cisco.com
+                  ip_address: 10.195.243.59
                   description: Cisco ISE
             trusted_server: true
             ise_integration_wait_time: 20

@@ -1,0 +1,182 @@
+---
+- name: Secure AP and SBEN PnP Day0 Configuration and SBEN Hostname update Template Playbook
+  hosts: catalyst_center_hosts
+  connection: local
+  gather_facts: no
+  vars_files:
+    # Either use the inventory file or the vars file
+    - "{{ VARS_FILE_PATH }}"
+  vars:
+    state: merged
+    catalyst_center_login: &catalyst_center_login
+      dnac_host: "{{ catalyst_center_host }}"
+      dnac_username: "{{ catalyst_center_username  }}"
+      dnac_password: "{{ catalyst_center_password  }}"
+      dnac_version: "{{ catalyst_center_version   }}"
+      dnac_port: "{{ catalyst_center_port | default(443) }}"
+      dnac_verify: "{{ catalyst_center_verify }}"
+      config_verify: "{{ catalyst_center_config_verify | default(False) }}"
+      dnac_debug: "{{ catalyst_center_debug | default(False) }}"
+      dnac_log: "{{ catalyst_center_log | default(False) }}"
+      dnac_log_level: "{{ catalyst_center_log_level | default('INFO') }}"   
+      dnac_log_file_path: "{{ catalyst_center_log_file_path |  default(omit) }}"
+      dnac_log_append: "{{ catalyst_center_log_append |  default(False) }}"
+    catalyst_center_url: "https://{{ catalyst_center_host }}:443"
+    credentials: "{{ catalyst_center_username }}:{{ catalyst_center_password  }}"
+    authentication: "Basic {{ credentials | b64encode }}"
+  tasks:
+    # fetch Catalyst Center token 
+    - name: Authenticate with DNA Center
+      uri:
+        url: "{{ catalyst_center_url }}/dna/system/api/v1/auth/token"
+        method: POST
+        headers:
+          Content-Type: "application/json"
+          Authorization: "{{authentication}}"
+        validate_certs: "{{ catalyst_center_config_verify | default(False) }}"
+        status_code: 200
+      register: auth_response
+      tags: 
+        - pnp
+        - device_info
+        - deploy
+    - name: Parse DNA Center Authentication Token
+      set_fact:
+        dnac_auth_token: "{{ auth_response.json.Token }}"
+      tags: 
+        - pnp
+        - device_info
+        - deploy
+    # Add SBEN and Secure AP devices to Cisco Catalyst Center Plug and Play
+    - name: Add SBEN and Secure AP devices to Cisco Catalyst Center Plug and Play
+      cisco.dnac.pnp_workflow_manager:
+        <<: *catalyst_center_login
+        state: "{{ state }}"
+        config: "{{ pnp_details }}"
+      register: pnp_devices_output
+      ignore_errors: true
+      when: pnp_details is defined
+      tags: 
+        - pnp
+    # Print the network devices output
+    - name: Print the pnp network devices output
+      debug:
+        msg: "{{pnp_devices_output}}"
+      when: pnp_devices_output is defined
+      tags: 
+        - pnp
+    #Get the number of SBEN devices
+    - name: Get the number of SBEN devices
+      set_fact:
+        sben_devices_length: "{{ sben_devices | length }}"
+      when: sben_devices is defined
+      tags: 
+        - device_info
+    # Print the number of SBEN devices
+    - name: Print the number of SBEN devices
+      debug:
+        msg: "Number of SBEN devices: {{ sben_devices_length }}"
+      when: sben_devices is defined
+      tags: 
+        - device_info
+    - name: Fetch device details for serial numbers
+      uri:
+        url: "{{ catalyst_center_url }}/dna/intent/api/v1/network-device?serialNumber={{ item }}"
+        method: GET
+        headers:
+          Content-Type: "application/json"
+          X-Auth-Token: "{{ dnac_auth_token }}"
+        body_format: json
+        validate_certs: "{{ catalyst_center_config_verify | default(False) }}"
+        status_code: 200
+      loop: "{{ sben_devices | map(attribute='serial_number') | list }}"
+      register: device_info
+      until: device_info is defined and device_info.json.response is defined and device_info.json.response | length > 0
+      #and device_info.results | length >= serial_numbers | length
+      delay: "{{retry_delay}}"
+      retries: "{{retry_count}}"
+      when: sben_devices
+      throttle: 1 # Avoid overwhelming the API
+      tags:
+        - device_info
+    # Print the device information and collect the deviceManagementIpAddress
+    - name: Print Full Response
+      ansible.builtin.debug:
+        var: device_info
+      when: device_info is defined 
+      tags: 
+        - device_info
+    - name: Fetch device details for serial numbers in Fabric
+      uri:
+        url: "{{ catalyst_center_url }}/dna/intent/api/v1/business/sda/device?deviceManagementIpAddress={{ item.json.response[0].managementIpAddress }}"
+        method: GET
+        headers:
+          Content-Type: "application/json"
+          X-Auth-Token: "{{ dnac_auth_token }}"
+        body_format: json
+        validate_certs: "{{ catalyst_center_config_verify | default(False) }}"
+        status_code: 200
+      loop: "{{ device_info.results}}"
+      register: device_sda_info
+      until: device_sda_info is defined and device_sda_info.json.roles is defined and device_sda_info.json.roles | length > 0
+      #and device_info.results | length >= serial_numbers | length
+      delay: "{{retry_delay}}"
+      retries: "{{retry_count}}"
+      when: item.json.response | length > 0
+      throttle: 1 # Avoid overwhelming the API
+      tags:
+        - device_info
+    # use  device_info.results and  sben_devices update template_deployment_details deploy_template sections template_parameters and device_details
+    - name: Print Full Response
+      ansible.builtin.debug:
+        var: device_sda_info
+      when: device_sda_info is defined
+      tags: 
+        - device_info
+    - name: Define template in Catalyst Center
+      #Import an image from a URL
+      cisco.dnac.template_workflow_manager:
+        <<: *catalyst_center_login
+        state: "{{ state }}"
+        config: "{{ template_details }}"
+      register: template_output
+      when: template_details is defined
+      tags: 
+        - template
+        - deploy
+    # Copy all the management IP addresses to the template deployment details
+    - name: Deploy the template to the devices
+      #Import an image from a URL
+      cisco.dnac.template_workflow_manager:
+        <<: *catalyst_center_login
+        state: "{{ state }}"
+        config: "{{ template_deployment_details }}"
+      register: template_output
+      when: template_deployment_details is defined
+      tags: 
+        - deploy
+    # REsync the devices post Hostname template update
+    - name: Resync the devices
+      cisco.dnac.inventory_workflow_manager:
+        <<: *catalyst_center_login
+        state: "{{ state }}"
+        config: 
+          - serial_number_list: "{{ item.deploy_template.device_details.serial_numbers }}"
+            device_resync: true
+            force_sync: false
+            resync_max_timeout: 300
+      loop: "{{ template_deployment_details }}"
+      register: inventory_workflow_output
+      when: template_deployment_details is defined
+      tags: 
+        - deploy
+    # Print the inventory workflow output
+    - name: Print the inventory workflow output
+      debug:
+        msg: "{{inventory_workflow_output}}"
+      when: inventory_workflow_output is defined
+      tags: 
+        - deploy
+#==========================================================================
+#       end of playbook
+#==========================================================================
