@@ -35,8 +35,8 @@ template_deployment_details:
       force_push: true
       template_parameters: 
         - param_name: hostname
-          param_value: SN-JAD23340CVT
-          #param_value: SBEN-Access-sjc
+          #param_value: SN-JAD23340CVT
+          param_value: SBEN-Access-sjc
       device_details:
           serial_numbers:
             - JAD23340CVT

@@ -33,3 +33,15 @@ SiteSBENOnboarding:
   schema_file: "device_templates/schema/template_workflow_schema.yml"
   playbook: "./../../CatC_SD_Access_campus/playbooks/sap_sben_playbook.yml"
   data_file: "catc_configs/sites/california/site_sben_onboarding.yml"
+
+# Run pathtrace on the devices
+AssurancePathTrace:
+  schema_file: "assurance_pathtrace/schema/assurance_pathtrace_schema.yml"
+  playbook: "assurance_pathtrace/playbook/assurance_pathtrace_playbook.yml"
+  data_file: "catc_configs/sites/california/day_n_assurance_pathtrace.yml"
+
+# Create custom assurance_health_score_settings
+AssuranceHealthScoreSettings:
+  schema_file: "assurance_health_score_settings/schema/assurance_health_score_settings_schema.yml"
+  playbook: "assurance_health_score_settings/playbook/assurance_health_score_settings_playbook.yml"
+  data_file: catc_configs/global/assurance_healthscore_settings.yml

@@ -73,6 +73,7 @@ template_details:
 
         ! L3handdoff interface for provider VN
         interface Vlan$VLANID
+        description L3handoff $VLANID
         ip address $interfaceIP 255.255.255.252
         ip route-cache same-interface
         ipv6 address $interfaceIPV6
