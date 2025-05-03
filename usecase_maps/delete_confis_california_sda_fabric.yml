@@ -1,4 +1,10 @@
 
+#DeletePathTraces
+DeleteExistingPathTraces:
+  schema_file: "assurance_pathtrace/schema/assurance_pathtrace_schema.yml"
+  playbook: "assurance_pathtrace/playbook/delete_assurance_pathtrace_playbook.yml"
+  data_file: "catc_configs/sites/california/day_n_assurance_pathtrace.yml"
+
 # Create the Extranet Policies for the Fabric site
 RemoveCaliforniaSiteExtranetPolicies:
   schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
