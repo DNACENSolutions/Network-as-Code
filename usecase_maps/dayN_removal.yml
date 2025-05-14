@@ -3,150 +3,156 @@
 DeleteExistingPathTraces:
   schema_file: "assurance_pathtrace/schema/assurance_pathtrace_schema.yml"
   playbook: "assurance_pathtrace/playbook/delete_assurance_pathtrace_playbook.yml"
-  data_file: "catc_configs/sites/california/day_n_assurance_pathtrace.yml"
+  data_file: "data_deletetion/day_n_assurance_pathtrace.yml"
 
 # Create the Extranet Policies for the Fabric site
-RemoveCaliforniaSiteExtranetPolicies:
+RemoveExtranetPolicies:
   schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
   playbook: "sda_fabric_extranet_policy/playbook/delete_fabric_extranet_policy_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_extranet_policies.yml"
+  data_file: "data_deletetion/site_sda_fabric_extranet_policies.yml"
 
 # Create the Anchor VNs and Add to sites with gateways.
-RemoveCaliforniaSiteHostOnboarding:
+RemoveFabricHostOnboarding:
   schema_file: "sda_hostonboarding/schema/sda_host_onboarding_schema.yml"
   playbook: "sda_hostonboarding/playbook/delete_sda_host_onboarding_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_hostonboarding.yml"
+  data_file: "data_deletetion/site_sda_fabric_hostonboarding.yml"
+
+# Disable multicast on the fabric site
+RemoveFabricMulticast:
+  schema_file: "sda_fabric_multicast/schema/sda_fabric_multicast_schema.yml"
+  playbook: "sda_fabric_multicast/playbook/delete_sda_fabric_multicast_playbook.yml"
+  data_file: "data_deletetion/site_sda_fabric_multicast.yml"
 
 # Create the Anchor VNs and Add to sites with gateways.
 RemoveAnchorVNsFromBorderL3Handoff:
   schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
   playbook: "sda_fabric_device_roles/playbook/delete_sda_fabric_device_roles_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_devices_anchor_vn_handoff.yml"
+  data_file: "data_deletetion/site_sda_fabric_devices_anchor_vn_handoff.yml"
 
 # Create the Anchor VNs and Add to sites with gateways.
-RemoveCaliforniaSiteAnchorVNs:
+RemoveFabricAnchorVNs:
   schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
   playbook: "sda_virtual_networks_l2l3_gateways/playbook/delete_sda_virtual_networks_l2_l3_gateways_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_anchor_vns.yml"
+  data_file: "data_deletetion/site_sda_fabric_anchor_vns.yml"
 
 # Add Devices to Fabric site with Transits and Gateways
-RemoveCaliforniaSiteDevicesToFabric:
+RemovefabricDevicesfromFabric:
   schema_file: "sda_fabric_device_roles/schema/sda_fabric_device_roles_schema.yml"
   playbook: "sda_fabric_device_roles/playbook/delete_sda_fabric_device_roles_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_devices.yml"
+  data_file: "data_deletetion/site_sda_fabric_devices.yml"
 
 # Create Virtual Networks and assign to Fabric sites with Gateways
-RemoveCaliforniaSiteVirtualNetworks:
+RemoveVirtualNetworks:
   schema_file: "sda_virtual_networks_l2l3_gateways/schema/sda_virtual_networks_l2_l3_gateways_schema.yml"
   playbook: "sda_virtual_networks_l2l3_gateways/playbook/delete_sda_virtual_networks_l2_l3_gateways_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_vn_l2l3_gateways.yml"
+  data_file: "data_deletetion/site_sda_fabric_vn_l2l3_gateways.yml"
 
 # Create Fabric Transits
-RemoveCaliforniaSiteFabricTransits:
+RemoveFabricTransits:
   schema_file: "sda_fabric_transits/schema/sda_fabric_transits_workflow_schema.yml"
   playbook: "sda_fabric_transits/playbook/delete_sda_fabric_transits_workflow_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_transits.yml"
+  data_file: "data_deletetion/site_sda_transits.yml"
 
 # Create SDA Fabric Site and Fabric Zones
-RemoveCaliforniaSiteFabric:
+RemoveSiteFabric:
   schema_file: "sda_fabric_sites_zones/schema/sda_fabric_sites_zones_schema.yml"
   playbook: "sda_fabric_sites_zones/playbook/delete_sda_fabric_sites_zones_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_sda_fabric_sites_zones.yml"
+  data_file: "data_deletetion/site_sda_fabric_sites_zones.yml"
 
-#Provision the devices on sites
-RemoveCaliforniaSiteDevicesProvision:
+#UnProvision/Delete the devices on sites
+UnProvisionAndRemoveDevices:
   schema_file: "provision/schema/provision_workflow_schema.yml"
   playbook: "provision/playbook/delete_provision_workflow_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_devices_provision.yml"
+  data_file: "data_deletetion/site_devices_provision.yml"
 
 # Create the Extranet Policies for the Fabric site
-PnPDeviceConfigandClaim:
+DeletePnpDevices:
   schema_file: "plug_and_play/schema/plug_and_play_schema.yml"
   playbook: "plug_and_play/playbook/delete_catalyst_center_pnp_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_devices_pnp_onboarding.yml"
+  data_file: "data_deletetion/site_devices_pnp_onboarding.yml"
 
 # Design and Provision APP Policy for the site
-RemoveCaliforniaSiteApplicationPolicy:
+RemoveApplicationPolicy:
   schema_file: "application_policy/schema/application_policy_schema.yml"
   playbook: "application_policy/playbook/delete_application_policy_playbook.yml"
-  data_file: "catc_configs/sites/california/site_application_policy.yml"
+  data_file: "data_deletetion/site_application_policy.yml"
 
 # Devices  Inventory for the site
-RemoveCaliforniaSiteDevicesInventory:
+DeleteDevicesFromInventory:
   schema_file: "inventory/schema/inventory_schema.yml"
   playbook: "inventory/playbook/delete_inventory_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_inventory.yml"
+  data_file: "data_deletetion/site_inventory.yml"
 
 # Devices discovery for the site
-RemoveCaliforniaSiteDevicesDiscovery:
+DeleteDevicesDiscoveries:
   schema_file: "device_discovery/schema/device_discovery_schema.yml"
   playbook: "device_discovery/playbook/delete_device_discovery.yml"
-  data_file: "catc_delete_configs/sites/california/site_device_discovery.yml"
+  data_file: "data_deletetion/site_device_discovery.yml"
 
 # Design and reserve the IP Pools for the site
-RemoveCaliforniaSiteNetworkSettingsIPPools:
+RemoveNetworkSettingsIPPools:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/delete_network_settings_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_nw_settings_ippools.yml"
+  data_file: "data_deletetion/site_nw_settings_ippools.yml"
 
 #  Design and customize network settings for the site.
-RemoveCaliforniaSiteNetworkSettings:
+RemoveNetworkSettings:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/delete_network_settings_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_network_settings_servers.yml"
+  data_file: "data_deletetion/site_network_settings_servers.yml"
 
 # SiteDeviceCredentials California
-RemoveCaliforniaSiteDeviceCredentials:
+RemoveDeviceCredentials:
   schema_file: "device_credentials/schema/device_credentials_schema.yml"
   playbook: "device_credentials/playbook/delete_device_credentials_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_device_credentials.yml"
+  data_file: "data_deletetion/site_device_credentials.yml"
 
 # SiteDesign California, area, building and floors
-RemoveCaliforniaSiteDesign:
+RemoveSiteDesign:
   schema_file: "site_hierarchy/schema/sites_schema.yml"
   playbook: "site_hierarchy/playbook/delete_site_hierarchy_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_hierarchy_design.yml"
+  data_file: "data_deletetion/site_hierarchy_design.yml"
 
 # Add Global Network Settings Global IP Pools
-RemoveGlobalNetworkSettingsGlobalIPPools:
+RemoveNetworkSettingsGlobalIPPools:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/delete_network_settings_playbook.yml"
-  data_file: "catc_delete_configs/global/network_settings_global_ip_pools.yml"
+  data_file: "data_deletetion/network_settings_global_ip_pools.yml"
 # Wireless Network profile for the site
 
-CaliforniaSiteWirelessNetworkProfile:
+RemoveWirelessNetworkProfile:
   schema_file: "network_profile_wireless/schema/network_profile_wireless_schema.yml"
   playbook: "network_profile_wireless/playbook/network_profile_wireless_playbook.yml"
-  data_file: "catc_delete_configs/sites/california/site_nw_profile_wireless.yml"
+  data_file: "data_deletetion/site_nw_profile_wireless.yml"
 
 # Wireless Network Settings for the site
-RemoveCaliforniaSiteWirelessNetworkSettings:
+RemoveWirelessDesign:
   schema_file: "wireless_design/schema/wireless_design_schema.yml"
   playbook: "wireless_design/playbook/delete_wireless_design_playbook.yml"
-  data_file: "catc_delete_configs/global/network_settings_wireless.yml"
+  data_file: "data_deletetion/network_settings_wireless.yml"
 
 # Add Global Network Settings servers
 RemoveGlobalNetworkSettingsServers:
   schema_file: "network_settings/schema/nw_settings_schema.yml"
   playbook: "network_settings/playbook/delete_network_settings_playbook.yml"
-  data_file: "catc_delete_configs/global/network_settings_servers.yml"
+  data_file: "data_deletetion/network_settings_servers.yml"
 
 # Integrate Catalyst Center with ISE for Radius Authentication, and Add AAA Servers.
-RemoveCatalystCenterAndISEIntegration:
+RemoveISEIntegration:
   schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
   playbook: "ise_radius_integration/playbook/delete_ise_radius_integration_workflow_playbook.yml"
-  data_file: "catc_delete_configs/global/catalyst_center_and_ise_integration.yml"
+  data_file: "data_deletetion/catalyst_center_and_ise_integration.yml"
 
 #Create users ROLES, Users and assign users to roles (RBAC) functionallity
 RemoveRolesAndUsers:
   schema_file: "users_and_roles/schema/users_and_roles_workflow_schema.yml"
   playbook: "users_and_roles/playbook/delete_users_and_roles_workflow_playbook.yml"
-  data_file: "catc_delete_configs/global/roles_and_users.yml"
+  data_file: "data_deletetion/roles_and_users.yml"
 
 # usecase_data.yaml
 # Create global device credentials can be used across sites
 RemoveGlobalCredentials:
   schema_file: "device_credentials/schema/device_credentials_schema.yml"
   playbook: "device_credentials/playbook/delete_device_credentials_playbook.yml"
-  data_file: "catc_delete_configs/global/device_credentials.yml"
+  data_file: "data_deletetion/device_credentials.yml"
 

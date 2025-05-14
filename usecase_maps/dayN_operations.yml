@@ -1,47 +1,47 @@
 #Provision the devices on sites
-CaliforniaSiteDevicesProvision:
+DevicesProvision:
   schema_file: "provision/schema/provision_workflow_schema.yml"
   playbook: "provision/playbook/provision_workflow_playbook.yml"
-  data_file: "catc_configs/sites/california/site_devices_provision.yml"
+  data_file: "data/site_devices_provision.yml"
 
 # SWIM Upgrade the devices on sites
-CaliforniaSiteSWIMDevicesUpgrade:
+SWIMDevicesUpgrade:
   schema_file: "swim/schema/swim_schema.yml"
   playbook: "swim/playbook/swim_workflow_playbook.yml"
-  data_file: "catc_configs/sites/california/site_swim.yml"
+  data_file: "data/site_swim.yml"
 
 # SWIM Upgrade the devices on sites
-CaliforniaSiteNetworkCompliance:
+NetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
   playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
-  data_file: "catc_configs/sites/california/site_network_complliance.yml"
+  data_file: "data/site_network_complliance.yml"
 
 # Create the Extranet Policies for the Fabric site
 AccessPointProvision:
   schema_file: "accesspoints_configuration_provisioning/schema/accesspoints_config_schema.yml"
   playbook: "accesspoints_configuration_provisioning/playbook/accesspoints_config_playbook.yml"
-  data_file: "catc_configs/sites/california/site_access_point_provision.yml"
+  data_file: "data/site_access_point_provision.yml"
 
 # Create the Extranet Policies for the Fabric site
 DeviceTemplatesProvision:
   schema_file: "device_templates/schema/template_workflow_schema.yml"
   playbook: "device_templates/playbook/template_workflow_playbook.yml"
-  data_file: "catc_configs/sites/california/site_device_templates.yml"
+  data_file: "data/site_device_templates.yml"
 
 # # Create the Extranet Policies for the Fabric site
 SiteSBENOnboarding:
   schema_file: "device_templates/schema/template_workflow_schema.yml"
-  playbook: "./../../CatC_SD_Access_campus/playbooks/sap_sben_playbook.yml"
-  data_file: "catc_configs/sites/california/site_sben_onboarding.yml"
+  playbook: "./../playbooks/sap_sben_playbook.yml"
+  data_file: "data/site_sben_onboarding.yml"
 
 # Run pathtrace on the devices
 AssurancePathTrace:
   schema_file: "assurance_pathtrace/schema/assurance_pathtrace_schema.yml"
   playbook: "assurance_pathtrace/playbook/assurance_pathtrace_playbook.yml"
-  data_file: "catc_configs/sites/california/day_n_assurance_pathtrace.yml"
+  data_file: "data/day_n_assurance_pathtrace.yml"
 
 # Create custom assurance_health_score_settings
 AssuranceHealthScoreSettings:
   schema_file: "assurance_health_score_settings/schema/assurance_health_score_settings_schema.yml"
   playbook: "assurance_health_score_settings/playbook/assurance_health_score_settings_playbook.yml"
-  data_file: catc_configs/global/assurance_healthscore_settings.yml
+  data_file: data/assurance_healthscore_settings.yml

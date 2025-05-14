@@ -22,8 +22,3 @@ wireless_nw_profiles_details:
         rf_profile_name: "TYPICAL"
         ssids:
           - "iac-guests"
-    # additional_interfaces:
-    #   - interface_name: "Corp_Interface_1"
-    #     vlan_id: 100
-    #   - interface_name: "Guest_Interface_1"
-    #     vlan_id: 3002
