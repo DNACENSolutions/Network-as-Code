@@ -1,0 +1,72 @@
+
+# This file contains the usecases for Day 0 configurations, RBAC, Integration, Design and Discovery
+#Create users ROLES, Users and assign users to roles (RBAC) functionallity
+RolesAndUsers:
+  schema_file: "users_and_roles/schema/users_and_roles_workflow_schema.yml"
+  playbook: "users_and_roles/playbook/users_and_roles_workflow_playbook.yml"
+  data_file: "data/roles_and_users.yml"
+
+# Integrate Catalyst Center with ISE for Radius Authentication, and Add AAA Servers.
+ISEIntegration:
+  schema_file: "ise_radius_integration/schema/ise_radius_integration_workflow_schema.yml"
+  playbook: "ise_radius_integration/playbook/ise_radius_integration_workflow_playbook.yml"
+  data_file: "data/catalyst_center_and_ise_integration.yml"
+
+# Create global device credentials can be used across sites
+GlobalCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "data/device_credentials.yml"
+
+# Devices discovery for the site
+DevicesDiscovery:
+  schema_file: "device_discovery/schema/device_discovery_schema.yml"
+  playbook: "device_discovery/playbook/device_discovery_playbook.yml"
+  data_file: "data/site_device_discovery.yml"
+
+# Add Global Network Settings servers
+GlobalNetworkSettingsServers:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "data/network_settings_servers.yml"
+
+# Add Global Network Settings Global IP Pools
+GlobalNetworkSettingsGlobalIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "data/network_settings_global_ip_pools.yml"
+
+# SiteDesign California, area, building and floors
+SitesDesign:
+  schema_file: "site_hierarchy/schema/sites_schema.yml"
+  playbook: "site_hierarchy/playbook/site_hierarchy_playbook.yml"
+  data_file: "data/site_hierarchy_design.yml"
+
+# SiteDeviceCredentials California
+SitesDeviceCredentials:
+  schema_file: "device_credentials/schema/device_credentials_schema.yml"
+  playbook: "device_credentials/playbook/device_credentials_playbook.yml"
+  data_file: "data/site_device_credentials.yml"
+
+#  Design and customize network settings for the site.
+SitesNetworkSettings:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "data/site_network_settings_servers.yml"
+
+# Design and reserve the IP Pools for the site
+SitesNetworkSettingsIPPools:
+  schema_file: "network_settings/schema/nw_settings_schema.yml"
+  playbook: "network_settings/playbook/network_settings_playbook.yml"
+  data_file: "data/site_nw_settings_ippools.yml"
+# Wireless Network Settings for the site
+SitesWirelessNetworkSettings:
+  schema_file: "wireless_design/schema/wireless_design_schema.yml"
+  playbook: "wireless_design/playbook/wireless_design_playbook.yml"
+  data_file: "data/network_settings_wireless.yml"
+
+# Wireless Network profile for the site
+SitesWirelessNetworkProfile:
+  schema_file: "network_profile_wireless/schema/network_profile_wireless_schema.yml"
+  playbook: "network_profile_wireless/playbook/network_profile_wireless_playbook.yml"
+  data_file: "data/site_nw_profile_wireless.yml"

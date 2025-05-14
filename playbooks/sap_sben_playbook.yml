@@ -18,14 +18,14 @@
       config_verify: "{{ catalyst_center_config_verify | default(False) }}"
       dnac_debug: "{{ catalyst_center_debug | default(False) }}"
       dnac_log: "{{ catalyst_center_log | default(False) }}"
-      dnac_log_level: "{{ catalyst_center_log_level | default('INFO') }}"   
+      dnac_log_level: "{{ catalyst_center_log_level | default('INFO') }}"
       dnac_log_file_path: "{{ catalyst_center_log_file_path |  default(omit) }}"
       dnac_log_append: "{{ catalyst_center_log_append |  default(False) }}"
     catalyst_center_url: "https://{{ catalyst_center_host }}:443"
     credentials: "{{ catalyst_center_username }}:{{ catalyst_center_password  }}"
     authentication: "Basic {{ credentials | b64encode }}"
   tasks:
-    # fetch Catalyst Center token 
+    # fetch Catalyst Center token
     - name: Authenticate with DNA Center
       uri:
         url: "{{ catalyst_center_url }}/dna/system/api/v1/auth/token"
@@ -36,14 +36,14 @@
         validate_certs: "{{ catalyst_center_config_verify | default(False) }}"
         status_code: 200
       register: auth_response
-      tags: 
+      tags:
         - pnp
         - device_info
         - deploy
     - name: Parse DNA Center Authentication Token
       set_fact:
         dnac_auth_token: "{{ auth_response.json.Token }}"
-      tags: 
+      tags:
         - pnp
         - device_info
         - deploy
@@ -56,7 +56,7 @@
       register: pnp_devices_output
       ignore_errors: true
       when: pnp_details is defined
-      tags: 
+      tags:
         - pnp
     # Print the network devices output
     - name: Print the pnp network devices output
