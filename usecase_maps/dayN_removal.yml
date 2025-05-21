@@ -3,7 +3,7 @@
 DeleteExistingPathTraces:
   schema_file: "assurance_pathtrace/schema/assurance_pathtrace_schema.yml"
   playbook: "assurance_pathtrace/playbook/delete_assurance_pathtrace_playbook.yml"
-  data_file: "data_deletion/day_n_assurance_pathtrace.yml"
+  data_file: "data/day_n_assurance_pathtrace.yml"
 
 # Create the Extranet Policies for the Fabric site
 RemoveExtranetPolicies:
@@ -75,7 +75,7 @@ DeletePnpDevices:
 RemoveApplicationPolicy:
   schema_file: "application_policy/schema/application_policy_schema.yml"
   playbook: "application_policy/playbook/delete_application_policy_playbook.yml"
-  data_file: "data_deletion/site_application_policy.yml"
+  data_file: "data/site_application_policy.yml"
 
 # Devices  Inventory for the site
 DeleteDevicesFromInventory:
@@ -155,4 +155,3 @@ RemoveGlobalCredentials:
   schema_file: "device_credentials/schema/device_credentials_schema.yml"
   playbook: "device_credentials/playbook/delete_device_credentials_playbook.yml"
   data_file: "data_deletion/device_credentials.yml"
-
