@@ -12,7 +12,7 @@ from genie.testbed import load
 from pyats.easypy import run
 import requests
 from pyats.easypy import runtime
-
+suported_versions = ['2.3.5.3','2.3.7.5','2.3.7.6','2.3.7.9','3.1.3.0','3.1.3.5','3.2.0.0']
 SCRIPT_PATH = './job/ansible_test_script.py'
 CONFIG_FILE = './job/ansible_test_script.py'
 def main():
@@ -51,6 +51,15 @@ def main():
     logdir = runtime.directory
     for key in hostfile['catalyst_center_hosts']['hosts'].keys():
         if args.catcversion:
+            if args.catcversion not in suported_versions:
+                #Search the nearest supported version which is just below the version passed in the command line
+                #for example if 2.3.7.10 is passed in the command line, then 2.3.7.9 is the nearest supported version
+                index=0
+                for version in suported_versions:
+                    index += 1
+                    if version > args.catcversion:
+                        args.catcversion = suported_versions[index-1]
+                        break        
             hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = True
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + "/dnac_log.log"

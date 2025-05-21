@@ -14,7 +14,7 @@ SWIMDevicesUpgrade:
 NetworkCompliance:
   schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
   playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
-  data_file: "data/site_network_complliance.yml"
+  data_file: "data/site_network_compliance.yml"
 
 # Create the Extranet Policies for the Fabric site
 AccessPointProvision:
