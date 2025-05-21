@@ -187,14 +187,16 @@ def main():
             print("1. Validate")
             print("2. Execute")
             print("3. Validate and Execute")
-            print("4. Exit")
+            print("4. Print all usecases in this mapfile")
+            print("5. Exit")
             option = input("Enter your choice: ")
 
-            if option == "4":
+            if option == "5":
                 print("Exiting...")
                 break
-
-            print("\nSelect a use case to run:")
+            if option == "4":
+                print(f"\nAvailable use cases:\n{list(usecase_data.keys())}")
+                continue
             for i, usecase_name in enumerate(usecase_data.keys()):
                 print(f"{i+1}. {usecase_name}")
                 #print(f"Description: {usecase_data[usecase_name]['description']}")

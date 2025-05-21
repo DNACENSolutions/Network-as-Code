@@ -36,7 +36,7 @@ def main():
                         type = int, default = 1)
     # parse CATCVERSION
     parser.add_argument('--release', dest = 'catcversion', 
-                        type = str, default = '2.3.7.9')
+                        type = str, default = None)
     
     args, unknown = parser.parse_known_args()
     
@@ -49,7 +49,8 @@ def main():
     #         catalyst_center_version: 2.3.7.9
     logdir = runtime.directory
     for key in hostfile['catalyst_center_hosts']['hosts'].keys():
-        hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
+        if args.catcversion:
+            hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_version'] = args.catcversion
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_append'] = True
         hostfile['catalyst_center_hosts']['hosts'][key]['catalyst_center_log_file_path'] = logdir + "/dnac_log.log"
         
