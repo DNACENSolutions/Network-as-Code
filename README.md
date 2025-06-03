@@ -366,12 +366,12 @@ Install CatC_SD_Access_campus using one of the following methods:
 
 1. Clone the CatC_SD_Access_campus.git repository:
 ```sh
-❯ git clone https://github.com/DNACENSolutions/CatC_SD_Access_campus.git
+❯ git clone https://github.com/DNACENSolutions/Network-as-Code.git
 ```
 
 2. Navigate to the project directory:
 ```sh
-❯ cd CatC_SD_Access_campus
+❯ cd Network-as-Code
 ```
 
 3. Install the project dependencies:
