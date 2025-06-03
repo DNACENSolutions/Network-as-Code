@@ -5,10 +5,10 @@
 	<em><code>❯ Catalyst Center SDA Fabric Bringup with Cisco Validated Ansible Playbooks</code></em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/github/license/DNACENSolutions/CatC_SD_Access_campus.git?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/DNACENSolutions/CatC_SD_Access_campus.git?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/DNACENSolutions/CatC_SD_Access_campus.git?style=default&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/DNACENSolutions/CatC_SD_Access_campus.git?style=default&color=0080ff" alt="repo-language-count">
+	<img src="https://img.shields.io/github/license/DNACENSolutions/Network-as-Code.git?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/DNACENSolutions/Network-as-Code.git?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/DNACENSolutions/Network-as-Code.git?style=default&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/DNACENSolutions/Network-as-Code.git?style=default&color=0080ff" alt="repo-language-count">
 </p>
 <p align="center"><!-- default option, no dependency badges. -->
 </p>
@@ -84,38 +84,40 @@ Any changes required to be done in the network can be updated in the configurati
 the Updated configurations into Catalyst Center.
 
 ### Fabric Sites and Topology
-![SDA Fabric Topology](#images/SDAccessFabric.png)
+![SDA Fabric Topology](images/SDAccessFabric.png)
 
 ##  Project Structure
 ```sh
-└── CatC_SD_Access_campus.git/
+└── Network-as-Code/
     ├── ansible.cfg
-    ├── ansible_inventory
+    ├── ansible_inventory/
     │   └── catalystcenter_inventory
-    ├── catc_configs
-    │   ├── global
-    |   |   └── YAML Input files for Catalyst Center Global Configurations, i.e. ISE Integrations, Global Credentials, Global IP Pools etc. 
-    │   └── sites
-    |        |── California
-    |        |    |── floor_images
-    |        |    |	└── Site Floor image files: pdf, jpeg, jpg or png ext Floor images files to be uploaded on the floors.
-    |        |    |        The location of each file is to be specified in the site hierarchy design input file unser floor inputs
-    |        |    └── YAML Input files for configuration for Sites California
-    |        |       These input files are named to easiy map with the corresponding configurations in the Catalyst Center.
-    |        └── New York
-    |        └── <Other Sites> 
-    ├── images
+    ├── data/
+    │   ├── floor_images/
+    │   │   └── *. (pdf, jpeg, jpg, png) Site Floor image files
+    │   └── *.yml (YAML Input files for Catalyst Center configurations. These are used to create the corresponding configurations in Catalyst Center.)
+    ├── images/
+    │   ├── AnchorVN_on_ClientSite.png
     │   ├── CCO_swim_image_download.png
     │   ├── CatC_Ise_AAA-Intg.png
     │   ├── CatC_Ise_AAA-Intg1.png
+    │   ├── Catalyst_center_SDA_Fabric.png
+    │   ├── Device_EULA_license_acceptance.png
+    │   ├── Device_compliance_and_Fixes.png
     │   ├── NW_Global_ip_pool.png
+    │   ├── SDA_Border_ip_sda_transits.png
+    │   ├── SDA_Fabric_L3Handoff.png
+    │   ├── SDAccessFabric.png
+    │   ├── SDAccess_Fabric_bringup.png
+    │   ├── SWIM_tasks_imported_images.png
     │   ├── inventory_image_distribution_activation.png
+    │   ├── reserve_ip_pools_at_sites.png
     │   └── site_nw_ip_pools.png
     ├── requirements.txt
-    ├── scripts
+    ├── scripts/
     │   └── run_playbooks.py
     ├── setup.sh
-    └── usecase_maps
+    └── usecase_maps/
         ├── delete_confis_sda_fabric.yml
         └── sda_site_fabric_bringup_usecase.yml
 ```
@@ -123,17 +125,17 @@ the Updated configurations into Catalyst Center.
 
 ###  Project Index
 <details open>
-	<summary><b><code>CATC_SD_ACCESS_CAMPUS.GIT/</code></b></summary>
+	<summary><b><code>Network-as-Code/</code></b></summary>
 	<details> <!-- __root__ Submodule -->
 		<summary><b>__root__</b></summary>
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/setup.sh'>setup.sh</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/setup.sh'>setup.sh</a></b></td>
 				<td><code>❯ Setup script to create your python environment and install Catalyst Center Python SDK (dnacentersdk) and Ansible collection (cisco.dnac)</code></td>
 			</tr>
 			<tr>
-				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/requirements.txt'>requirements.txt</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/requirements.txt'>requirements.txt</a></b></td>
 				<td><code>❯ This file contains the required python modules. This file is used by setup.sh script</code></td>
 			</tr>
 			</table>
@@ -144,7 +146,7 @@ the Updated configurations into Catalyst Center.
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/scripts/run_playbooks.py'>run_playbooks.py</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/scripts/run_playbooks.py'>run_playbooks.py</a></b></td>
 				<td><code>❯ This Python tool is to run the Ansible playbooks with Inputs files preprogrammed in the usecase_maps files. The Tools lets you choose option to Validate the inout, Execute the playbook for do both. Further it give option for user to run the Catalyst Center Configuration usecases in a group, indivisual usecase or all the usecase in the order specified in the input file selected from usecase_maps directory.</code></td>
 			</tr>
 			</table>
@@ -153,8 +155,8 @@ the Updated configurations into Catalyst Center.
 	<details> <!-- usecase_maps Submodule -->
 		<summary><b>usecase_maps This Directory contain yaml file where you can organize your configuration bringup, update or deletion sequences and bundle them as usecase which can be run using scripts/run_playbooks.py. The Order during execution is maintained as given in the this yaml file. 
 		Defining a new usecase in existing file or new file:
-		1. GIve a name to the usecase
-		2. Give the playbvook Location
+		1. Give a name to the usecase
+		2. Give the playbook Location
 		3. Give the schema file location
 		4. Provide the input for this usecase
 		Example:
@@ -162,129 +164,176 @@ the Updated configurations into Catalyst Center.
 			CaliforniaSiteNetworkCompliance:
 			schema_file: "network_compliance/schema/network_compliance_workflow_schema.yml"
 			playbook: "network_compliance/playbook/network_compliance_workflow_playbook.yml"
-			data_file: "catc_configs/sites/california/site_network_complliance.yml"
+			data_file: "data/site_network_compliance.yml"
 		 </b></summary>
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/sda_site_fabric_bringup_usecase.yml'>sda_site_fabric_bringup_usecase.yml</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/usecase_maps/sda_site_fabric_bringup_usecase.yml'>sda_site_fabric_bringup_usecase.yml</a></b></td>
 				<td><code>❯ This yaml file contain usecase which are to bringup confguration on the catalyst Center. You are free to add more usecases for your need.</code></td>
 			</tr>
 			<tr>
-				<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/usecase_maps/delete_confis_sda_fabric.yml'>delete_confis_sda_fabric.yml</a></b></td>
+				<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/usecase_maps/delete_confis_sda_fabric.yml'>delete_confis_sda_fabric.yml</a></b></td>
 				<td><code>❯ This file contain usecase for removing configurations from catalyst Center for the California site. Delete playbooks are used to remove configurations. </code></td>
 			</tr>
 			</table>
 		</blockquote>
 	</details>
-	<details> <!-- catc_configs Submodule -->
-		<summary><b>catc_configs</b></summary>
+	<details> <!-- data Submodule -->
+		<summary><b>data</b> <code>❯ Catalyst Center YAML input files & assets. These files are used to create the corresponding configurations in Catalyst Center.</code></summary>
 		<blockquote>
 			<details>
-				<summary><b>global</b></summary>
+				<summary><b>floor_images</b></summary>
 				<blockquote>
 					<table>
 					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/network_settings_servers.yml'>network_settings_servers.yml</a></b></td>
-						<td><code>❯ These configurations are network setting for Servers like AAA, NTP etc and also telemetry configuration to be configuration at global level.</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/device_credentials.yml'>device_credentials.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/catalyst_center_and_ise_integration.yml'>catalyst_center_and_ise_integration.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/network_settings_global_ip_pools.yml'>network_settings_global_ip_pools.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/swim_cco_image_tag.yml'>swim_cco_image_tag.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/global/roles_and_users.yml'>roles_and_users.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
+						<td><b>floor_images/</b></td>
+						<td><code>❯ Dir: Site floor images (pdf, jpg, png) to be uploaded to floors.</code></td>
 					</tr>
 					</table>
 				</blockquote>
 			</details>
-			<details>
-				<summary><b>sites</b></summary>
+			<details open>
+				<summary><b>Input Files (*.yml)</b></summary>
 				<blockquote>
-					<details>
-						<summary><b>california</b></summary>
-						<blockquote>
-							<table>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_devices.yml'>site_sda_fabric_devices.yml</a></b></td>
-								<td><code>❯ This files contains configurations required to create your desired fabric devices in fabric sites. Here you can provide details of your fabric sites with roles and other setting. The Border router shuld be provided with L3 and L2 Handoff details if needed to be added on that border.</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_network_settings_servers.yml'>site_network_settings_servers.yml</a></b></td>
-								<td><code>❯ This file contains network Settings configuration required to be customized at this fabric site.</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_sites_zones.yml'>site_sda_fabric_sites_zones.yml</a></b></td>
-								<td><code>❯ This files contains configurations required to create your desired Fabric sites and fabric Zones.</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_swim.yml'>site_swim.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_anchor_vns.yml'>site_sda_fabric_anchor_vns.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_inventory.yml'>site_inventory.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_device_discovery.yml'>site_device_discovery.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/swim_distribution_activate.yml'>swim_distribution_activate.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_devices_provision.yml'>site_devices_provision.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_nw_settings_ippools.yml'>site_nw_settings_ippools.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_hierarchy_design.yml'>site_hierarchy_design.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_vn_l2l3_gateways.yml'>site_sda_fabric_vn_l2l3_gateways.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_transits.yml'>site_sda_transits.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_device_credentials.yml'>site_device_credentials.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_network_compliance.yml'>site_network_compliance.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/catc_configs/sites/california/site_sda_fabric_hostonboarding.yml'>site_sda_fabric_hostonboarding.yml</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							</table>
-						</blockquote>
-					</details>
+					<table>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/assurance_healthscore_settings.yml'>assurance_healthscore_settings.yml</a></b></td>
+						<td><code>❯ Input: Assurance healthscore settings.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/catalyst_center_and_ise_integration.yml'>catalyst_center_and_ise_integration.yml</a></b></td>
+						<td><code>❯ Input: Catalyst Center and ISE integration settings.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/day_n_assurance_pathtrace.yml'>day_n_assurance_pathtrace.yml</a></b></td>
+						<td><code>❯ Input: Day-N assurance path trace configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/device_credentials.yml'>device_credentials.yml</a></b></td>
+						<td><code>❯ Input: Global device credentials.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/network_settings_global_ip_pools.yml'>network_settings_global_ip_pools.yml</a></b></td>
+						<td><code>❯ Input: Global network IP pools.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/network_settings_servers.yml'>network_settings_servers.yml</a></b></td>
+						<td><code>❯ Input: Global network server settings (AAA, NTP, etc.).</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/network_settings_wireless.yml'>network_settings_wireless.yml</a></b></td>
+						<td><code>❯ Input: Global wireless network settings.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/roles_and_users.yml'>roles_and_users.yml</a></b></td>
+						<td><code>❯ Input: Roles and user accounts for Catalyst Center.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_access_point_provision.yml'>site_access_point_provision.yml</a></b></td>
+						<td><code>❯ Input: Site-specific access point provisioning.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_application_policy.yml'>site_application_policy.yml</a></b></td>
+						<td><code>❯ Input: Site application policy configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_device_credentials.yml'>site_device_credentials.yml</a></b></td>
+						<td><code>❯ Input: Site-specific device credentials.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_device_discovery.yml'>site_device_discovery.yml</a></b></td>
+						<td><code>❯ Input: Site device discovery configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_device_templates.yml'>site_device_templates.yml</a></b></td>
+						<td><code>❯ Input: Site device template configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_devices_pnp_onboarding.yml'>site_devices_pnp_onboarding.yml</a></b></td>
+						<td><code>❯ Input: Site PnP device onboarding.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_devices_provision.yml'>site_devices_provision.yml</a></b></td>
+						<td><code>❯ Input: Site device provisioning configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_hierarchy_design.yml'>site_hierarchy_design.yml</a></b></td>
+						<td><code>❯ Input: Site hierarchy design (areas, buildings, floors).</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_inventory.yml'>site_inventory.yml</a></b></td>
+						<td><code>❯ Input: Site inventory configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_network_compliance.yml'>site_network_compliance.yml</a></b></td>
+						<td><code>❯ Input: Site network compliance configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_network_settings_servers.yml'>site_network_settings_servers.yml</a></b></td>
+						<td><code>❯ Input: Site-specific network server settings.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_nw_profile_wireless.yml'>site_nw_profile_wireless.yml</a></b></td>
+						<td><code>❯ Input: Site wireless network profile settings.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_nw_settings_ippools.yml'>site_nw_settings_ippools.yml</a></b></td>
+						<td><code>❯ Input: Site-specific network IP pools.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sben_onboarding.yml'>site_sben_onboarding.yml</a></b></td>
+						<td><code>❯ Input: Site sensor-based endpoint onboarding.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_anchor_vns.yml'>site_sda_fabric_anchor_vns.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric anchor VN configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_devices.yml'>site_sda_fabric_devices.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric device configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_devices_anchor_vn_handoff.yml'>site_sda_fabric_devices_anchor_vn_handoff.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric device anchor VN handoff.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_extranet_policies.yml'>site_sda_fabric_extranet_policies.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric extranet policies.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_hostonboarding.yml'>site_sda_fabric_hostonboarding.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric host onboarding.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_multicast.yml'>site_sda_fabric_multicast.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric multicast configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_sites_zones.yml'>site_sda_fabric_sites_zones.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric sites and zones.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_fabric_vn_l2l3_gateways.yml'>site_sda_fabric_vn_l2l3_gateways.yml</a></b></td>
+						<td><code>❯ Input: Site SDA fabric VN L2/L3 gateway configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_sda_transits.yml'>site_sda_transits.yml</a></b></td>
+						<td><code>❯ Input: Site SDA transit configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/site_swim.yml'>site_swim.yml</a></b></td>
+						<td><code>❯ Input: Site SWIM (Software Image Management) configurations.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/swim_cco_image_tag.yml'>swim_cco_image_tag.yml</a></b></td>
+						<td><code>❯ Input: SWIM CCO image tagging.</code></td>
+					</tr>
+					<tr>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/data/swim_distribution_activate.yml'>swim_distribution_activate.yml</a></b></td>
+						<td><code>❯ Input: SWIM image distribution and activation.</code></td>
+					</tr>
+					</table>
 				</blockquote>
 			</details>
 		</blockquote>
@@ -297,7 +346,7 @@ the Updated configurations into Catalyst Center.
 				<blockquote>
 					<table>
 					<tr>
-						<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml'>hosts.yml</a></b></td>
+						<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/hosts.yml'>hosts.yml</a></b></td>
 						<td><code>❯ This is a sample Host file to be created for your Catalyst Center to be able to run the existing playbooks.
 						Sample Inventory file
 							---
@@ -324,7 +373,7 @@ the Updated configurations into Catalyst Center.
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/group_vars/all.yml'>all.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/group_vars/all.yml'>all.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							</table>
@@ -335,7 +384,7 @@ the Updated configurations into Catalyst Center.
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/host_vars/dnac1.yml'>dnac1.yml</a></b></td>
+								<td><b><a href='https://github.com/DNACENSolutions/Network-as-Code.git/blob/master/ansible_inventory/catalystcenter_inventory_10.195.243.53/host_vars/dnac1.yml'>dnac1.yml</a></b></td>
 								<td><code>❯ REPLACE-ME</code></td>
 							</tr>
 							</table>
@@ -383,6 +432,10 @@ Install CatC_SD_Access_campus using one of the following methods:
 ❯ source setup.sh
 ```
 
+4. Update the ansible_inventory/catalystcenter_inventory/hosts.yml file with your Catalyst Center details.
+```sh
+❯ vi ansible_inventory/catalystcenter_inventory/hosts.yml
+```
 ###  Usage
 Run CatC_SD_Access_campus using the following command:
 **Using `Python3`** &nbsp; [<img align="center" src="" />]()
@@ -390,13 +443,13 @@ Run CatC_SD_Access_campus using the following command:
 ```sh
 ❯ python3 scripts/run_playbooks.py
 ```
+### Update the corresponding data file to your inputs or replace with your clusters content
 #### ISE Integration
 Post Running ISE AAA Integration you can validate in the Catalyst Center UI
 
 
 ### SDA FABRIC UI SNAPSHOTS
 Post running the SDA usecases, you can validate through UI that the configurations are reflecting in the UI.
-
 
 Follow the prompts. 
 ---
@@ -406,9 +459,9 @@ Follow the prompts.
 
 ##  Contributing
 
-- **💬 [Join the Discussions](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/issues)**: Submit bugs found or log feature requests for the `CatC_SD_Access_campus.git` project.
-- **💡 [Submit Pull Requests](https://github.com/DNACENSolutions/CatC_SD_Access_campus.git/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **💬 [Join the Discussions](https://github.com/DNACENSolutions/Network-as-Code/discussions)**: Share your insights, provide feedback, or ask questions.
+- **🐛 [Report Issues](https://github.com/DNACENSolutions/Network-as-Code/issues)**: Submit bugs found or log feature requests for the `Network-as-Code` project.
+- **💡 [Submit Pull Requests](https://github.com/DNACENSolutions/Network-as-Code/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
@@ -416,7 +469,7 @@ Follow the prompts.
 1. **Fork the Repository**: Start by forking the project repository to your github account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone https://github.com/DNACENSolutions/CatC_SD_Access_campus.git
+   git clone https://github.com/DNACENSolutions/Network-as-Code.git
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
@@ -439,8 +492,8 @@ Follow the prompts.
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://github.com{/DNACENSolutions/CatC_SD_Access_campus.git/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=DNACENSolutions/CatC_SD_Access_campus.git">
+   <a href="https://github.com{/DNACENSolutions/Network-as-Code/}graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=DNACENSolutions/Network-as-Code">
    </a>
 </p>
 </details>
