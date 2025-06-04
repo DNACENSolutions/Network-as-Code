@@ -42,6 +42,7 @@ fi
 cd ./../catc_ansible_workflows
 git pull
 cd -
+touch ~/.vault_pass.txt
 # check if the path ./../ansible_logs exists, if not create the dir
 [ -d ./../ansible_logs ] || mkdir ./../ansible_logs
 [ -d ./../catc_logs ] || mkdir ./../catc_logs
