@@ -1,5 +1,6 @@
 import subprocess
 import os
+import sys
 import yaml
 import datetime
 import argparse
@@ -21,6 +22,69 @@ def read_usecase_data(yaml_file):
         return None
     except yaml.YAMLError as e:
         print(f"Error parsing YAML file: {e}")
+        return None
+
+def strip_yaml_values(data):
+    """
+    Recursively traverses a YAML data structure (dict or list)
+    and strips leading/trailing whitespace from all string values.
+    """
+    if isinstance(data, dict):
+        # If it's a dictionary, apply stripping to each value
+        return {key: strip_yaml_values(value) for key, value in data.items()}
+    elif isinstance(data, list):
+        # If it's a list, apply stripping to each item
+        return [strip_yaml_values(item) for item in data]
+    elif isinstance(data, str):
+        # If it's a string, strip whitespace
+        return data.strip()
+    else:
+        # For any other data type (int, float, bool, None), return as is
+        return data
+
+# Function to read and strip YAML file
+def read_and_strip_yaml(yaml_file):
+    """
+    Reads a YAML file and strips leading/trailing whitespace from all string values.
+    Returns the stripped data.
+    """
+    try:
+        # Read the input YAML file
+        with open(yaml_file, 'r', encoding='utf-8') as f:
+            # Using SafeLoader for security, as it only loads basic YAML structures
+            # FullLoader can execute arbitrary Python code if the YAML is malicious.
+            yaml_content = yaml.load(f, Loader=yaml.SafeLoader)
+            print(f"Successfully read and parsed '{yaml_file}'.")
+    except FileNotFoundError:
+        print(f"Error: Input file '{yaml_file}' not found.")
+        return None
+    except yaml.YAMLError as e:
+        print(f"Error: Could not parse YAML file '{yaml_file}'.", file=sys.stderr)
+        print(f"Details: {e}", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred while reading the file: {e}", file=sys.stderr)
+        return None
+    if yaml_content is None:
+        print("Input YAML file is empty or contains only comments. Output will be empty.")
+        processed_content = None
+    else:
+        # Process the YAML content to strip whitespace from string values
+        print("Processing YAML content...")
+        processed_content = strip_yaml_values(yaml_content)
+        print("YAML content processed.")
+    # Write the processed content to the output YAML file
+    try:
+        with open(yaml_file, 'w', encoding='utf-8') as f:
+            # Using SafeDumper to avoid executing arbitrary code
+            yaml.dump(processed_content, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        print(f"Successfully wrote processed content to '{yaml_file}'.")
+    except FileNotFoundError:
+        print(f"Error: Output file '{yaml_file}' not found.")
+        return None
+    except yaml.YAMLError as e:
+        print(f"Error: Could not write to YAML file '{yaml_file}'.", file=sys.stderr)
+        print(f"Details: {e}", file=sys.stderr)
         return None
 
 def validate_schema(usecase_name, usecase_data):
@@ -187,14 +251,15 @@ def main():
             print("1. Validate")
             print("2. Execute")
             print("3. Validate and Execute")
-            print("4. Print all usecases in this mapfile")
-            print("5. Exit")
+            print("4. Remove Extra spaces in YAML file")
+            print("5. Print all usecases in this mapfile")
+            print("6. Exit")
             option = input("Enter your choice: ")
 
-            if option == "5":
+            if option == "6":
                 print("Exiting...")
                 break
-            if option == "4":
+            if option == "5":
                 print(f"\nAvailable use cases:\n{list(usecase_data.keys())}")
                 continue
             for i, usecase_name in enumerate(usecase_data.keys()):
@@ -231,8 +296,12 @@ def main():
                     elif option == "3":
                         validate_schema(usecase_name, usecase_data)
                         execute_playbook(usecase_name, usecase_data, verbose_level=verbose_level)
+                    elif option == "4":
+                        read_and_strip_yaml(os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"]))
+                        print("Extra spaces removed from YAML file.")
                     else:
                         print("Invalid option. Please try again.")
+                        break
 
             except (ValueError, IndexError) as e:
                 print(f"Invalid input: {e}. Please try again.")

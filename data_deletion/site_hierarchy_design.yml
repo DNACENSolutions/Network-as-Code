@@ -1,25 +1,23 @@
----
-#Select Catalyst Cennter version, this one overwrite the default version from host file
 catalyst_center_version: 2.3.7.6
 catalyst_center_verify: false
 design_sites:
-  - site:
-      area:
-        name: SAN-FRANCISCO
-        parent_name: Global/USA
-    type: area
-  - site:
-      area:
-        name: SAN JOSE
-        parent_name: Global/USA
-    type: area
-  - site:
-      area:
-        name: California
-        parent_name: Global/USA
-    type: area
-  - site:
-      area:
-        name: New York
-        parent_name: Global/USA
-    type: area
+- site:
+    area:
+      name: SAN-FRANCISCO
+      parent_name: Global/USA
+  type: area
+- site:
+    area:
+      name: SAN JOSE
+      parent_name: Global/USA
+  type: area
+- site:
+    area:
+      name: California
+      parent_name: Global/USA
+  type: area
+- site:
+    area:
+      name: New York
+      parent_name: Global/USA
+  type: area

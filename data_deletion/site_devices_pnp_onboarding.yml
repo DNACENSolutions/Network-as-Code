@@ -1,10 +1,7 @@
 pnp_details:
   network_devices:
-    - device_info:
-      - serial_number: FOX2639PAYD
-  network_devices:
-    - device_info:
-      - serial_number: FXS2502Q2HC
-      - serial_number: FJC271923AK
-      - serial_number: FOX2639PAYD
-      - serial_number: FGL2402LCYH
+  - device_info:
+    - serial_number: FXS2502Q2HC
+    - serial_number: FJC271923AK
+    - serial_number: FOX2639PAYD
+    - serial_number: FGL2402LCYH
