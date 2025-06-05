@@ -1,197 +1,104 @@
-#Select Catalyst Cennter version, this one overwrite the default version from host file
 catalyst_center_version: 2.3.7.6
 template_details:
-  # List of templates to be uploaded to the Cisco Catalyst Center
-  - configuration_templates:
-      author: admin
-      composite: false
-      custom_params_order: true
-      description: Template to configure Access Vlan n Access Interfaces
-      device_types:
-        - product_family: Switches and Hubs
-          product_series: Cisco Catalyst 9300 Series Switches
-      failure_policy: ABORT_TARGET_ON_ERROR
-      language: JINJA
-      name: access_van_template_9300_switches
-      project_name: access_van_template_9300_switches
-      project_description: This project contains all the templates for Access Switches
-      software_type: IOS-XE
-      software_version: null
-      template_name: PnP-Upstream-SW
-      #tags:
-      #  name: string
-      template_content: |
-        hostname {{ __device.hostname }}
-        vlan {{ vlan }}
-        interface {{ interface }}
-        switchport access vlan {{ vlan }}
-        switchport mode access
-        description {{ interface_description }}
-      version: "1.0"
-  - configuration_templates:
-      name: PnP-Upstream-SW1
-      template_name: PnP-Upstream-SW1
-      project_name: Onboarding Configuration
-      tags: []
-      author: admin
-      device_types:
-        - product_family: Switches and Hubs
-          product_series: Cisco Catalyst 9500 Series Switches
-        - product_family: Switches and Hubs
-          product_series: Cisco Catalyst 9300 Series Switches
-      software_type: IOS-XE
-      language: VELOCITY
-      template_content: |
-        vlan $vlan
-        interface $interface
-        switchport access vlan $vlan
-        switchport mode access
-  #       description $interface_description
-  - configuration_templates:
-      name: "Fusion Router Config"
-      template_name: "Fusion Router Config"
-      description: "Configuration template for Fusion Router setup on Catalyst 3850 switches"
-      project_name: "Network Configuration Templates"
-      tags: []
-      author: admin
-      device_types:
-        - product_family: "Switches and Hubs"
-          product_series: "Cisco Catalyst 3850 Series Ethernet Stackable Switch"
-      software_type: IOS-XE
-      language: VELOCITY
-      failure_policy: ABORT_TARGET_ON_ERROR
-      template_content: |
-        ! L3handoff Vlan
-        vlan $VLANID
-        hostname  $__device.hostname
-        interface Loopback0
-        ip address $LOOPBACKIP 255.255.255.255
-        ipv6 address $LOOPBACKIPV6
-        ipv6 enable
-        ipv6 nd other-config-flag
-        ipv6 dhcp server EMPPool
+- configuration_templates:
+    author: Pawan Singh
+    composite: false
+    custom_params_order: true
+    description: Template to configure Access Vlan n Access Interfaces
+    device_types:
+    - product_family: Switches and Hubs
+      product_series: Cisco Catalyst 9300 Series Switches
+    failure_policy: ABORT_TARGET_ON_ERROR
+    language: JINJA
+    name: access_van_template_9300_switches
+    project_name: access_van_template_9300_switches
+    project_description: This project contains all the templates for Access Switches
+    software_type: IOS-XE
+    software_version: null
+    template_name: PnP-Upstream-SW1
+    template_content: '{% raw %}
 
-        ! L3handdoff interface for provider VN
-        interface Vlan$VLANID
-        description L3handoff $VLANID
-        ip address $interfaceIP 255.255.255.252
-        ip route-cache same-interface
-        ipv6 address $interfaceIPV6
-        ipv6 enable
-        ipv6 tcp adjust-mss 1400
-        
-        ! Router bgp configuration
-        router bgp $BGPASN
-        bgp log-neighbor-changes
-        bgp graceful-restart
-        neighbor BGPNBRIPV6 remote-as $NEIGHBORBGPASN
-        neighbor BGPNBRIPV6 update-source Vlan$VLANID
-        neighbor $BGPNBRIP remote-as $NEIGHBORBGPASN
-        neighbor $BGPNBRIP update-source Vlan$VLANID
-        !
-        address-family ipv4
-          bgp redistribute-internal
-          bgp aggregate-timer 0
-          no neighbor BGPNBRIPV6 activate
-          neighbor $BGPNBRIP activate
-          neighbor $BGPNBRIP advertisement-interval 0
-        exit-address-family
-        !
-        address-family ipv6
-          bgp redistribute-internal
-          bgp aggregate-timer 0
-          neighbor BGPNBRIPV6 activate
-          neighbor BGPNBRIPV6 advertisement-interval 0
-        exit-address-family
+      vlan {{ vlan }}
 
-        ! DHCP configuration
-        ip dhcp relay information option
-        ip dhcp pool APPool_sjc
-        network 204.3.0.0 255.255.255.0
-        default-router 204.3.0.1
-        ! option 43 hex f104.ccc0.0c01
-        option 43 ascii 5A1N;B2;K4;I85.1.1.2;J80
-        lease 10 20 0
-        class new1
-          address range 204.3.0.10 204.3.0.254
-        !
-        ip dhcp pool APPool_nyc
-        network 204.3.1.0 255.255.255.0
-        default-router 204.3.1.1
-        option 43 hex f104.ccc0.0d01
-        lease 1 20 30
-        class new1
-          address range 204.3.1.10 204.3.1.254
-        !
-        ip dhcp pool EXTPool_sjc
-        network 204.4.0.0 255.255.255.0
-        default-router 204.4.0.1
-        option 43 ascii 5A1N;B2;K4;I85.1.1.2;J80
-        lease 10 20 0
-        class new1
-          address range 204.4.0.10 204.4.0.254
-        !
-        ip dhcp pool EXTPool_nyc
-        network 204.4.1.0 255.255.255.0
-        default-router 204.4.1.1
-        option 43 ascii 5A1N;B2;K4;I82.2.2.2;J80
-        lease 10 20 0
-        class new1
-          address range 204.4.1.10 204.4.1.254
-        !
-        ip dhcp pool Employees_sjc
-        network 192.168.0.0 255.255.255.0
-        default-router 192.168.0.1
-        lease 10 20 0
-        class new1
-          address range 192.168.0.2 192.168.0.254
-        !
-        ip dhcp pool Employees_nyc
-        network 192.168.1.0 255.255.255.0
-        default-router 192.168.1.1
-        lease 10 20 0
-        class new1
-          address range 192.168.1.2 192.168.1.254
-        !
-        ip dhcp class new1
-        relay agent information
-  - deploy_template:
-      project_name: "Network Configuration Templates"
-      template_name: "Fusion Router Config"
-      force_push: true
-      template_parameters:
-        - param_name: "LOOPBACKIP"
-          param_value: "204.192.3.40"
-        - param_name: "LOOPBACKIPV6"
-          param_value: "2004:192:3::40/128"
-        - param_name: VLANID
-          param_value: "3001"
-        - param_name: BGPASN
-          param_value: "4294967290"
-        - param_name: NEIGHBORBGPASN
-          param_value: "655600"
-        - param_name: interfaceIP
-          param_value: "192.179.0.6"
-        - param_name: interfaceIPV6
-          param_value: "2004:192:179::2/126"
-        - param_name: BGPNBRIP
-          param_value: "192.179.0.5"
-        - param_name: BGPNBRIPV6
-          param_value: "2004:192:179::1"
-      device_details:
-          device_ips: 
-            - 204.192.3.40
-  - deploy_template:
-      project_name: access_van_template_9300_switches
-      template_name: PnP-Upstream-SW
-      force_push: false
-      template_parameters:
-        - param_name: "vlan"
-          param_value: "60"
-        - param_name: "interface"
-          param_value: "GigabitEthernet1/0/2"
-        - param_name: "interface_description"
-          param_value: "Upstream Interface Dummy"
-      device_details:
-          device_ips: 
-            - 204.101.16.2
+      interface {{ interface }}
+
+      no shutdown
+
+      switchport access vlan {{ vlan }}
+
+      switchport mode access
+
+      description {{ interface_description }} on {{ __device.hostname }}
+
+      {% endraw %}'
+    version: '1.0'
+    commit_message: Initial commit for Access Vlan and Access Interface configuration
+      template
+    commit: true
+- configuration_templates:
+    name: Fusion Router Config
+    template_name: Fusion Router Config
+    description: Configuration template for Fusion Router setup on Catalyst 3850 switches
+    project_name: Network Configuration Templates
+    tags: []
+    author: admin
+    device_types:
+    - product_family: Switches and Hubs
+      product_series: Cisco Catalyst 3850 Series Ethernet Stackable Switch
+    software_type: IOS-XE
+    language: VELOCITY
+    failure_policy: ABORT_TARGET_ON_ERROR
+    template_content: "! L3handoff Vlan\nvlan $VLANID\nhostname  Old$__device.hostname\n\
+      interface Loopback0\nip address $LOOPBACKIP 255.255.255.255\nipv6 address $LOOPBACKIPV6\n\
+      ipv6 enable\nipv6 nd other-config-flag\nipv6 dhcp server EMPPool\n\n! L3handdoff\
+      \ interface for provider VN\ninterface Vlan$VLANID\ndescription L3handoff $VLANID\n\
+      ip address $interfaceIP 255.255.255.252\nip route-cache same-interface\nipv6\
+      \ address $interfaceIPV6\nipv6 enable\nipv6 tcp adjust-mss 1400\n\n! Router\
+      \ bgp configuration\nrouter bgp $BGPASN\nbgp log-neighbor-changes\nbgp graceful-restart\n\
+      neighbor BGPNBRIPV6 remote-as $NEIGHBORBGPASN\nneighbor BGPNBRIPV6 update-source\
+      \ Vlan$VLANID\nneighbor $BGPNBRIP remote-as $NEIGHBORBGPASN\nneighbor $BGPNBRIP\
+      \ update-source Vlan$VLANID\n!\naddress-family ipv4\n  bgp redistribute-internal\n\
+      \  bgp aggregate-timer 0\n  no neighbor BGPNBRIPV6 activate\n  neighbor $BGPNBRIP\
+      \ activate\n  neighbor $BGPNBRIP advertisement-interval 0\nexit-address-family\n\
+      !\naddress-family ipv6\n  bgp redistribute-internal\n  bgp aggregate-timer 0\n\
+      \  neighbor BGPNBRIPV6 activate\n  neighbor BGPNBRIPV6 advertisement-interval\
+      \ 0\nexit-address-family\n\n! DHCP configuration\nip dhcp relay information\
+      \ option\nip dhcp pool APPool_sjc\nnetwork 204.3.0.0 255.255.255.0\ndefault-router\
+      \ 204.3.0.1\n! option 43 hex f104.ccc0.0c01\noption 43 ascii 5A1N;B2;K4;I85.1.1.2;J80\n\
+      lease 10 20 0\nclass new1\n  address range 204.3.0.10 204.3.0.254\n!\nip dhcp\
+      \ pool APPool_nyc\nnetwork 204.3.1.0 255.255.255.0\ndefault-router 204.3.1.1\n\
+      option 43 hex f104.ccc0.0d01\nlease 1 20 30\nclass new1\n  address range 204.3.1.10\
+      \ 204.3.1.254\n!\nip dhcp pool EXTPool_sjc\nnetwork 204.4.0.0 255.255.255.0\n\
+      default-router 204.4.0.1\noption 43 ascii 5A1N;B2;K4;I85.1.1.2;J80\nlease 10\
+      \ 20 0\nclass new1\n  address range 204.4.0.10 204.4.0.254\n!\nip dhcp pool\
+      \ EXTPool_nyc\nnetwork 204.4.1.0 255.255.255.0\ndefault-router 204.4.1.1\noption\
+      \ 43 ascii 5A1N;B2;K4;I82.2.2.2;J80\nlease 10 20 0\nclass new1\n  address range\
+      \ 204.4.1.10 204.4.1.254\n!\nip dhcp pool Employees_sjc\nnetwork 192.168.0.0\
+      \ 255.255.255.0\ndefault-router 192.168.0.1\nlease 10 20 0\nclass new1\n  address\
+      \ range 192.168.0.2 192.168.0.254\n!\nip dhcp pool Employees_nyc\nnetwork 192.168.1.0\
+      \ 255.255.255.0\ndefault-router 192.168.1.1\nlease 10 20 0\nclass new1\n  address\
+      \ range 192.168.1.2 192.168.1.254\n!\nip dhcp class new1\nrelay agent information"
+- deploy_template:
+    project_name: access_van_template_9300_switches
+    template_name: PnP-Upstream-SW1
+    force_push: false
+    template_parameters:
+    - param_name: vlan
+      param_value: '60'
+    - param_name: interface
+      param_value: GigabitEthernet1/0/13
+    - param_name: interface_description
+      param_value: Upstream Interface Dummy
+    resource_parameters:
+    - resource_type: MANAGED_DEVICE_UUID
+      resource_scope: RUNTIME
+      resource_value: 3bb2e790-e386-4a76-8540-74968607a0c9
+    - resource_type: MANAGED_DEVICE_HOSTNAME
+      resource_scope: RUNTIME
+    - resource_type: MANAGED_DEVICE_IP
+      resource_scope: RUNTIME
+    copy_config: false
+    version: 27
+    device_details:
+      device_ips:
+      - 204.101.16.2

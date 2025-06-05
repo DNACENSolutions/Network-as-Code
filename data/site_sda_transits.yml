@@ -1,17 +1,14 @@
----
-#catalyst_center_version: 2.3.7.6
 catalyst_center_verify: false
-
 fabric_transits:
-  - sda_fabric_transits:
-    - ip_transit_settings:
-        autonomous_system_number: "4294967290"
-        routing_protocol_name: BGP
-      name: IP Transit_AS4Byte4294967290
-      transit_type: IP_BASED_TRANSIT
-    - sda_transit_settings:
-        control_plane_network_device_ips:
-          - 204.101.16.4
-        is_multicast_over_transit_enabled: true
-      name: SDATransitCalifornia
-      transit_type: SDA_LISP_PUB_SUB_TRANSIT
+- sda_fabric_transits:
+  - ip_transit_settings:
+      autonomous_system_number: '4294967290'
+      routing_protocol_name: BGP
+    name: IP Transit_AS4Byte4294967290
+    transit_type: IP_BASED_TRANSIT
+  - sda_transit_settings:
+      control_plane_network_device_ips:
+      - 204.101.16.4
+      is_multicast_over_transit_enabled: true
+    name: SDATransitCalifornia
+    transit_type: SDA_LISP_PUB_SUB_TRANSIT

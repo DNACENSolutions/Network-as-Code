@@ -6,6 +6,12 @@ DeleteExistingPathTraces:
   data_file: "data/day_n_assurance_pathtrace.yml"
 
 # Create the Extranet Policies for the Fabric site
+RemoveTemplates:
+  schema_file: "device_templates/schema/template_workflow_schema.yml"
+  playbook: "device_templates/playbook/delete_template_workflow_playbook.yml"
+  data_file: "data/site_device_templates.yml"
+
+# Create the Extranet Policies for the Fabric site
 RemoveExtranetPolicies:
   schema_file: "sda_fabric_extranet_policy/schema/fabric_extranet_policy_schema.yml"
   playbook: "sda_fabric_extranet_policy/playbook/delete_fabric_extranet_policy_playbook.yml"

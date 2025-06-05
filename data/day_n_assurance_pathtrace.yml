@@ -1,23 +1,22 @@
----
 catalyst_center_version: 2.3.7.6
-pathtrace_details: 
-  - source_ip: "204.101.16.2"  # required field
-    dest_ip: "204.101.16.1"  # required field
-    source_port: 4020  # optional field
-    dest_port: 4021  # optional field
-    protocol: "TCP"  # optional field
-    include_stats:  # optional field
-      - DEVICE_STATS
-      - INTERFACE_STATS
-      - QOS_STATS
-      - PERFORMANCE_STATS
-      - ACL_TRACE
-    periodic_refresh: false  # optional field
-    control_path: false  # optional field
-    delete_on_completion: true  # optional field
-  - source_ip: "204.101.16.2"  # required field
-    dest_ip: "204.4.0.2"  # required field
-    get_last_pathtrace_result: true
-    protocol: "UDP"  # optional field
-    include_stats:  # optional field
-      - INTERFACE_STATS
+pathtrace_details:
+- source_ip: 204.101.16.2
+  dest_ip: 204.101.16.1
+  source_port: 4020
+  dest_port: 4021
+  protocol: TCP
+  include_stats:
+  - DEVICE_STATS
+  - INTERFACE_STATS
+  - QOS_STATS
+  - PERFORMANCE_STATS
+  - ACL_TRACE
+  periodic_refresh: false
+  control_path: false
+  delete_on_completion: true
+- source_ip: 204.101.16.2
+  dest_ip: 204.4.0.2
+  get_last_pathtrace_result: true
+  protocol: UDP
+  include_stats:
+  - INTERFACE_STATS
