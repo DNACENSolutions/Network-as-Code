@@ -5,18 +5,18 @@ wireless_nw_profiles_details:
   - Global/USA/SAN JOSE
   - Global/USA/SAN-FRANCISCO
   ssid_details:
-  - ssid: iac-open
-    enable_fabric: true
-  - ssid: iac-employees
-    enable_fabric: true
-  - ssid: iac-guests
-    enable_fabric: true
+    - ssid_name: iac-open
+      enable_fabric: true
+    - ssid_name: iac-employees
+      enable_fabric: true
+    - ssid_name: iac-guests
+      enable_fabric: true
   ap_zones:
-  - ap_zone_name: HQ_AP_Zone
-    rf_profile_name: HIGH
-    ssids:
-    - iac-open
-  - ap_zone_name: Branch_AP_Zone
-    rf_profile_name: TYPICAL
-    ssids:
-    - iac-guests
+    - ap_zone_name: HQ_AP_Zone
+      rf_profile_name: HIGH
+      ssids:
+      - iac-open
+    - ap_zone_name: Branch_AP_Zone
+      rf_profile_name: TYPICAL
+      ssids:
+      - iac-guests
