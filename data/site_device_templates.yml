@@ -32,9 +32,8 @@ template_details:
 
       {% endraw %}'
     version: '1.0'
-    commit_message: Initial commit for Access Vlan and Access Interface configuration
+    version_description: Initial commit for Access Vlan and Access Interface configuration
       template
-    commit: true
 - configuration_templates:
     name: Fusion Router Config
     template_name: Fusion Router Config
@@ -97,8 +96,6 @@ template_details:
       resource_scope: RUNTIME
     - resource_type: MANAGED_DEVICE_IP
       resource_scope: RUNTIME
-    copy_config: false
-    version: 27
     device_details:
       device_ips:
       - 204.101.16.2
