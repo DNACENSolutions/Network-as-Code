@@ -4,328 +4,315 @@ import sys
 import yaml
 import datetime
 import argparse
-# Define the base path for Ansible playbooks and configuration files
-# Use os.path.join for robustness and os.getcwd() for current working directory
+
+# --- Utility for Colored Logging ---
+class Color:
+    PURPLE = '\033[95m'
+    CYAN = '\033[96m'
+    DARKCYAN = '\033[36m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+def log_info(message):
+    print(f"{Color.CYAN}{message}{Color.END}")
+
+def log_success(message):
+    print(f"{Color.GREEN}{Color.BOLD}{message} \U0001F44D{Color.END}")
+
+def log_warning(message):
+    print(f"{Color.YELLOW}Warning: {message}{Color.END}")
+
+def log_error(message):
+    print(f"{Color.RED}{Color.BOLD}Error: {message} \U0001F44E{Color.END}")
+    
+def log_step(message):
+    print(f"\n{Color.PURPLE}====== {message} ======{Color.END}")
+
+# --- Configuration Paths ---
 ANSIBLE_PLAYBOOKS_PATH = os.getenv('ANSIBLE_PLAYBOOKS_PATH', os.path.join(os.getcwd(), '../catc_ansible_workflows/workflows/'))
 CONFIG_FILES_BASE_PATH = os.getenv('CONFIG_FILES_BASE_PATH', os.getcwd())
 ANSIBLE_HOSTS_INVENTORY_DIR = os.getenv('ANSIBLE_HOSTS_INVENTORY_DIR', os.path.join(os.getcwd(), 'ansible_inventory', 'catalystcenter_inventory'))
 ANSIBLE_LOG_DIR_PATH = os.getenv('ANSIBLE_LOG_DIR_PATH', os.path.join(os.getcwd(), '../ansible_logs/'))
 CATC_LOG_DIR_PATH = os.getenv('CATC_LOG_DIR_PATH', os.path.join(os.getcwd(), '../catc_logs/'))
-USECASE_MAPS_DIR = os.getenv('USECASE_MAPS_DIR', 'usecase_maps') # Make usecase maps dir configurable
+USECASE_MAPS_DIR = os.getenv('USECASE_MAPS_DIR', 'usecase_maps')
 
-# Function to read usecase data from a YAML file
-def read_usecase_data(yaml_file):
-    """Reads use case data from the specified YAML file."""
-    try:
-        with open(yaml_file, 'r') as f:
-            usecase_data = yaml.safe_load(f)
-        return usecase_data
-    except FileNotFoundError:
-        print(f"Error: YAML file not found: {yaml_file}")
-        return None
-    except yaml.YAMLError as e:
-        print(f"Error parsing YAML file: {e}")
-        return None
+# --- Core Functions ---
 
-def strip_yaml_values(data):
-    """
-    Recursively traverses a YAML data structure (dict or list)
-    and strips leading/trailing whitespace from all string values.
-    """
-    if isinstance(data, dict):
-        # If it's a dictionary, apply stripping to each value
-        return {key: strip_yaml_values(value) for key, value in data.items()}
-    elif isinstance(data, list):
-        # If it's a list, apply stripping to each item
-        return [strip_yaml_values(item) for item in data]
-    elif isinstance(data, str):
-        # If it's a string, strip whitespace
-        return data.strip()
-    else:
-        # For any other data type (int, float, bool, None), return as is
-        return data
+def load_usecase_data(yaml_files):
+    """Loads use case data from a list of YAML files, preserving order and handling duplicates."""
+    ordered_usecases = []
+    usecase_counts = {}
+    for yaml_file in yaml_files:
+        try:
+            with open(yaml_file, 'r') as f:
+                # Use yaml.FullLoader to preserve order if available, otherwise safe_load
+                try:
+                    usecase_data = yaml.load(f, Loader=yaml.FullLoader)
+                except AttributeError:
+                    usecase_data = yaml.safe_load(f)
 
-# Option 1: Modify read_and_strip_yaml to just return stripped data
-def read_and_strip_yaml(yaml_file):
-    """
-    Reads a YAML file and strips leading/trailing whitespace from all string values.
-    Returns the stripped data.
-    """
-    try:
-        with open(yaml_file, 'r', encoding='utf-8') as f:
-            yaml_content = yaml.load(f, Loader=yaml.SafeLoader)
-            print(f"Successfully read and parsed '{yaml_file}'.")
-    except FileNotFoundError:
-        print(f"Error: Input file '{yaml_file}' not found.")
-        return None
-    except yaml.YAMLError as e:
-        print(f"Error: Could not parse YAML file '{yaml_file}'.", file=sys.stderr)
-        print(f"Details: {e}", file=sys.stderr)
-        return None
-    except Exception as e:
-        print(f"An unexpected error occurred while reading the file: {e}", file=sys.stderr)
-        return None
+                if usecase_data:
+                    for usecase, data in usecase_data.items():
+                        original_usecase = usecase
+                        if original_usecase in usecase_counts:
+                            usecase_counts[original_usecase] += 1
+                            usecase = f"{original_usecase}_{usecase_counts[original_usecase]}"
+                            log_warning(f"Duplicate usecase '{original_usecase}' found. Renaming to '{usecase}'.")
+                        else:
+                            usecase_counts[original_usecase] = 0
+                        
+                        ordered_usecases.append((usecase, data))
 
-    if yaml_content is None:
-        print("Input YAML file is empty or contains only comments.")
-        return None
-    else:
-        print("Processing YAML content...")
-        processed_content = strip_yaml_values(yaml_content)
-        print("YAML content processed.")
-        return processed_content
+            log_info(f"Successfully loaded use cases from: {os.path.basename(yaml_file)}")
+        except FileNotFoundError:
+            log_error(f"YAML file not found: {yaml_file}")
+            return None
+        except yaml.YAMLError as e:
+            log_error(f"Error parsing YAML file '{yaml_file}': {e}")
+            return None
+    return ordered_usecases
 
-# Option 2: Keep read_usecase_data for simple reading and add a separate strip_and_write function
-def strip_and_write_yaml(data, output_yaml_file):
-    """
-    Strips leading/trailing whitespace from string values in data and writes to a YAML file.
-    """
-    try:
-        processed_content = strip_yaml_values(data)
-        with open(output_yaml_file, 'w', encoding='utf-8') as f:
-            yaml.dump(processed_content, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
-        print(f"Successfully wrote processed content to '{output_yaml_file}'.")
-    except FileNotFoundError:
-        print(f"Error: Output file '{output_yaml_file}' not found.")
-        return None
-    except yaml.YAMLError as e:
-        print(f"Error: Could not write to YAML file '{output_yaml_file}'.", file=sys.stderr)
-        print(f"Details: {e}", file=sys.stderr)
-        return None
-    except Exception as e:
-        print(f"An unexpected error occurred while writing the file: {e}", file=sys.stderr)
-        return None
-def select_yaml_file(directory, prompt):
-    """Lists YAML files in a directory and prompts the user to select one."""
-    yaml_files = [f for f in os.listdir(directory) if f.endswith(".yml")]
+def select_yaml_files(directory, prompt):
+    """Lists YAML files and prompts the user to select one or more."""
+    yaml_files = sorted([f for f in os.listdir(directory) if f.endswith((".yml", ".yaml"))])
     if not yaml_files:
-        print(f"No YAML files found in {directory}")
+        log_error(f"No YAML files found in {directory}")
         return None
 
-    print(f"\nAvailable {prompt} files:")
+    log_info(f"\nAvailable {prompt} files:")
     for i, file in enumerate(yaml_files):
-        print(f"{i+1}. {file}")
+        print(f"  {i+1}. {file}")
 
     while True:
         try:
-            choice = int(input(f"\nSelect a {prompt} file by entering its number: "))
-            if 1 <= choice <= len(yaml_files):
-                return os.path.join(directory, yaml_files[choice - 1])
+            choice_str = input(f"\n{Color.BOLD}Select file(s) by number (e.g., '1' or '1,3'): {Color.END}")
+            choices = [int(c.strip()) for c in choice_str.split(',')]
+            selected_files = []
+            valid_choices = True
+            for choice in choices:
+                if 1 <= choice <= len(yaml_files):
+                    selected_files.append(os.path.join(directory, yaml_files[choice - 1]))
+                else:
+                    log_error(f"Choice '{choice}' is out of range.")
+                    valid_choices = False
+                    break
+            if valid_choices:
+                return selected_files
             else:
-                print("Invalid choice. Please try again.")
+                log_warning("Please enter valid numbers from the list.")
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            log_error("Invalid input. Please enter numbers separated by commas.")
 
-def validate_schema(usecase_name, usecase_data):
+def validate_schema(usecase_name, usecase_config):
     """Validates the data file against the schema for the given use case."""
-    config_file = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["schema_file"])
-    data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
+    log_info(f"Validating schema for '{usecase_name}'...")
+    config_file = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_config.get("schema_file", ""))
+    data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_config.get("data_file", ""))
+
+    if not os.path.exists(config_file) or not os.path.exists(data_file):
+        log_error(f"Schema or data file not found for '{usecase_name}'. Checked paths:\n- {config_file}\n- {data_file}")
+        return False
+
     try:
-        subprocess.run(["yamale", "-s", config_file, data_file], check=True)
-        print(f"Schema validation successful for {usecase_name} \U0001F44D ")
+        subprocess.run(["yamale", "-s", config_file, data_file], check=True, capture_output=True, text=True)
+        log_success(f"Schema validation successful for {usecase_name}")
+        return True
     except subprocess.CalledProcessError as e:
-        print(f"Schema validation failed for {usecase_name}: {e} \U0001F44E ")
+        log_error(f"Schema validation failed for {usecase_name}:\n{e.stderr}")
+        return False
 
 def validate_inventory(inventory_file):
     """Validates the Ansible inventory file."""
+    log_step("Validating Ansible Inventory")
     try:
-        subprocess.run(["ansible-inventory", "-i", inventory_file, "--list"], check=True)
-        print("Inventory validation successful, proceeding with execution options \U0001F44D ")
+        subprocess.run(["ansible-inventory", "-i", inventory_file, "--list"], check=True, capture_output=True)
+        log_success("Inventory validation successful, proceeding with execution options")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"Inventory validation failed: {e} \U0001F44E ")
-        print("Please check the inventory file and try again.")
+        log_error(f"Inventory validation failed: {e}\nPlease check the inventory file and try again.")
         return False
 
-def execute_playbook(usecase_name, usecase_data, inventory_file, jenkins=False, verbose_level="vvvv"):
+def execute_playbook(usecase_name, usecase_config, inventory_file, jenkins=False, verbose_level="v"):
     """Executes the Ansible playbook for the given use case."""
-    playbook = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_data[usecase_name]["playbook"])
-    data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
+    log_step(f"Executing Playbook for: {usecase_name}")
+    playbook = os.path.join(ANSIBLE_PLAYBOOKS_PATH, usecase_config["playbook"])
+    data_file = os.path.join(CONFIG_FILES_BASE_PATH, usecase_config["data_file"])
     ansible_log_path = os.path.join(ANSIBLE_LOG_DIR_PATH, f"{usecase_name}_ansible.log")
     catalyst_center_log_file_path = os.path.join(CATC_LOG_DIR_PATH, f"{usecase_name}_catc.log")
-    #os.system(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}')
-    # Read Current time as start time
-    print(f"Executing playbook for {usecase_name}...")
-    start_time = datetime.datetime.now()
-    print(f"Playbooks Start time: {start_time}")
-    try:
-        cmd = [
-            "ansible-playbook",
-            "-i", inventory_file,
-            "-e", f"VARS_FILE_PATH={data_file}",
-            playbook,
-            "-e", f"catalyst_center_log_file_path={catalyst_center_log_file_path}",
-            f"-{verbose_level}"
-        ]
-        if jenkins:
-            with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'a') as ansible_suite:
-                #ansible_suite.write(f'#!/bin/bash\n')
-                #ansible_suite.write(f'export catalyst_center_log_file_path={catalyst_center_log_file_path}\n')
-                ansible_suite.write(f'ansible-playbook -i {ANSIBLE_HOSTS_INVENTORY} {playbook} --e VARS_FILE_PATH={data_file} --e catalyst_center_log_file_path={catalyst_center_log_file_path} -{verbose_level} \n')
-                #| tee {ansible_log_path} \n\n')
-                print("Ansible playbook command added to ansible_suite.sh, will be launched from shell script.")
-        else:
-            with open(ansible_log_path, 'w') as log_file:
-                print(f"Executing playbook command: {cmd} \n")
-                subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
-            print(f"Playbook execution successful for {usecase_name} ! \U0001F44D")
-    except subprocess.CalledProcessError as e:
-        print(f"Playbook execution failed for {usecase_name}: {e} !! \U0001F44E")
-    # Read Current time as end time
-    end_time = datetime.datetime.now()
-    # Calculate the time taken to execute the playbook
-    time_taken = end_time - start_time
-    print(f"Playbook execution time: {time_taken}")
-    print(f"End time: {end_time}")
-    print("Check the logs for more details.")
-    print(f"Ansible Logs dir: {ansible_log_path}")
-    print(f"CatC Logs dir: {catalyst_center_log_file_path}")
 
-def main():
-    """Main function to handle user input and execute actions."""
-    parser = argparse.ArgumentParser(description="Run Catalyst Center Ansible playbooks.")
-    parser.add_argument("suitename", nargs='?', default=None, help="Name of the suite to run (e.g., 'fabric', 'sdwan')")
-    parser.add_argument("method", choices=["validate", "execute", "both"], nargs='?', default=None, help="Action to perform: 'validate', 'execute', or 'both'")
-    parser.add_argument("usecases", nargs='*', default=None, help="List of use cases to run (or 'all')")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Increase output verbosity")
-    parser.add_argument("--jenkins", action="store_true", help="Enable Jenkins mode (writes to ansible_suite.sh)")
+    start_time = datetime.datetime.now()
+    log_info(f"Playbook Start Time: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    cmd = [
+        "ansible-playbook", "-i", inventory_file,
+        "-e", f"VARS_FILE_PATH={data_file}",
+        playbook,
+        "-e", f"catalyst_center_log_file_path={catalyst_center_log_file_path}",
+        f"-{verbose_level}"
+    ]
+
+    try:
+        if jenkins:
+            with open(os.path.join(ANSIBLE_LOG_DIR_PATH, "ansible_suite.sh"), 'a') as ansible_suite:
+                ansible_suite.write(f'# --- {usecase_name} ---\n')
+                ansible_suite.write(' '.join(cmd) + ' \n')
+                ansible_suite.write('\n')
+            log_success(f"Command for '{usecase_name}' added to ansible_suite.sh")
+        else:
+            log_info(f"Executing command: {' '.join(cmd)}")
+            log_info(f"See log for details: {ansible_log_path}")
+            with open(ansible_log_path, 'w') as log_file:
+                subprocess.run(cmd, check=True, stdout=log_file, stderr=subprocess.STDOUT)
+            log_success(f"Playbook execution completed for {usecase_name}")
+    except subprocess.CalledProcessError as e:
+        log_error(f"Playbook execution failed for {usecase_name}. See log for details.")
+    finally:
+        end_time = datetime.datetime.now()
+        time_taken = end_time - start_time
+        log_info(f"End Time: {end_time.strftime('%Y-%m-%d %H:%M:%S')} | Duration: {time_taken}")
+        log_info(f"Ansible Log: {ansible_log_path}")
+        log_info(f"CatC Log: {catalyst_center_log_file_path}")
+
+def run_main_logic():
+    """Main logic for a single run of playbook selection and execution."""
+    parser = argparse.ArgumentParser(
+        description=f"{Color.BOLD}Run Catalyst Center Ansible playbooks with enhanced verbosity and suite management.{Color.END}",
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument("suitenames", nargs='*', default=None, help="Name(s) of the suite map file(s) to run (e.g., 'fabric.yml sdwan.yml')")
+    parser.add_argument("-m", "--method", choices=["validate", "execute", "both"], default=None, help="Action to perform.")
+    parser.add_argument("-u", "--usecases", nargs='*', default=None, help="List of specific use cases to run (or 'all').")
+    parser.add_argument("-v", "--verbose", action="count", default=1, help="Increase output verbosity (-v, -vv, -vvv, -vvvv). Default is -v.")
+    parser.add_argument("--jenkins", action="store_true", help="Enable Jenkins mode (writes commands to ansible_suite.sh)")
     args = parser.parse_args()
 
-    verbose_level = "vvvv" if args.verbose else "v"
+    verbose_level = "v" * args.verbose
 
-    # Determine inventory file
-    ANSIBLE_HOSTS_INVENTORY_DIR = os.getenv('ANSIBLE_HOSTS_INVENTORY_DIR', os.path.join(os.getcwd(), 'ansible_inventory', 'catalystcenter_inventory'))
-    ANSIBLE_HOSTS_INVENTORY_FILE = select_yaml_file(ANSIBLE_HOSTS_INVENTORY_DIR, "inventory")
-    if not ANSIBLE_HOSTS_INVENTORY_FILE:
-        return # Exit if no inventory file is selected
-    validate_inventory(ANSIBLE_HOSTS_INVENTORY_FILE)
-    # Determine use case map file and use cases
-    usecase_maps_dir = os.getenv('USECASE_MAPS_DIR', 'usecase_maps') # Make directory configurable
-    usecase_data = None
-    selected_usecases = []
+    # --- Inventory Selection ---
+    inventory_dir = os.getenv('ANSIBLE_HOSTS_INVENTORY_DIR', os.path.join(os.getcwd(), 'ansible_inventory', 'catalystcenter_inventory'))
+    inventory_files = select_yaml_files(inventory_dir, "inventory")
+    if not inventory_files:
+        return
+    inventory_file = inventory_files[0] # Use the first selected inventory
+    if not validate_inventory(inventory_file):
+        return
 
-    if args.suitename and args.method:
-        # CLI arguments provided
-        yaml_file = os.path.join(usecase_maps_dir, args.suitename)
-        usecase_data = read_usecase_data(yaml_file)
-        if usecase_data is None:
-            print(f"Error reading use case data from {yaml_file}")
+    # --- Usecase Loading ---
+    log_step("Loading Usecase Maps")
+    usecase_maps_dir = os.getenv('USECASE_MAPS_DIR', 'usecase_maps')
+    ordered_usecases = None
+
+    if args.suitenames:
+        yaml_files = [os.path.join(usecase_maps_dir, s) for s in args.suitenames]
+        ordered_usecases = load_usecase_data(yaml_files)
+    else:  # Interactive mode
+        selected_files = select_yaml_files(usecase_maps_dir, "use case map")
+        if not selected_files:
             return
+        ordered_usecases = load_usecase_data(selected_files)
 
-        if args.usecases and args.usecases[0].lower() == "all":
-            selected_usecases = list(usecase_data.keys())
-        elif args.usecases:
-            selected_usecases = args.usecases
-            # Validate provided use cases
-            invalid_usecases = set(selected_usecases) - set(usecase_data.keys())
-            if invalid_usecases:
-                print(f"Error: Invalid use case(s) provided: {', '.join(invalid_usecases)}")
-                return
+    if not ordered_usecases:
+        log_error("No use cases were loaded. Exiting.")
+        return
+
+    usecase_map = dict(ordered_usecases)
+    usecase_names = [name for name, data in ordered_usecases]
+
+    # --- Action and Usecase Selection ---
+    method = args.method
+    selected_usecases_names = []
+
+    if args.usecases:
+        if 'all' in [u.lower() for u in args.usecases]:
+            selected_usecases_names = usecase_names
         else:
-             print("Error: No use cases specified when using CLI arguments.")
-             parser.print_help()
-             return
-
-        method = args.method
-
-    else:
-        # Interactive mode
-        yaml_file = select_yaml_file(usecase_maps_dir, "use case data")
-        if not yaml_file:
-            return # Exit if no use case data file is selected
-
-        usecase_data = read_usecase_data(yaml_file)
-        if usecase_data is None:
-            return # Exit if there was an error reading the YAML file
-
-        while True:
-            print("\nSelect an option to run:")
+            selected_usecases_names = args.usecases
+            invalid_usecases = set(selected_usecases_names) - set(usecase_names)
+            if invalid_usecases:
+                log_error(f"Invalid use case(s) provided: {', '.join(invalid_usecases)}")
+                print("Available use cases are:", ", ".join(usecase_names))
+                return
+    
+    if not method or not selected_usecases_names:
+        # Interactive selection if not fully specified by args
+        log_step("Select Action and Usecases")
+        if not method:
             print("1. Validate")
             print("2. Execute")
             print("3. Validate and Execute")
-            print("4. Remove Extra spaces in a use case data file") # Clarify this option
-            print("5. Print all usecases in this mapfile")
-            print("6. Exit")
-            option = input("Enter your choice: ")
+            method_choice = input(f"{Color.BOLD}Select an option: {Color.END}")
+            method = {"1": "validate", "2": "execute", "3": "both"}.get(method_choice)
 
-            if option == "6":
-                print("Exiting...")
-                return # Use return to exit main function
-            if option == "5":
-                print(f"\nAvailable use cases:\n{list(usecase_data.keys())}")
-                continue
-
-            if option in ["1", "2", "3", "4"]:
-                print("\nAvailable use cases:")
-                usecase_names = list(usecase_data.keys())
-                for i, usecase_name in enumerate(usecase_names):
-                    print(f"{i+1}. {usecase_name}")
-                print("enter 'a' to select all usecases")
-                print(f"{len(usecase_names) + 1}. Back to main options") # Option to go back
-
-                choice = input("Enter your choice (comma-separated for multiple, hyphen-separated for range, 'a' for all): ")
-
+        if not selected_usecases_names:
+            for i, name in enumerate(usecase_names):
+                print(f"  {i+1}. {name}")
+            choice_str = input(f"{Color.BOLD}Select use cases (e.g., 'a' for all, '1', '1,3', '1-4'): {Color.END}")
+            if choice_str.lower() == 'a':
+                selected_usecases_names = usecase_names
+            elif '-' in choice_str:
                 try:
-                    if choice.lower() == "a":
-                        selected_usecases = usecase_names
-                    elif "-" in choice:
-                        start, end = map(int, choice.split("-"))
-                        selected_usecases = usecase_names[start-1:end]
-                    elif "," in choice:
-                        selected_usecases = [usecase_names[int(c)-1] for c in choice.split(",")]
-                    else:
-                        choice = int(choice)
-                        if choice == len(usecase_names) + 1:
-                            continue # Go back to main options
-                        elif 1 <= choice <= len(usecase_names):
-                            selected_usecases = [usecase_names[choice - 1]]
-                        else:
-                            print("Invalid choice. Please try again.")
-                            continue
-
-                    method = {
-                        "1": "validate",
-                        "2": "execute",
-                        "3": "both",
-                        "4": "strip" # New method for stripping
-                    }.get(option)
-
-                    if method == "strip":
-                         # Handle stripping separately as it's a file operation, not playbook execution
-                         for usecase_name in selected_usecases:
-                             data_file_path = os.path.join(CONFIG_FILES_BASE_PATH, usecase_data[usecase_name]["data_file"])
-                             read_and_strip_yaml(data_file_path) # Use the modified function
-                             print(f"Extra spaces removed from {data_file_path}.")
-                    else:
-                        # Prepare for playbook execution/validation
-                        # Clear the ansible_suite.sh file if in jenkins mode
-                        if args.jenkins:
-                             with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
-                                 ansible_suite.write('\n\n')
-
-                        for usecase_name in selected_usecases:
-                            if method == "validate" or method == "both":
-                                validate_schema(usecase_name, usecase_data)
-                            if method == "execute" or method == "both":
-                                execute_playbook(usecase_name, usecase_data, ANSIBLE_HOSTS_INVENTORY_FILE, jenkins=args.jenkins, verbose_level=verbose_level)
-
-                except (ValueError, IndexError) as e:
-                    print(f"Invalid input: {e}. Please try again.")
+                    start, end = map(int, choice_str.split('-'))
+                    selected_usecases_names = usecase_names[start - 1:end]
+                except ValueError:
+                    log_error("Invalid range format. Please use 'start-end'.")
+                    return
             else:
-                print("Invalid option. Please try again.")
+                try:
+                    choices = [int(c.strip()) for c in choice_str.split(',')]
+                    selected_usecases_names = [usecase_names[c - 1] for c in choices if 1 <= c <= len(usecase_names)]
+                except ValueError:
+                    log_error("Invalid input. Please enter numbers separated by commas.")
+                    return
 
-    # If CLI arguments were provided, execute the actions
-    if args.suitename and args.method and selected_usecases:
-         # Clear the ansible_suite.sh file if in jenkins mode
-         if args.jenkins:
-              with open(f"{ANSIBLE_LOG_DIR_PATH}/ansible_suite.sh", 'w') as ansible_suite:
-                  ansible_suite.write('\n\n')
+    if not method or not selected_usecases_names:
+        log_error("No method or use cases selected. Exiting.")
+        return
 
-         for usecase_name in selected_usecases:
-             if method == "validate" or method == "both":
-                 validate_schema(usecase_name, usecase_data)
-             if method == "execute" or method == "both":
-                 execute_playbook(usecase_name, usecase_data, ANSIBLE_HOSTS_INVENTORY_FILE,jenkins=args.jenkins, verbose_level=verbose_level)
+    # --- Execution ---
+    log_step(f"Running Method: '{method.upper()}' for {len(selected_usecases_names)} Usecase(s)")
+    if args.jenkins:
+        log_info("Jenkins mode enabled. Clearing and preparing 'ansible_suite.sh'.")
+        with open(os.path.join(ANSIBLE_LOG_DIR_PATH, "ansible_suite.sh"), 'w') as f:
+            f.write("#!/bin/bash\n\n")
+
+    all_valid = True
+    for usecase_name in selected_usecases_names:
+        if method in ["validate", "both"]:
+            if not validate_schema(usecase_name, usecase_map[usecase_name]):
+                all_valid = False
+
+    if not all_valid:
+        log_error("Schema validation failed for one or more use cases. Halting execution.")
+        return
+
+    if method in ["execute", "both"]:
+        for usecase_name in selected_usecases_names:
+            execute_playbook(usecase_name, usecase_map[usecase_name], inventory_file, jenkins=args.jenkins, verbose_level=verbose_level)
+
+    log_success("\nAll tasks completed!")
+
+def main():
+    """Main function to handle user input and loop for multiple executions."""
+    while True:
+        run_main_logic()
+        
+        while True:
+            another_run = input(f"\n{Color.BOLD}Do you want to run another set of playbooks? (y/n): {Color.END}").lower()
+            if another_run in ['y', 'n']:
+                break
+            log_warning("Invalid input. Please enter 'y' or 'n'.")
+
+        if another_run == 'n':
+            log_info("Exiting program.")
+            break
 
 if __name__ == "__main__":
+    # Create log directories if they don't exist
+    os.makedirs(ANSIBLE_LOG_DIR_PATH, exist_ok=True)
+    os.makedirs(CATC_LOG_DIR_PATH, exist_ok=True)
     main()
