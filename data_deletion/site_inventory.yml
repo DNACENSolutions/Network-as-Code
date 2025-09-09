@@ -17,7 +17,7 @@ inventory_details:
       description: This device is the SDA transit CP
       value: Transit CP
     role: BORDER ROUTER
-    site_name: Global/USA/SAN JOSE/BGL23
+    #site_name: Global/USA/SAN JOSE/BGL23
     device_resync: false
     force_sync: false
   - ip_address_list:
@@ -27,7 +27,7 @@ inventory_details:
       description: This device is the Fabric in a BoX
       value: FIAB
     role: ACCESS
-    site_name: Global/USA/SAN JOSE/BGL23
+    #site_name: Global/USA/SAN JOSE/BGL23
     device_resync: false
     force_sync: false
   - ip_address_list:
@@ -37,7 +37,7 @@ inventory_details:
       description: This device is the WLC
       value: WLC
     role: ACCESS
-    site_name: Global/USA/SAN JOSE/BGL23
+    #site_name: Global/USA/SAN JOSE/BGL23
     device_resync: false
     force_sync: false
   - ip_address_list:
@@ -47,7 +47,7 @@ inventory_details:
       description: This device is the Fabric in a BoX
       value: FIAB
     role: ACCESS
-    site_name: Global/USA/SAN-FRANCISCO/BLD_SF
+    #site_name: Global/USA/SAN-FRANCISCO/BLD_SF
     device_resync: false
     force_sync: false
   - ip_address_list:
@@ -57,6 +57,6 @@ inventory_details:
       description: This device is the WLC
       value: WLC
     role: ACCESS
-    site_name: Global/USA/SAN-FRANCISCO/BLD_SF
+    #site_name: Global/USA/SAN-FRANCISCO/BLD_SF
     device_resync: false
     force_sync: false

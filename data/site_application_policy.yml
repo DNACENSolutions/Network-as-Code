@@ -54,34 +54,6 @@ application_policy_details:
         scavenger: "2"
         real_time_interactive: "34"
         
-  - application:
-    - name: "Security_Gateway_App"
-      help_string: "Application for network security and access control"
-      description: "Security Gateway Application"
-      type: "server_name"
-      server_name: "www.securitygateway.com"
-      traffic_class: "BROADCAST_VIDEO"
-      ignore_conflict: true
-      rank: 23
-      engine_id: 4
-      application_set_name: "local-services"
-    - name: "Security_Gateway_IP_App"
-      help_string: "Security Gateway Application based on IP"
-      description: "Defines security gateway policies using server IPs"
-      type: "server_ip"
-      network_identity:
-        protocol: "UDP"
-        port: "2000"
-        ip_subnet: ["1.1.1.1","2.2.2.2","3.3.3.3"]
-        lower_port: "10"
-        upper_port: "100"
-      dscp: 2
-      traffic_class: "BROADCAST_VIDEO"
-      ignore_conflict: true
-      rank: 23
-      engine_id: 4
-      application_set_name: "local-services"
-
   - application_policy:
     - name: "WiredTrafficOptimizationPolicy"
       policy_status: "NONE"
