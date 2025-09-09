@@ -127,7 +127,7 @@ RemoveNetworkSettingsGlobalIPPools:
 # Wireless Network profile for the site
 
 RemoveWirelessNetworkProfile:
-  schema_file: "network_profile_wireless/schema/network_profile_wireless_schema.yml"
+  schema_file: "network_profile_wireless/schema/delete_network_profile_wireless_schema.yml"
   playbook: "network_profile_wireless/playbook/network_profile_wireless_playbook.yml"
   data_file: "data_deletion/site_nw_profile_wireless.yml"
 

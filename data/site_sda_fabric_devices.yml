@@ -7,7 +7,6 @@ fabric_devices_details:
       - CONTROL_PLANE_NODE
       - BORDER_NODE
       - EDGE_NODE
-      route_distribution_protocol: LISP_PUB_SUB
       borders_settings:
         layer3_settings:
           local_autonomous_system_number: 655600
@@ -63,7 +62,6 @@ fabric_devices_details:
       - CONTROL_PLANE_NODE
       - BORDER_NODE
       - EDGE_NODE
-      route_distribution_protocol: LISP_PUB_SUB
       borders_settings:
         layer3_settings:
           local_autonomous_system_number: 655601
