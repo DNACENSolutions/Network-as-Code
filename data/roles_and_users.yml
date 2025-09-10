@@ -73,17 +73,17 @@ roles_users_details:
     password: Lablab#!12459
     password_update: false
     role_list:
-    - OBSERVER-ROLE
+    - OBSERVER
   - username: nwadmin1
     first_name: NWAdmin1
     email: nwadmin1@example.com
     password: Lablab#@12459
     password_update: false
     role_list:
-    - NETWORK-ADMIN-ROLE
+    - NW-ADMIN
   - username: sadmin1
     first_name: SuperAdmin1
     password: Lablab!@12459
     password_update: false
     role_list:
-    - SUPER-ADMIN-ROLE
+    - SUPER-ADMIN
