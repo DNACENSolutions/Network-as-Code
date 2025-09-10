@@ -5,7 +5,7 @@ show_help() {
     echo "Usage: $0 [install python_interpreter|sourceonly|clean|-h|--help]"
     echo ""
     echo "Options:"
-    echo "  install python_interpreter   Install a new virtual environment with the specified python (e.g. python3.11)."
+    echo "  install python_interpreter   Install a new virtual environment with the specified python (e.g. python3.11, python3.12, python3.10, python3.9, python3.8)."
     echo "  sourceonly                   Only activate (source) the existing virtual environment."
     echo "  clean                        Remove the virtual environment, logs, and workflows."
     echo "  -h, --help                   Show this help message and exit."
@@ -40,6 +40,11 @@ if [[ "$1" == "install" ]]; then
         echo "Example: $0 install python3.11"
         exit 1
     fi
+    PYTHON_PATH=$(which -a "$2" | head -n 1)
+    if [[ -z "$PYTHON_PATH" ]]; then
+        echo "Error: Could not find interpreter '$2' in PATH."
+        exit 1
+    fi
     if [[ -d ./../venv-anisible ]]; then
         read -p "A virtual environment already exists. Overwrite? [y/N]: " confirm
         if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
@@ -48,8 +53,8 @@ if [[ "$1" == "install" ]]; then
         fi
         rm -rf ./../venv-anisible
     fi
-    echo "Creating virtual environment with $2"
-    $2 -m venv ./../venv-anisible --prompt=ansible-venv
+    echo "Creating virtual environment with $PYTHON_PATH"
+    "$PYTHON_PATH" -m venv ./../venv-anisible --prompt=ansible-venv
     source ./../venv-anisible/bin/activate
     export ANSIBLE_PYTHON_INTERPRETER=$(which python)
     python -m pip install --upgrade pip
