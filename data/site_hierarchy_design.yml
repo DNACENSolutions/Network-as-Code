@@ -50,7 +50,7 @@ design_sites:
       name: FLOOR1
       floor_number: 1
       parent_name: Global/USA/SAN JOSE/BLD23
-      rfModel: Cubes And Walled Offices
+      rf_model: Cubes And Walled Offices
       width: 100.0
       length: 100.0
       height: 10.0
@@ -62,7 +62,7 @@ design_sites:
       name: FLOOR2
       floor_number: 2
       parent_name: Global/USA/SAN JOSE/BLD23
-      rfModel: Cubes And Walled Offices
+      rf_model: Cubes And Walled Offices
       width: 100.0
       length: 100.0
       height: 10.0
@@ -74,7 +74,7 @@ design_sites:
       name: FLOOR3
       floor_number: 3
       parent_name: Global/USA/SAN JOSE/BLD23
-      rfModel: Outdoor Open Space
+      rf_model: Outdoor Open Space
       width: 100.0
       length: 100.0
       height: 10.0
@@ -84,7 +84,7 @@ design_sites:
       name: FLOOR1
       floor_number: 1
       parent_name: Global/USA/SAN JOSE/BLD20
-      rfModel: Indoor High Ceiling
+      rf_model: Indoor High Ceiling
       width: 100.0
       length: 100.0
       height: 10.0
@@ -96,7 +96,7 @@ design_sites:
       name: FLOOR2
       floor_number: 2
       parent_name: Global/USA/SAN JOSE/BLD20
-      rfModel: Cubes And Walled Offices
+      rf_model: Cubes And Walled Offices
       width: 100.0
       length: 100.0
       height: 10.0
@@ -108,7 +108,7 @@ design_sites:
       name: FLOOR1
       floor_number: -1
       parent_name: Global/USA/SAN-FRANCISCO/BLD_SF
-      rfModel: Drywall Office Only
+      rf_model: Drywall Office Only
       width: 5.0
       length: 5.0
       height: 3.0
@@ -120,7 +120,7 @@ design_sites:
       name: FLOOR2
       floor_number: 2
       parent_name: Global/USA/SAN-FRANCISCO/BLD_SF
-      rfModel: Drywall Office Only
+      rf_model: Drywall Office Only
       width: 10.0
       length: 12.0
       height: 8.0
