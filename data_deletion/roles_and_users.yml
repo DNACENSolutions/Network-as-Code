@@ -5,21 +5,21 @@ roles_users_details:
     first_name: Pawan
     last_name: Singh
     email: pawansingh@example.com
-    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_1') }}"
+    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_1') }}"#!1245
     password_update: false
     role_list:
     - Admin_customized_role
     - Assurance-role
   - username: observer1
     first_name: Observer1
-    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_2') }}"
+    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_2') }}"#!12459
     password_update: false
     role_list:
     - OBSERVER-ROLE
   - username: nwadmin1
     first_name: NWAdmin1
     email: nwadmin1@example.com
-    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_3') }}"
+    password: "{{ lookup('env', 'NAC_DATA_DELETION_ROLES_AND_USERS_YML_PASSWORD_3') }}"#@12459
     password_update: false
     role_list:
     - NETWORK-ADMIN-ROLE

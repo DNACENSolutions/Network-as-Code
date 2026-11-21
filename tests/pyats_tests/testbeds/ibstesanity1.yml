@@ -3,8 +3,8 @@ testbed:
   credentials:
       default:
         username: wlcaccess
-        password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_1') }}"
-        enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_1') }}"
+        password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_1}"#123
+        enable_password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_1}"#123
 
 devices:
   ISBTE-TB3-Fusion:
@@ -13,8 +13,8 @@ devices:
     credentials:
       default:
         username: wlcaccess
-        password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_2') }}"
-        enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_2') }}"
+        password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_PASSWORD_2}"#123
+        enable_password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_ENABLE_PASSWORD_2}"#123
     alias: device-ISBTE-TB3-Fusion
     connections:
       cli:
@@ -23,6 +23,6 @@ devices:
         port: 2039
       con_credentials:
         terminal_server_username: lab
-        terminal_server_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_PASSWORD_1') }}"
-        terminal_server_enable_password: "{{ lookup('env', 'NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_ENABLE_PASSWORD_1') }}"
+        terminal_server_password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_PASSWORD_1}"
+        terminal_server_enable_password: "%ENV{NAC_TESTS_PYATS_TESTS_TESTBEDS_IBSTESANITY1_YML_TERMINAL_SERVER_ENABLE_PASSWORD_1}"
 

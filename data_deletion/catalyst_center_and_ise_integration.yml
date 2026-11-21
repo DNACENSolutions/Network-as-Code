@@ -23,7 +23,7 @@ ise_radius_integration_details:
     pxgrid_enabled: true
     cisco_ise_dtos:
     - user_name: admin
-      password: "{{ lookup('env', 'NAC_DATA_DELETION_CATALYST_CENTER_AND_ISE_INTEGRATION_YML_PASSWORD_1') }}"
+      password: "{{ lookup('env', 'NAC_DATA_DELETION_CATALYST_CENTER_AND_ISE_INTEGRATION_YML_PASSWORD_1') }}"#123
       fqdn: IBSTE-ISE1.cisco.com
       ip_address: 10.195.243.31
       description: Cisco ISE

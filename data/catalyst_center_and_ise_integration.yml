@@ -12,7 +12,7 @@ ise_radius_integration_details:
     role: secondary
   - server_type: ISE
     server_ip_address: 10.22.40.68
-    shared_secret: "{{ lookup('env', 'NAC_DATA_CATALYST_CENTER_AND_ISE_INTEGRATION_YML_SHARED_SECRET_2') }}"
+    shared_secret: "{{ lookup('env', 'NAC_DATA_CATALYST_CENTER_AND_ISE_INTEGRATION_YML_SHARED_SECRET_2') }}"#123
     protocol: RADIUS_TACACS
     authentication_port: 1812
     accounting_port: 1813

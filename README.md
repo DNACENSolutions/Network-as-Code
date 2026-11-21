@@ -353,7 +353,7 @@ the Updated configurations into Catalyst Center.
 							catalyst_center_hosts:
 								hosts:
 									give_any_hostname:
-										dnac_password: "{{ lookup('env', 'NAC_README_MD_DNAC_PASSWORD_1') }}"
+										dnac_password: "{{ lookup('env', 'NAC_README_DNAC_PASSWORD_1') }}"
 										dnac_host: Catalyst Center Host IP address Reachable fron ansible server.
 										dnac_port: 443
 										dnac_timeout: 60
@@ -432,7 +432,15 @@ Install CatC_SD_Access_campus using one of the following methods:
 ❯ source setup.sh
 ```
 
-4. Update the ansible_inventory/catalystcenter_inventory/hosts.yml file with your Catalyst Center details.
+4. Configure credentials using environment variables. Copy `.env.example` to `.env`, fill in only the values needed for your run, and load it in the shell before running a playbook:
+```sh
+cp .env.example .env
+$EDITOR .env
+set -a; source .env; set +a
+```
+Do not commit `.env`. Password and shared-secret fields in the sample inputs read from these variables at runtime; the pyATS testbed uses `%ENV{...}` variables.
+
+5. Update the ansible_inventory/catalystcenter_inventory/hosts.yml file with your Catalyst Center details.
 ```sh
 ❯ vi ansible_inventory/catalystcenter_inventory/hosts.yml
 ```
